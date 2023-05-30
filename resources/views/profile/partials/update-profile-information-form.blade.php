@@ -47,6 +47,30 @@
             @endif
         </div>
 
+        <div>
+            <x-input-label for="contactno" :value="__('Contact Number')" />
+            <x-text-input id="contactno" name="contactno" type="text" class="mt-1 block w-full" :value="old('contactno', $user->contactno)" required autofocus autocomplete="contactno" />
+            <x-input-error class="mt-2" :messages="$errors->get('contactno')" />
+        </div>
+
+        <div>
+            <x-input-label for="rate" :value="__('Rate')" />
+            <x-text-input id="rate" name="rate" type="text" class="mt-1 block w-full" :value="old('rate', $user->rate)" required autofocus autocomplete="rate" />
+            <x-input-error class="mt-2" :messages="$errors->get('rate')" />
+        </div>
+
+        <div>
+            <x-input-label for="licenses" :value="__('Licenses')" />
+            <x-text-input id="licenses" name="licenses" type="text" class="mt-1 block w-full" :value="old('licenses', $user->licenses)" required autofocus autocomplete="licenses" />
+            <x-input-error class="mt-2" :messages="$errors->get('licenses')" />
+        </div>
+
+        <div>
+            <x-input-label for="safepass" :value="__('Safe Pass')" />
+            <x-text-input id="safepass" name="licenses" type="text" class="mt-1 block w-full" :value="old('safepass', $user->safepass)" required autofocus autocomplete="safepass" />
+            <x-input-error class="mt-2" :messages="$errors->get('safepass')" />
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

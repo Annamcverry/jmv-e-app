@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\EmployeeInvoice;
-use Illuminate\Database\Seeder;
+use App\Models\UserInvoice;
 
 // use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class EmployeeInvoiceSeeder extends Seeder
+class UserInvoiceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,7 +21,7 @@ class EmployeeInvoiceSeeder extends Seeder
            $datarow = true;
            while (($data = fgetcsv($info, 4000, ",")) !== FALSE){
                if (!$datarow) {
-                   EmployeeInvoice::create([
+                   UserInvoice::create([
                        'user_id'=> $data['0'],
                        'invoice_id'=> $data['1'],
                    ]);
