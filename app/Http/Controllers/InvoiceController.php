@@ -100,7 +100,13 @@ class InvoiceController extends Controller
             ]);
         }
     }
-
+ /**
+     * Update an existing resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
 
     public function updateInvoice(Request $request, string $invoice){
 
@@ -137,9 +143,17 @@ class InvoiceController extends Controller
         }
     }
 
+        /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
+
     public function destroy($id){
         $invoice = Invoice::find($id);
         if($invoice){
+
             $invoice->delete();
             return response()->json([
                 'status'=>200,

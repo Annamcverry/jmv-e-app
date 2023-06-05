@@ -39,6 +39,10 @@ class ProfileController extends Controller
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
+        $request->user()->contact_no = $request->get('contact_no');
+        $request->user()->rate = $request->get('rate');
+        $request->user()->licences = $request->get('licences');
+        $request->user()->safepass = $request->get('safepass');
 
         $request->user()->save();
 

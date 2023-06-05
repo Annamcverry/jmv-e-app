@@ -48,26 +48,26 @@
         </div>
 
         <div>
-            <x-input-label for="contactno" :value="__('Contact Number')" />
-            <x-text-input id="contactno" name="contactno" type="text" class="mt-1 block w-full" :value="old('contactno', $user->contactno)" required autofocus autocomplete="contactno" />
-            <x-input-error class="mt-2" :messages="$errors->get('contactno')" />
+            <x-input-label for="contact_no" :value="__('Contact Number')" />
+            <x-text-input id="contact_no" name="contact_no" type="text" class="mt-1 block w-full" :value="old('contact_no', $user->contact_no)" required autofocus autocomplete="contact_no" />
+            <x-input-error class="mt-2" :messages="$errors->get('contact_no')" />
         </div>
 
         <div>
             <x-input-label for="rate" :value="__('Rate')" />
-            <x-text-input id="rate" name="rate" type="text" class="mt-1 block w-full" :value="old('rate', $user->rate)" required autofocus autocomplete="rate" />
+            <x-text-input id="rate" name="rate" type="float" class="mt-1 block w-full" :value="old('rate', $user->rate)" required autofocus autocomplete="rate" />
             <x-input-error class="mt-2" :messages="$errors->get('rate')" />
         </div>
 
         <div>
-            <x-input-label for="licenses" :value="__('Licenses')" />
-            <x-text-input id="licenses" name="licenses" type="text" class="mt-1 block w-full" :value="old('licenses', $user->licenses)" required autofocus autocomplete="licenses" />
-            <x-input-error class="mt-2" :messages="$errors->get('licenses')" />
+            <x-input-label for="licences" :value="__('Licences')" />
+            <x-text-input id="licences" name="licences" type="text" class="mt-1 block w-full" :value="old('licences', $user->licences)" required autofocus autocomplete="licences" />
+            <x-input-error class="mt-2" :messages="$errors->get('licences')" />
         </div>
 
         <div>
             <x-input-label for="safepass" :value="__('Safe Pass')" />
-            <x-text-input id="safepass" name="licenses" type="text" class="mt-1 block w-full" :value="old('safepass', $user->safepass)" required autofocus autocomplete="safepass" />
+            <x-text-input id="safepass" name="safepass" type="binary"   class="mt-1 block w-full" :value="old('safepass', $user->safepass)" required autofocus autocomplete="safepass" />
             <x-input-error class="mt-2" :messages="$errors->get('safepass')" />
         </div>
 

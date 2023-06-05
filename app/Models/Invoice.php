@@ -16,7 +16,7 @@ class Invoice extends Model
     protected $fillable = [
         'week_beginning',
         'hours_worked',
-        // 'wage',
+        'wage',
         'excange_rate'
     ];
 

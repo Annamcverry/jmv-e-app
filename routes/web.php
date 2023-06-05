@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/dashboard', function () {
 
@@ -41,5 +41,5 @@ Route::post('save-invoice', [InvoiceController::class, 'saveInvoice'])->name('sa
 Route::get('fetch-invoices', [InvoiceController::class, 'fetchInvoices']);
 Route::put('update-invoice/{id}', [InvoiceController::class, 'updateInvoice']);
 Route::get('edit-invoice/{id}', [InvoiceController::class, 'edit']);
-Route::delete('delete-invoice{id}', [InvoiceController::class, 'destroy']);
+Route::delete('delete-invoice/{id}', [InvoiceController::class, 'destroy']);
 require __DIR__.'/auth.php';
