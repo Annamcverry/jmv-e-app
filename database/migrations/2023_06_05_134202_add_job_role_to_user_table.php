@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             //
             $table->string('job_role')
-            ->after('email');
+            ->after('email')
+            ->default('employee');
         });
     }
 

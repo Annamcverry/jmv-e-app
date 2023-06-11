@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\UserController;
+use App\Models\Timesheet;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,4 +44,19 @@ Route::get('fetch-invoices', [InvoiceController::class, 'fetchInvoices']);
 Route::put('update-invoice/{id}', [InvoiceController::class, 'updateInvoice']);
 Route::get('edit-invoice/{id}', [InvoiceController::class, 'edit']);
 Route::delete('delete-invoice/{id}', [InvoiceController::class, 'destroy']);
+// Route::get('/employees', [UserController::class, 'fetchEmployees']);
+Route::get('/employees', function(){
+    return view('employees');
+});
+
+Route::get('fetch-employees', [UserController::class, 'fetchEmployees']);
+
+//Timesheet Routes
+Route::get('/timesheet', function() {
+    return view('timesheet');
+})->middleware(['auth', 'verified'])->name('timesheet');
+Route::get('fetch-timesheets', [Timesheet::class, 'fetchTimesheets']);
+Route::post('save-timesheet', [Timesheet::class, 'store'])->name('store');
+
+
 require __DIR__.'/auth.php';
