@@ -40,6 +40,7 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
         $request->user()->contact_no = $request->get('contact_no');
+        $request->user()->job_role = $request->get('job_role');
         $request->user()->rate = $request->get('rate');
         $request->user()->licences = $request->get('licences');
         $request->user()->safepass = $request->get('safepass');

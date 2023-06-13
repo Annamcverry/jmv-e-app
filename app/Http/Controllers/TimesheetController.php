@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Validator;
+use Ramsey\Uuid\Type\Time;
 
 class TimesheetController extends Controller
 {
@@ -16,7 +17,7 @@ class TimesheetController extends Controller
      */
     public function index()
     {
-        return view('/timesheeets');
+        return view('admintimesheets', ['timesheets' => Timesheet::all()]);
     }
 
     /**
@@ -39,29 +40,22 @@ class TimesheetController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function store(Request $request)
+    public function saveTimesheet(Request $request)
     {
-        // $validator = Validator::make($request->all(),[
         $validator = Validator::make($request->all(),[
             // 'user_id'=>Auth::user()->id,
             
             'week_beginning'=>'required',
-            'mon_start_time'=>'required',
-            'mon_end_time'=>'required',
-            'tue_start_time'=>'required',
-            'tue_end_time'=>'required',
-            'wed_start_time'=>'required',
-            'wed_end_time'=>'required',
-            'thurs_start_time'=>'required',
-            'thurs_end_time'=>'required',
-            'fri_start_time'=>'required',
-            'fri_end_time'=>'required',
-            'sat_start_time'=>'required',
-            'sat_end_time'=>'required',
-            'sun_start_time'=>'required',
-            'sun_end_time'=>'required',
+            'mon_hours'=>'required',
+            'tue_hours'=>'required',
+            'wed_hours'=>'required',
+            'thurs_hours'=>'required',
+            'fri_hours'=>'required',
+            'sat_hours'=>'required',
+            'sun_hours'=>'required',
+         
         ]);
-        if($validator->fail()){
+        if($validator->fails()){
             return response()->json([
                 'status'=>400,
                 'errors'=>$validator->messages()
@@ -71,21 +65,14 @@ class TimesheetController extends Controller
             $timesheet = new Timesheet;
             $timesheet->user_id = Auth::user()->id;
             $timesheet->week_beginning = $request->input('week_beginning');
-            $timesheet->mon_start_time = $request->input('mon_start_time');
-            $timesheet->mon_end_time = $request->input('mon_end_time');
-            $timesheet->tue_start_time = $request->input('tue_start_time');
-            $timesheet->tue_end_time = $request->input('tue_end_time');
-            $timesheet->wed_start_time = $request->input('wed_start_time');
-            $timesheet->wed_end_time = $request->input('wed_end_time');
-            $timesheet->thurs_start_time = $request->input('thurs_start_time');
-            $timesheet->thurs_end_time = $request->input('thurs_end_time');
-            $timesheet->fri_start_time = $request->input('fri_start_time');
-            $timesheet->fri_end_time = $request->input('fri_end_time');
-            $timesheet->sat_start_time = $request->input('sat_start_time');
-            $timesheet->sat_end_time = $request->input('sat_end_time');
-            $timesheet->sun_start_time = $request->input('sun_start_time');
-            $timesheet->sun_end_time = $request->input('sun_end_time');
-
+            $timesheet->mon_hours = $request->input('mon_hours');
+            $timesheet->tue_hours = $request->input('tue_hours');
+            $timesheet->wed_hours = $request->input('wed_hours');
+            $timesheet->thurs_hours = $request->input('thurs_hours');
+            $timesheet->fri_hours = $request->input('fri_hours');
+            $timesheet->sat_hours = $request->input('sat_hours');
+            $timesheet->sun_hours = $request->input('sun_hours');
+         
             $timesheet->save();
             return response()->json([
                 'status'=>200,
@@ -97,32 +84,130 @@ class TimesheetController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Timesheet $id)
     {
         //
+        $timesheet = Timesheet::where('id',$id)
+                    ->where('user_id', Auth::id());
+        return view('timesheet')->with('timesheet', $timesheet);
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $timesheet = Timesheet::find($id);
+        if($timesheet){
+            return response()->json([
+                'status'=>200,
+                'timesheet'=>$timesheet,
+            ]);
+        }
+        else{
+            return response()->json([
+                'status'=>404,
+                'message'=>'No Timesheet Found'
+            ]);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $timesheet)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'week_beginning'=>'required',
+            'mon_hours'=>'required',
+            'tue_hours'=>'required',
+            'wed_hours'=>'required',
+            'thurs_hours'=>'required',
+            'fri_hours'=>'required',
+            'sat_hours'=>'required',
+            'sun_hours'=>'required',
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                'status'=>400,
+                'errors'=>$validator->messages()
+            ]);
+        }
+        else{
+            $timesheet = Timesheet::find($timesheet);
+            if($timesheet){
+                $timesheet->week_beginning = $request->input('week_beginning');
+                $timesheet->mon_hours = $request->input('mon_hours');
+                $timesheet->tue_hours = $request->input('tue_hours');
+                $timesheet->wed_hours = $request->input('wed_hours');
+                $timesheet->thurs_hours = $request->input('thurs_hours');
+                $timesheet->fri_hours = $request->input('fri_hours');
+                $timesheet->sat_hours = $request->input('sat_hours');
+                $timesheet->sun_hours = $request->input('sun_hours');
+                $timesheet->update();
+
+                return response()->json([
+                    'status'=>200,
+                    'message'=>'Timesheet Updated Successfully'
+                ]);
+            }
+            else{
+                return response()->json([
+                    'status'=>400,
+                    'message'=>'No Timesheet Found'
+                ]);
+            }
+        }
+    
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $timesheet = Timesheet::find($id);
+        if($timesheet){
+
+            $timesheet->delete();
+            return response()->json([
+                'status'=>200,
+                'message'=>'Timesheet Deleted Successfully'
+            ]);
+        }
+        else{
+            return response()->json([
+                'status'=>404,
+                'message'=>'No Timesheet Found'
+            ]);
+        }
+    }
+
+    public function approveTimesheet($id){
+        $timesheet = Timesheet::find($id);
+        $timesheet->status = "Approved";
+        $timesheet->save();
+
+        return redirect('/admintimesheets');
+        return response()->json([
+                        'status'=>200,
+                        'message'=>'Timesheet Updated Successfully'
+                    ]);
+            
+    }
+
+    public function reviewTimesheet($id){
+        $timesheet = Timesheet::find($id);
+        $timesheet->status = "In Review";
+        $timesheet->save();
+
+        return redirect('/admintimesheets');
+        return response()->json([
+                        'status'=>200,
+                        'message'=>'Timesheet Reviewed Successfully'
+                    ]);
+            
     }
 }
+

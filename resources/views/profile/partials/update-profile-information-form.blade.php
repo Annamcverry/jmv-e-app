@@ -54,6 +54,13 @@
         </div>
 
         <div>
+            <x-input-label for="job_role" :value="__('Job Role')" />
+            <x-text-input id="job_role" name="job_role" type="text" class="mt-1 block w-full" :value="old('job_role', $user->job_role)" required autofocus autocomplete="job_role" />
+            <x-input-error class="mt-2" :messages="$errors->get('job_role')" />
+        </div>
+
+
+        <div>
             <x-input-label for="rate" :value="__('Rate')" />
             <x-text-input id="rate" name="rate" type="float" class="mt-1 block w-full" :value="old('rate', $user->rate)" required autofocus autocomplete="rate" />
             <x-input-error class="mt-2" :messages="$errors->get('rate')" />

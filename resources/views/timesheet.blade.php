@@ -10,7 +10,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <!-- <link rel="stylesheet" href="/resources/css/app.css"/> -->
+    <link rel="stylesheet" href="/resources/css/app.css"/>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -31,20 +31,15 @@
                 <thead>
                     <tr>
                         <th scope="col">Week Beginning</th>
-                        <th scope="col">Start Time</th>
-                        <th scope="col">Finish Time</th>
-                        <th scope="col">Start Time</th>
-                        <th scope="col">Finish Time</th>
-                        <th scope="col">Start Time</th>
-                        <th scope="col">Finish Time</th>
-                        <th scope="col">Start Time</th>
-                        <th scope="col">Finish Time</th>
-                        <th scope="col">Start Time</th>
-                        <th scope="col">Finish Time</th>
-                        <th scope="col">Start Time</th>
-                        <th scope="col">Finish Time</th>
-                        <th scope="col">Start Time</th>
-                        <th scope="col">Finish Time</th>
+                        <th scope="col">Monday</th>
+                        <th scope="col">Tuesday</th>
+                        <th scope="col">Wednesday</th>
+                        <th scope="col">Thursday</th>
+                        <th scope="col">Friday</th>
+                        <th scope="col">Saturday</th>
+                        <th scope="col">Sunday</th>
+                        <th scope="col">Total Hours</th>
+                     
                     </tr>
                 </thead>
                 <tbody>
@@ -68,105 +63,55 @@
                             <div class="form-group">
                                 <label for="name" class="col-sm-4 control-label">Week Beginning</label>
                                 <div class="col-sm-12">
-                                    <input type="date" class="form-control" id="week_beginning" name="week_beginning" placeholder="Week .." value="" maxlength="50" required="">
+                                    <input type="date" class="form-control" id="week_beginning" name="week_beginning"  maxlength="50" required="">
                                 </div>
 
                             </div>
 
-
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">Monday Start Time</label>
+                                <label for="name" class="col-sm-4 control-label">Mon Hours</label>
                                 <div class="col-sm-12">
-                                    <input type="time" class="form-control" id="mon_start_time" name="mon_start_time" placeholder="0800" value="" required="">
+                                    <input type="float" class="form-control" id="mon_hours" name="mon_hours"  maxlength="50" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-sm-4 control-label">Tue Hours</label>
+                                <div class="col-sm-12">
+                                    <input type="float" class="form-control" id="tue_hours" name="tue_hours"  maxlength="50" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-sm-4 control-label">Wed Hours</label>
+                                <div class="col-sm-12">
+                                    <input type="float" class="form-control" id="wed_hours" name="wed_hours"  maxlength="50" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-sm-4 control-label">Thurs Hours</label>
+                                <div class="col-sm-12">
+                                    <input type="float" class="form-control" id="thurs_hours" name="thurs_hours"  maxlength="50" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-sm-4 control-label">Fri Hours</label>
+                                <div class="col-sm-12">
+                                    <input type="float" class="form-control" id="fri_hours" name="fri_hours" value="" maxlength="50" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-sm-4 control-label">Sat Hours</label>
+                                <div class="col-sm-12">
+                                    <input type="float" class="form-control" id="sat_hours" name="sat_hours"  value="" maxlength="50" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-sm-4 control-label">Sun Hours</label>
+                                <div class="col-sm-12">
+                                    <input type="float" class="form-control" id="sun_hours" name="sun_hours"  value="" maxlength="50" required="">
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Monday End Time</label>
-                                <div class="col-sm-12">
-                                    <input type="time" class="form-control" id="mon_end_time" name="mon_end_time" placeholder="1700" value="" required="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Tuesday Start Time</label>
-                                <div class="col-sm-12">
-                                    <input type="time" class="form-control" id="tue_start_time" name="tue_start_time" placeholder="0800" value="" required="">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Tuesday End Time</label>
-                                <div class="col-sm-12">
-                                    <input type="time" class="form-control" id="tue_end_time" name="tue_end_time" placeholder="1700" value="" required="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Wednesday Start Time</label>
-                                <div class="col-sm-12">
-                                    <input type="time" class="form-control" id="wed_start_time" name="wed_start_time" placeholder="0800" value="" required="">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Wednesday End Time</label>
-                                <div class="col-sm-12">
-                                    <input type="time" class="form-control" id="wed_end_time" name="wed_end_time" placeholder="1700" value="" required="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Thursday Start Time</label>
-                                <div class="col-sm-12">
-                                    <input type="time" class="form-control" id="thurs_start_time" name="thurs_start_time" placeholder="0800" value="" required="">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Thurday End Time</label>
-                                <div class="col-sm-12">
-                                    <input type="time" class="form-control" id="thurs_end_time" name="thurs_end_time" placeholder="1700" value="" required="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Friday Start Time</label>
-                                <div class="col-sm-12">
-                                    <input type="time" class="form-control" id="fri_start_time" name="fri_start_time" placeholder="0800" value="" required="">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Friday End Time</label>
-                                <div class="col-sm-12">
-                                    <input type="time" class="form-control" id="fri_end_time" name="fri_end_time" placeholder="1700" value="" required="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Saturday Start Time</label>
-                                <div class="col-sm-12">
-                                    <input type="time" class="form-control" id="sat_start_time" name="sat_start_time" placeholder="0800" value="" required="">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Saturday End Time</label>
-                                <div class="col-sm-12">
-                                    <input type="time" class="form-control" id="sat_end_time" name="sat_end_time" placeholder="1700" value="" required="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Sunday Start Time</label>
-                                <div class="col-sm-12">
-                                    <input type="time" class="form-control" id="sun_start_time" name="sun_start_time" placeholder="0800" value="" required="">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Sunday End Time</label>
-                                <div class="col-sm-12">
-                                    <input type="time" class="form-control" id="sun_end_time" name="sun_end_time" placeholder="1700" value="" required="">
-                                </div>
-                            </div>
-
-
+                    
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-primary" id="btn-add" value="addNewTimesheet">Save
                                 </button>
@@ -201,22 +146,18 @@
                             $.each(response.timesheets, function(key, item) {
                                 $('tbody').append('<tr>\
                             <td>' + item.week_beginning + '</td>\
-                            <td>' + item.mon_start_time + '</td>\
-                            <td>' + item.mon_end_time + '</td>\
-                            <td>' + item.tue_start_time + '</td>\
-                            <td>' + item.tue_end_time + '</td>\
-                            <td>' + item.wed_start_time + '</td>\
-                            <td>' + item.wed_end_time + '</td>\
-                            <td>' + item.thurs_start_time + '</td>\
-                            <td>' + item.thurs_end_time + '</td>\
-                            <td>' + item.fri_start_time + '</td>\
-                            <td>' + item.fri_end_time + '</td>\
-                            <td>' + item.sat_start_time + '</td>\
-                            <td>' + item.sat_end_time + '</td>\
-                            <td>' + item.sun_start_time + '</td>\
-                            <td>' + item.sun_end_time + '</td>\
+                            <td>' + item.mon_hours + '</td>\
+                            <td>' + item.tue_hours + '</td>\
+                            <td>' + item.wed_hours + '</td>\
+                            <td>' + item.thurs_hours + '</td>\
+                            <td>' + item.fri_hours + '</td>\
+                            <td>' + item.sat_hours + '</td>\
+                            <td>' + item.sun_hours + '</td>\
+                            <td>' + item.total_hours + '</td>\
                             <td><button type="button" data-id="' + item.id + '" class="btn btn-primary edit btn-sm"  >Edit</button>\
                             <button type="button" data-id="' + item.id + '" class="btn btn danger delete btn-sm" style="background-color:darkblue color:white">Delete</button></td>\
+                            <td><button type="button" data-id="' + item.id + '" class="btn btn-primary btn-sm"  id="btn-approve" >Approve</button>\
+                            <td><button type="button" data-id="' + item.id + '" class="btn btn-primary edit btn-sm"  >Review</button>\
                            </tr>');
                             });
 
@@ -226,9 +167,9 @@
                         }
                     });
                 }
+             
                 $('#addNewTimesheet').click(function(evt) {
                     evt.preventDefault();
-
                     $('#addEditTimesheetForm').trigger("reset");
                     $('#TimesheetModel').html("Add Timesheet");
                     $('#btn-add').show();
@@ -237,43 +178,30 @@
                 });
 
                 $('body').on('click', '#btn-add', function(event) {
-                    event.preventDefault();
+                    event.preventDefault()
                     var week_beginning = $("#week_beginning").val();
-                    var mon_start_time = $("#mon_start_time").val();
-                    var mon_end_time = $("#mon_end_time").val();
-                    var mon_start_time = $("#tue_start_time").val();
-                    var mon_end_time = $("#tue_end_time").val();
-                    var mon_start_time = $("#wed_start_time").val();
-                    var mon_end_time = $("#wed_end_time").val();
-                    var mon_start_time = $("#thurs_start_time").val();
-                    var mon_end_time = $("#thurs_end_time").val();
-                    var mon_start_time = $("#fri_start_time").val();
-                    var mon_end_time = $("#fri_end_time").val();
-                    var mon_start_time = $("#sat_start_time").val();
-                    var mon_end_time = $("#sat_end_time").val();
-                    var mon_start_time = $("#sun_start_time").val();
-                    var mon_end_time = $("#sun_end_time").val();
+                    var mon_hours = $("#mon_hours").val();
+                    var tue_hours = $("#tue_hours").val();
+                    var wed_hours = $("#wed_hours").val();
+                    var thurs_hours = $("#thurs_hours").val();
+                    var fri_hours = $("#fri_hours").val();
+                    var sat_hours = $("#sat_hours").val();
+                    var sun_hours = $("#sun_hours").val();
                     $("#btn-add").html('Please Wait');
                     $("#btn-add").attr("disabled", true);
+
                     $.ajax({
                         type: "POST",
                         url: "save-timesheet",
-                        data: {
-                            week_beginning: week_beginning,
-                            mon_start_time: mon_start_time,
-                            mon_end_time: mon_end_time,
-                            tue_start_time:tue_start_time,
-                            tue_end_time: tue_end_time,
-                            wed_start_time: wed_start_time,
-                            wed_end_time: wed_end_time,
-                            thurs_start_time: thurs_start_time,
-                            thurs_end_time: thurs_end_time,
-                            fri_start_time: fri_start_time,
-                            fri_end_time: fri_end_time,
-                            sat_start_time: sat_start_time,
-                            sat_end_time: sat_end_time,
-                            sun_start_time: sun_start_time,
-                            sun_end_time: sun_end_time,
+                        data:{
+                            week_beginning:week_beginning,
+                            mon_hours:mon_hours,
+                            tue_hours:tue_hours,
+                            wed_hours:wed_hours,
+                            thurs_hours:thurs_hours,
+                            fri_hours:fri_hours,
+                            sat_hours:sat_hours,
+                            sun_hours:sun_hours,  
                         },
                         dataType: 'json',
                         success: function(response) {
@@ -326,9 +254,14 @@
                                 $('#message').html("");
                                 $('#message').addClass('alert alert-success');
                                 $('#message').text(response.message);
-                                $('week_beginning').val(response.timesheet.week_beginning);
-                                $('#hours_worked').val(response.timesheet.mon_start_time);
-                                $('#exchange_rate').val(response.timesheet.mon_end_time);
+                                $('#week_beginning').val(response.timesheet.week_beginning);
+                                $('#mon_hours').val(response.timesheet.mon_hours);
+                                $('#tue_hours').val(response.timesheet.tue_hours);
+                                $('#wed_hours').val(response.timesheet.wed_hours);
+                                $('#thurs_hours').val(response.timesheet.thurs_hours);
+                                $('#fri_hours').val(response.timesheet.fri_hours);
+                                $('#sat_hours').val(response.timesheet.sat_hours);
+                                $('#sun_hours').val(response.timesheet.sun_hours);
                                 $('#id').val(response.timesheet.id);
                             }
                         }
@@ -367,8 +300,13 @@
                     event.preventDefault();
                     var id = $("#id").val();
                     var week_beginning = $("#week_beginning").val();
-                    var mon_start_time = $("#mon_start_time").val();
-                    var mon_end_time = $("#mon_end_time").val();
+                    var mon_hours = $("#mon_hours").val();
+                    var tue_hours = $("#tue_hours").val();
+                    var wed_hours = $("#wed_hours").val();
+                    var thurs_hours = $("#thurs_hours").val();
+                    var fri_hours = $("#fri_hours").val();
+                    var sat_hours = $("#sat_hours").val();
+                    var sun_hours = $("#sun_hours").val();
 
                     $("#btn-save").html('Please wait');
                     $("#btn-save").attr("disable", true);
@@ -377,9 +315,14 @@
                         type: "PUT",
                         url: "update-timesheet/" + id,
                         data: {
-                            week_beginning: week_beginning,
-                            mon_start_time: mon_start_time,
-                            mon_end_time: mon_end_time,
+                            week_beginning:week_beginning,
+                            mon_hours:mon_hours,
+                            tue_hours:tue_hours,
+                            wed_hours:wed_hours,
+                            thurs_hours:thurs_hours,
+                            fri_hours:fri_hours,
+                            sat_hours:sat_hours,
+                            sun_hours:sun_hours, 
                         },
                         dataType: 'json',
                         success: function(response) {
@@ -407,10 +350,52 @@
                     });
                 });
 
+                $('body').on('click', '#btn-approve', function(event) {
+                    event.preventDefault();
+                    // var id = $("#id" ).val();
+                    var status = $("#status").val();
+                
+
+                    $("#btn-approve").html('Please wait');
+                    $("#btn-approve").attr("disable", true);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "approve-timesheet/" + id,
+                        data: {
+                            status:status,
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log(response);
+                            if (response.status == 400) {
+                                $('#msgList').html("");
+                                $('#msgList').addClass('alert alert-danger');
+                                $.each(response.errors, function(key, err_value) {
+                                    $('#msgList').append('<li>' + err_value + '</li>');
+                                });
+                                $('#btn-approve').text('Save changes');
+                            } else {
+                                $('#message').html("");
+                                $('#message').addClass('alert alert-success');
+                                $('#message').text(response.message);
+                                fetchTimesheet();
+                            }
+                        },
+                        complete: function() {
+                            $("#btn-approve").html('Save changes');
+                            $("#btn-approve").attr("disabled", false);
+                            $('timesheet-model').modal('hide');
+                            $('#message').fadeOut(4000);
+                        }
+                    });
+                });
+
+
                 $("btnGet").click(function() {
                     var message = "";
 
-                    $("#Table1 input[type=checkbox]:checked").each(function() {
+                    $("#Table3 input[type=checkbox]:checked").each(function() {
                         var row = $(this).closest("tr")[0];
                         message += " " + row.cells[3].innerHTML;
                         message += "\n-----------------------\n";

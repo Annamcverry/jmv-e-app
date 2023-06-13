@@ -10,10 +10,12 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/resources/css/app"/>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+   <style> table{border: 1px;    }th{background-color: darkblue; padding-top: 10px; padding-bottom: 10px; color:#fff ;} td, tr {border: 2px solid #ddd; padding: 8px;} input{border: 2px solid navy;}button{ padding: 12px; background-color: darkblue; color: #fff;} input{ padding: 8px 20px; margin: 8px 0; box-sizing: border-box; border: 1px solid #555; outline: none;}form {text-align: center;} </style>
 </head>
 <x-app-layout>
     <x-slot name="header">
@@ -195,8 +197,8 @@
                             <td>' + item.week_beginning + '</td>\
                             <td>' + item.hours_worked + '</td>\
                             <td>' + item.exchange_rate + '</td>\
-                            <td><button type="button" data-id="' + item.id + '" class="btn btn-primary edit btn-sm" style="background-color:darkblue">Edit</button>\
-                            <button type="button" data-id="' + item.id + '" class="btn btn danger delete btn-sm" style="background-color:darkblue">Delete</button></td>\
+                            <td><button type="button" data-id="' + item.id + '" class="btn btn-primary edit btn-sm"  >Edit</button>\
+                            <button type="button" data-id="' + item.id + '" class="btn btn danger delete btn-sm" style="background-color:darkblue color:white">Delete</button></td>\
                            </tr>');
                             });
 
@@ -223,6 +225,8 @@
                     var exchange_rate = $("#exchange_rate").val();
                     $("#btn-add").html('Please Wait');
                     $("#btn-add").attr("disabled", true);
+
+                    
                     $.ajax({
                         type: "POST",
                         url: "save-invoice",

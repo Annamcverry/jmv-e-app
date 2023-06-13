@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use AshAllenDesign\LaravelExchangeRates\Classes\ExchangeRate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,12 +18,23 @@ class Invoice extends Model
         'week_beginning',
         'hours_worked',
         'wage',
-        'excange_rate'
+        'exchange_rate'
     ];
+
+    // protected $attributes = [
+    //     $exchangeRates = new ExchangeRate();
+    //     $result = $exchangeRates->exchangeRate('GBP', 'EUR');
+    //     'exchange_rate'=>$result;
+    // ]
 
     public function user(): BelongsTo{
         return $this->belongsTo(User::class, 'foreign_key');
     }
+
+    public function getWage(){
+        return $this->user()->multiply('rate')* $this->invoices('hours_worked'); 
+    }
+
     // public function invoices(){
     //     return $this->belongsToMany(UserInvoice::class);
     // }

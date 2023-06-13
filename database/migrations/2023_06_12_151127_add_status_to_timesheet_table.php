@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('job_role')
-            ->after('email')
-            ->default('employee');
+        Schema::table('timesheets', function (Blueprint $table) {
+            $table->string('status')
+            ->after('total_hours')
+            ->default('Pending Review');
         });
     }
 
@@ -23,8 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('job_role');
+        Schema::table('timesheets', function (Blueprint $table) {
+            $table->dropColumn('status');
         });
     }
 };

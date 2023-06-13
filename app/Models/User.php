@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'contact_no',
         'rate',
+        'job_role',
         'licenses',
         'safepass'
     ];
@@ -46,6 +47,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // protected $attributes = [
+    //     'job_role'=>'employee'
+    // ];
 
     public function invoices(): HasMany{
         return $this->hasMany(Invoice::class);

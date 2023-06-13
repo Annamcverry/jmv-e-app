@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\TimesheetController;
 use App\Http\Controllers\UserController;
 use App\Models\Timesheet;
 use Illuminate\Support\Facades\Route;
@@ -55,8 +56,15 @@ Route::get('fetch-employees', [UserController::class, 'fetchEmployees']);
 Route::get('/timesheet', function() {
     return view('timesheet');
 })->middleware(['auth', 'verified'])->name('timesheet');
-Route::get('fetch-timesheets', [Timesheet::class, 'fetchTimesheets']);
-Route::post('save-timesheet', [Timesheet::class, 'store'])->name('store');
+Route::post('save-timesheet', [TimesheetController::class, 'saveTimesheet']);
+Route::get('fetch-timesheets', [TimesheetController::class, 'fetchTimesheets']);
+Route::put('update-timesheet/{id}', [TimesheetController::class, 'update']);
+Route::get('edit-timesheet/{id}', [TimesheetController::class, 'edit']);
+Route::delete('delete-timesheet/{id}', [TimesheetController::class, 'destroy']);
+
+Route::get('/admintimesheets', [TimesheetController::class, 'index']);
+Route::post('approve-timesheet/{id}', [TimesheetController::class, 'approveTimesheet'])->name('approveTimesheet');
+Route::post('review-timesheet/{id}', [TimesheetController::class, 'reviewTimesheet'])->name('reviewTimesheet');
 
 
 require __DIR__.'/auth.php';
