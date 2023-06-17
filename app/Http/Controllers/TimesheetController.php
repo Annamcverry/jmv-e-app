@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Timesheet;
+use App\Models\User;
 // use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,11 +16,25 @@ class TimesheetController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function adminView()
     {
         return view('admintimesheets', ['timesheets' => Timesheet::all()]);
     }
+    public function index()
+    {
+        return view('invoices', ['timesheets' => Timesheet::all(), 'users'=> User::all()]);
+    }
 
+    public function employeeView()
+    {
+        $userId = Auth::id();
+        $timesheet = Timesheet::where('user_id', $userId)
+                    ->where('user_id', Auth::id());
+        
+                    // return view('invoices', ['timesheets' => Timesheet::all(), 'users'=> User::all()]);
+                    return view('timesheet')->with('timesheet', $timesheet);
+                    // return view('invoices', [ 'users'=> User::all()]);
+                }
     /**
      * Show the form for creating a new resource.
      */
@@ -116,7 +131,7 @@ class TimesheetController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $timesheet)
+    public function update(Request $request,  $timesheet)
     {
         $validator = Validator::make($request->all(), [
             'week_beginning'=>'required',
@@ -189,12 +204,7 @@ class TimesheetController extends Controller
         $timesheet->status = "Approved";
         $timesheet->save();
 
-        return redirect('/admintimesheets');
-        return response()->json([
-                        'status'=>200,
-                        'message'=>'Timesheet Updated Successfully'
-                    ]);
-            
+        return redirect('/admintimesheets');            
     }
 
     public function reviewTimesheet($id){

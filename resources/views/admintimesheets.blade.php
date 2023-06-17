@@ -8,6 +8,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="/resources/css/app.css"/>
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
@@ -32,7 +33,7 @@
 
         <form method="post" action="{{route('approveTimesheet', $timesheet->id) }}" accept-charset="UTF-8">
             {{ csrf_field() }}
-            <button type="submit" style="max-height: 25px; margin: left 20px;">Approve</button>
+            <button id="btn-submit" type="submit" style="max-height: 25px; margin: left 20px;">Approve</button>
         </form>
 
         <form method="post" action="{{route('reviewTimesheet', $timesheet->id) }}" accept-charset="UTF-8">
@@ -40,10 +41,15 @@
             <button type="submit" style="max-height: 25px; margin: left 20px;">Review</button>
         </form>
     </div>
-    $("#btn-submit).html('Please wait');
         
     @endforeach
     
+    <script>
+        $('body').on('click', '.btn-submit', function(evt){
+            evt.preventDefault();
+            $('#btn-submit').text('Save changes'); 
+        })
+    </script>
  
         
     </div>

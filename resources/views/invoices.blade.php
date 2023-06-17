@@ -1,17 +1,20 @@
-<!-- <head>
+<head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Module Repository</title> -->
+        <title>Module Repository</title>
+        
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- Fonts -->
-        <!-- <link rel="preconnect" href="https://fonts.bunny.net">
+        <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="/resources/css/app.css"/>
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
      
-</head> -->
+</head>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -21,16 +24,27 @@
 
     <h2>Invoices </h2>
     
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
-            <div class="flex">
-                <p>{{ $invoice->weekBeginning }}</p>
-            </div>
-            <div class="flex">
-                <p>{{ $invoice-hpurs_worked }}</p>
-            </div>
+    <!-- Where timesheet user id = auth user id that's -->
+
+        @foreach( $timesheets as $timesheet)
+        <div class="flex" style="align-items: center;">   
+                <p>WeekBeginning: {{ $timesheet->week_beginning }}</p>
+          
+                <p>User: {{ $timesheet->user_id }}</p>
+       
+                <p>Total Hours: {{ $timesheet->total_hours }}</p>
+                @foreach ($users as $user )
+                    
+                    <p>Employee Name: {{ $user->name }}</p>
+            
+                    <p>Email: {{ $user->email}}</p>
+            
+                    <p>Rate: {{ $user->rate }}</p>
+        @endforeach
         </div>
-    </div>
+        @endforeach
+       
+  
 
 </x-app-layout>
-</html>
+<!-- </html> -->

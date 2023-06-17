@@ -27,10 +27,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/invoices', function () {
+// Route::get('/invoices', function () {
 
-    return view('invoices');
-})->middleware(['auth', 'verified'])->name('invoices');
+//     return view('invoices');
+// })->middleware(['auth', 'verified'])->name('invoices');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -39,12 +39,12 @@ Route::middleware('auth')->group(function () {
 });
 // Route::get('fetch-invoices', [InvoiceController::class, 'fetchInvoices']);
 // Route::get('/user/{id}', [ProfileController::class, 'show']);
-Route::get('invoices', [InvoiceController::class, 'show']);
-Route::post('save-invoice', [InvoiceController::class, 'saveInvoice'])->name('saveInvoice'); 
-Route::get('fetch-invoices', [InvoiceController::class, 'fetchInvoices']);
-Route::put('update-invoice/{id}', [InvoiceController::class, 'updateInvoice']);
-Route::get('edit-invoice/{id}', [InvoiceController::class, 'edit']);
-Route::delete('delete-invoice/{id}', [InvoiceController::class, 'destroy']);
+// Route::get('invoices', [InvoiceController::class, 'show']);
+// Route::post('save-invoice', [InvoiceController::class, 'saveInvoice'])->name('saveInvoice'); 
+// Route::get('fetch-invoices', [InvoiceController::class, 'fetchInvoices']);
+// Route::put('update-invoice/{id}', [InvoiceController::class, 'updateInvoice']);
+// Route::get('edit-invoice/{id}', [InvoiceController::class, 'edit']);
+// Route::delete('delete-invoice/{id}', [InvoiceController::class, 'destroy']);
 // Route::get('/employees', [UserController::class, 'fetchEmployees']);
 Route::get('/employees', function(){
     return view('employees');
@@ -62,9 +62,14 @@ Route::put('update-timesheet/{id}', [TimesheetController::class, 'update']);
 Route::get('edit-timesheet/{id}', [TimesheetController::class, 'edit']);
 Route::delete('delete-timesheet/{id}', [TimesheetController::class, 'destroy']);
 
-Route::get('/admintimesheets', [TimesheetController::class, 'index']);
+Route::get('/admintimesheets', [TimesheetController::class, 'adminView']);
 Route::post('approve-timesheet/{id}', [TimesheetController::class, 'approveTimesheet'])->name('approveTimesheet');
 Route::post('review-timesheet/{id}', [TimesheetController::class, 'reviewTimesheet'])->name('reviewTimesheet');
 
+Route::get('/invoices', function() {
+    return view('invoices');
+})->middleware(['auth', 'verified'])->name('invoices');
+// Route::get('/invoices', [TimesheetController::class, 'index']);
+Route::get('/fetch-invoices', [TimesheetController::class, 'employeeView']);
 
 require __DIR__.'/auth.php';
