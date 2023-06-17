@@ -20,21 +20,28 @@ class TimesheetController extends Controller
     {
         return view('admintimesheets', ['timesheets' => Timesheet::all()]);
     }
-    public function index()
+    public function allInvoices()
     {
         return view('invoices', ['timesheets' => Timesheet::all(), 'users'=> User::all()]);
     }
 
-    public function employeeView()
+    public function index()
     {
         $userId = Auth::id();
-        $timesheet = Timesheet::where('user_id', $userId)
-                    ->where('user_id', Auth::id());
+        $timesheets = Timesheet::where('user_id', $userId)->get();
+        $timesheets->each(function($timesheet){
+            return view('invoices')->with($timesheet->id, $timesheet->week_beginning, $timesheet->user_id);
+            
+        // return view('invoices')->with('timesheet', $timesheet);
+        });
+                    // ->where('user_id', Auth::id());
         
                     // return view('invoices', ['timesheets' => Timesheet::all(), 'users'=> User::all()]);
-                    return view('timesheet')->with('timesheet', $timesheet);
+                    // return view('timesheet')->with('timesheet', $timesheet);
                     // return view('invoices', [ 'users'=> User::all()]);
-                }
+            
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -44,6 +51,13 @@ class TimesheetController extends Controller
     // }
     public function fetchTimesheets(){
         $timesheets = Timesheet::all();
+        return response()->json([
+            'timesheets'=>$timesheets,
+        ]);
+    }
+
+    public function fetchInvoices (){
+        $timesheets = Timesheet::where('user_id', User::class()->id);
         return response()->json([
             'timesheets'=>$timesheets,
         ]);

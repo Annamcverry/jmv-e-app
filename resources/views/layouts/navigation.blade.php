@@ -21,11 +21,18 @@
                         {{ __('Timesheets') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('admintimesheets')" :active="request()->routeIs('admintimesheets')">
+                        {{ __('Admin') }}
+                    </x-nav-link>
+                </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('invoices')" :active="request()->routeIs('invoices')">
                         {{ __('Invoices') }}
                     </x-nav-link>
                 </div>
+              
             </div>
 
             <!-- Settings Dropdown -->

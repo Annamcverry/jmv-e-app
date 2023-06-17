@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use SebastianBergmann\Diff\Diff;
 
 class Timesheet extends Model
@@ -27,6 +28,11 @@ class Timesheet extends Model
     'sat_hours',
     'sun_hours'
    ];  
+
+   public function user(): BelongsTo{
+    return $this->belongsTo(User::class);
+   }
+
 //    protected $dates = [
 //     'week_beginning',
 //     'mon_start_time',
