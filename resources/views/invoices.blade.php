@@ -52,11 +52,11 @@
                                     </thead>
                                     <tbody>
                                         <td> {{ $timesheet->week_beginning }} </td>
-                                        <td> {{ $timesheet->total_hours}} </td>
+                                        <td> {{ $timesheet->total_hours}} hours </td>
                                         <td> {{ $timesheet->user->name }} </td>
                                         <td> {{ $timesheet->user->email }} </td>
-                                        <td> {{ $timesheet->user->rate}} </td>
-                                        <td> £{{$timesheet->total_hours * $timesheet->user->rate }}  </td>
+                                        <td> £{{ $timesheet->user->rate}} per hour </td>
+                                        <td> £{{$timesheet->total_hours * $timesheet->user->rate }}.00  </td>
                                     </tbody>
                                 </table>     
                         </div>
