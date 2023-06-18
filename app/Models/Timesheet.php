@@ -19,7 +19,7 @@ class Timesheet extends Model
      */
 
    protected $fillable = [
-    'week_beginning',
+    // 'week_beginning',
     'mon_hours',
     'tue_hours',
     'wed_hours',
@@ -32,6 +32,9 @@ class Timesheet extends Model
    public function user(): BelongsTo{
     return $this->belongsTo(User::class);
    }
+   protected $dates = [
+    'week_beginning',
+   ];
 
 //    protected $dates = [
 //     'week_beginning',

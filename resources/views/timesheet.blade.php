@@ -10,7 +10,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./resources/css/app.css"/>
+    <link rel="stylesheet" href="<?php echo asset('build/assets/app.css')?>" type="text/css">
     <link rel="stlesheet" href="/app/resources/css/app.css"/>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

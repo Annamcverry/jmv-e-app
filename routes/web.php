@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\JobListingController;
 use App\Http\Controllers\TimesheetController;
 use App\Http\Controllers\UserController;
 use App\Models\Timesheet;
@@ -74,5 +75,12 @@ Route::get('/invoices', [TimesheetController::class, 'allInvoices'],function() {
 })->middleware(['auth', 'verified'])->name('invoices');
 // Route::get('/invoices', [TimesheetController::class, 'allInvoices']);
 Route::get('/fetch-invoices', [TimesheetController::class, 'fetchInvoices']);
+
+
+//Job Listing Route
+Route::get('/jobs', [JobListingController::class, 'index']);
+Route::post('saveJob', [JobListingController::class, 'saveJob'])->name('saveJob');
+Route::get('fetchJobs', [JobListingController::class, 'fetchJobs']);
+Route::post('enquireJob/{id}', [JobListingController::class, 'enquireJob'])->name('enquireJob');
 
 require __DIR__.'/auth.php';

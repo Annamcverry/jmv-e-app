@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Timesheet;
 use App\Models\User;
-// use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -101,6 +100,7 @@ class TimesheetController extends Controller
             $timesheet->fri_hours = $request->input('fri_hours');
             $timesheet->sat_hours = $request->input('sat_hours');
             $timesheet->sun_hours = $request->input('sun_hours');
+            
          
             $timesheet->save();
             return response()->json([

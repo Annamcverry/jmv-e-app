@@ -8,7 +8,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="/resources/css/app.css"/>
+        <link rel="stylesheet" href="<?php echo asset('build/assets/app.css')?>" type="text/css">
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
@@ -22,31 +22,6 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
-    <h2>Invoices </h2>
-    
-
-    <h2>Timesheets</h2>
-<!-- 
-    @foreach ($timesheets as $timesheet)
-    <div class="flex" style="align-items: center;">
-        <p>WeekBeginning: {{ $timesheet->week_beginning }}</p>
-        <p>Employee: {{ $timesheet->user_id }}</p>
-        <p>Total Hours: {{ $timesheet->total_hours }}</p>
-
-        <form method="post" action="{{route('approveTimesheet', $timesheet->id) }}" accept-charset="UTF-8">
-            {{ csrf_field() }}
-            <button id="btn-submit" type="submit" style="max-height: 25px; margin: left 20px;">Approve</button>
-        </form>
-
-        <form method="post" action="{{route('reviewTimesheet', $timesheet->id) }}" accept-charset="UTF-8">
-            {{ csrf_field() }}
-            <button type="submit" style="max-height: 25px; margin: left 20px;">Review</button>
-        </form>
-    </div>
-        
-    @endforeach -->
-
     
     @foreach( $timesheets as $timesheet)
         <div class="py-12">
@@ -67,10 +42,11 @@
                                     </thead>
                                     <tbody>
                                         <td> {{ $timesheet->week_beginning }} </td>
-                                        <td> {{ $timesheet->total_hours}} </td>
+                                        <td> {{ $timesheet->total_hours}} hours </td>
                                         <td> {{ $timesheet->user->name }} </td>
                                         <td> {{ $timesheet->user->email }} </td>
-                                        <td> {{ $timesheet->user->rate}} </td>
+                                        <td> £{{ $timesheet->user->rate}} per hour </td>
+                                        <td> £{{$timesheet->total_hours * $timesheet->user->rate }}.00  </td>
                                         <td><form method="post" action="{{route('approveTimesheet', $timesheet->id) }}" accept-charset="UTF-8"> {{ csrf_field() }}
                                         <button id="btn-submit" type="submit" style="max-height: 45px; margin: left 20px; background-color:darkblue color#fff">Approve</button></form></td>
 
