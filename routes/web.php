@@ -47,11 +47,11 @@ Route::middleware('auth')->group(function () {
 // Route::get('edit-invoice/{id}', [InvoiceController::class, 'edit']);
 // Route::delete('delete-invoice/{id}', [InvoiceController::class, 'destroy']);
 // Route::get('/employees', [UserController::class, 'fetchEmployees']);
-Route::get('/employees', function(){
-    return view('employees');
-});
+// Route::get('/employees', function(){
+//     return view('employees');
+// });
 
-Route::get('fetch-employees', [UserController::class, 'fetchEmployees']);
+Route::get('fetch-employees', [ProfileController::class, 'index']);
 
 //Timesheet Routes
 Route::get('/timesheet', function() {
@@ -86,4 +86,6 @@ Route::post('saveJob', [JobListingController::class, 'saveJob'])->name('saveJob'
 Route::get('fetchJobs', [JobListingController::class, 'fetchJobs']);
 Route::post('enquireJob/{id}', [JobListingController::class, 'enquireJob'])->name('enquireJob');
 
+
+Route::get('/employees', [ProfileController::class, 'index']);
 require __DIR__.'/auth.php';

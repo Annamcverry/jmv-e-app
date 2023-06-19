@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        return view('employees');
+        return view('employees', ['users' =>User::all()]);
     }
 
     /**
@@ -27,7 +27,7 @@ class UserController extends Controller
             'employees'=>$employees,
         ]);
         // return view('employees')->with('employees',$employees);
-    }
+     }
 
      /**
      * Display the specified resource.

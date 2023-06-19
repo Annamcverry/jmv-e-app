@@ -8,7 +8,6 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="<?php echo asset('build/assets/app.css')?>" type="text/css">
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
@@ -51,7 +50,7 @@
                                         <button id="btn-submit" type="submit" style="max-height: 45px; margin: left 20px; background-color:darkblue color#fff">Approve</button></form></td>
 
                                         <td><form method="post" action="{{route('reviewTimesheet', $timesheet->id) }}" accept-charset="UTF-8">{{ csrf_field() }}
-                                       <button type="submit" style="max-height: 45px; margin: left 20px; background-color:darkblue color:#fff"> Review </button></form></td>
+                                       <button type="submit" style="max-height: 45px; margin: left 20px; background-color:darkblue color#fff"> Review </button></form></td>
                                     </tbody>
                                 </table>     
                         </div>

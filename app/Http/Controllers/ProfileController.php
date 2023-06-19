@@ -14,6 +14,11 @@ class ProfileController extends Controller
 {
 
     //My function
+    public function index(){
+        return view('employees', ['users' =>User::all()]);
+
+    }
+
     public function show($id){
         return view('user.profile', [
             'user' => User::findOrFail($id)

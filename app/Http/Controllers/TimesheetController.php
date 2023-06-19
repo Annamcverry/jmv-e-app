@@ -103,7 +103,7 @@ class TimesheetController extends Controller
             
          
             $timesheet->save();
-            return redirect('fetch-timesheets');
+            // return redirect('fetch-timesheets');
             return response()->json([
                 'status'=>200,
                 'message'=>'Hours for the week saved successfully'
@@ -146,7 +146,7 @@ class TimesheetController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,  $timesheet)
+    public function update(Request $request,  string $timesheet)
     {
         $validator = Validator::make($request->all(), [
             'week_beginning'=>'required',
