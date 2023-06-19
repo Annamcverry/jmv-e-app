@@ -74,13 +74,13 @@ class TimesheetController extends Controller
             // 'user_id'=>Auth::user()->id,
             
             'week_beginning'=>'required',
-            'mon_hours'=>'required',
-            'tue_hours'=>'required',
-            'wed_hours'=>'required',
-            'thurs_hours'=>'required',
-            'fri_hours'=>'required',
-            'sat_hours'=>'required',
-            'sun_hours'=>'required',
+            'mon_hours',
+            'tue_hours',
+            'wed_hours',
+            'thurs_hours',
+            'fri_hours',
+            'sat_hours',
+            'sun_hours',
          
         ]);
         if($validator->fails()){
@@ -103,6 +103,7 @@ class TimesheetController extends Controller
             
          
             $timesheet->save();
+            return redirect('fetch-timesheets');
             return response()->json([
                 'status'=>200,
                 'message'=>'Hours for the week saved successfully'

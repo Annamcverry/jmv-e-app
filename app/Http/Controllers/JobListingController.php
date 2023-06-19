@@ -52,9 +52,11 @@ class JobListingController extends Controller
 
     public function enquireJob($id){
         $job = JobListing::find($id);
-        $user = Auth::user()->id;
-        $job->enquiries = $user;
+        $users = Auth::id();
+        // $job->enquiries = $user;
+        $job->enquiries =1;
         $job->save();
+        $job->users()->attach($users);
 
         return redirect('/jobs');
 

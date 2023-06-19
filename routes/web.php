@@ -78,7 +78,10 @@ Route::get('/fetch-invoices', [TimesheetController::class, 'fetchInvoices']);
 
 
 //Job Listing Route
-Route::get('/jobs', [JobListingController::class, 'index']);
+Route::get('/jobs', [JobListingController::class, 'index'],function() {
+    return view('jobs');
+})->middleware(['auth', 'verified'])->name('jobs');
+// Route::get('/jobs', [JobListingController::class, 'index']);
 Route::post('saveJob', [JobListingController::class, 'saveJob'])->name('saveJob');
 Route::get('fetchJobs', [JobListingController::class, 'fetchJobs']);
 Route::post('enquireJob/{id}', [JobListingController::class, 'enquireJob'])->name('enquireJob');

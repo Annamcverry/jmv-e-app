@@ -47,6 +47,10 @@
                                         <td>Weekly Hours</td>
                                         <td>{{$job->hours }}</td>
                                     </tr>
+                                    <tr>
+                                        <td>Weekly Hours</td>
+                                        <td>{{$job->enquiries }}</td>
+                                    </tr>
                                 </table>
                             </div>
                             <form method="post" action="{{route('enquireJob', $job->id) }}" accept-charset="UTF-8"> {{ csrf_field() }}

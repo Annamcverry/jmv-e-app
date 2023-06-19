@@ -10,7 +10,6 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="<?php echo asset('build/assets/app.css')?>" type="text/css">
     <link rel="stlesheet" href="/app/resources/css/app.css"/>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -29,7 +28,6 @@
             {{ __('Timesheet') }}
         </h2>
     </x-slot>
-
         <div class="col-md-12 mt-1 mb-2"><button type="button" id="addNewTimesheet" class="btn btn-success">Add</button></div>
 
         <div class="col-md-12">
@@ -63,7 +61,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action="javascript:void(0)" id="addEditTimesheetForm" name="addEditTimesheetForm" class="form-vertical" method="POST">
+                        <form action="javascript:void(0)" id="addEditTimesheetForm" name="addEditTimesheetForm" class="form-horizontal" method="POST">
                             <input type="hidden" name="id" id="id">
 
                             <div class="form-group">
@@ -77,43 +75,43 @@
                             <div class="form-group">
                                 <label for="name" class="col-sm-4 control-label">Mon Hours</label>
                                 <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="mon_hours" name="mon_hours"  maxlength="50" required="">
+                                    <input type="float" class="form-control" id="mon_hours" name="mon_hours"  maxlength="50" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-sm-4 control-label">Tue Hours</label>
                                 <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="tue_hours" name="tue_hours"  maxlength="50" required="">
+                                    <input type="float" class="form-control" id="tue_hours" name="tue_hours"  maxlength="50" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-sm-4 control-label">Wed Hours</label>
                                 <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="wed_hours" name="wed_hours"  maxlength="50" required="">
+                                    <input type="float" class="form-control" id="wed_hours" name="wed_hours"  maxlength="50" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-sm-4 control-label">Thurs Hours</label>
                                 <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="thurs_hours" name="thurs_hours"  maxlength="50" required="">
+                                    <input type="float" class="form-control" id="thurs_hours" name="thurs_hours"  maxlength="50" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-sm-4 control-label">Fri Hours</label>
                                 <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="fri_hours" name="fri_hours" value="" maxlength="50" required="">
+                                    <input type="float" class="form-control" id="fri_hours" name="fri_hours" value="" maxlength="50" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-sm-4 control-label">Sat Hours</label>
                                 <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="sat_hours" name="sat_hours"  value="" maxlength="50" required="">
+                                    <input type="float" class="form-control" id="sat_hours" name="sat_hours"  value="" maxlength="50" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-sm-4 control-label">Sun Hours</label>
                                 <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="sun_hours" name="sun_hours"  value="" maxlength="50" required="">
+                                    <input type="float" class="form-control" id="sun_hours" name="sun_hours"  value="" maxlength="50">
                                 </div>
                             </div>
 
@@ -208,28 +206,28 @@
                             sun_hours:sun_hours,  
                         },
                         dataType: 'json',
-                        success: function(response) {
-                            console.log(response);
-                            if (response.status == 400) {
+                        success: function(res) {
+                            console.log(res);
+                            if (res.status == 400) {
 
                                 $('#msgList').html("");
-                                $('#msgList').addClass('alert alert-danger');
-                                $.each(response.errors, function(key, err_value) {
+                                $('#msgList').addClass("alert alert-danger");
+                                $.each(res.errors, function(key, err_value) {
                                     $('#msgList').append('<li>' + err_value + '</li>');
                                 });
                                 $('#btn-save').text('Save Changes');
                             } else {
                                 $('#message').html("");
-                                $('#success-message').addClass('alert alert-sucess');
-                                $('#success-message').text(response.message);
+                                $('#success-message').addClass("alert alert-sucess");
+                                $('#success-message').text(res.message);
                                 fetchTimesheet();
                             }
                         },
                         complete: function() {
-                            $("btn-add").html('Save');
-                            $("btn-add").attr("disabled", false);
-                            $("btn-add").hide();
-                            $('timesheet-model').modal('hide');
+                            $("#btn-add").html('Save');
+                            $("#btn-add").attr("disabled", false);
+                            $("#btn-add").hide();
+                            $('#timesheet-model').modal('hide');
                             $('#message').fadeOut(4000);
                         }
 
