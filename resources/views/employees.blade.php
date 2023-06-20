@@ -18,7 +18,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Jobs') }}
+            {{ __('All Employees') }}
         </h2>
     </x-slot>
 
@@ -30,30 +30,35 @@
                                 <div class="flex" style="align-items: center;"> 
                                 <table>
                                     <tr>
-                                        <td>Description</td>
+                                        <td>Name</td>
                                         <td>{{$user->name }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Location</td>
+                                        <td>Email</td>
                                         <td>{{$user->email }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Licenses Required</td>
+                                        <td>Contact Number</td>
                                         <td>{{$user->contact_no }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Weekly Hours</td>
+                                        <td>Hourly Rate</td>
                                         <td>{{$user->rate }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Weekly Hours</td>
+                                        <td>Job Role</td>
                                         <td>{{$user->job_role }}</td>
                                     </tr>
                                      <tr>
-                                        <td>Weekly Hours</td>
+                                        <td>Licenses </td>
                                         <td>{{$user->licenses }}</td>
                                     </tr>
+
                                 </table>
+                                        <!-- <button action="{{route('/edit-user/{id}', $user->id) }} type="submit" style="max-height: 45px; margin: left 20px; background-color:darkblue color#fff">Edit</button>
+                                        <form method="put" action="{{route('update-user', $user->id) }}" accept-charset="UTF-8"> {{ csrf_field() }}
+                                        <button id="btn-submit" type="submit" style="max-height: 45px; margin: left 20px; background-color:darkblue color#fff">Save changes </button></form> -->
+                   
                             </div>
                             
                     </div>

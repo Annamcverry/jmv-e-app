@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
      $this->call([
         // InvoiceSeeder::class,
         // UserInvoiceSeeder::class
-        TimesheetSeeder::class
+        // TimesheetSeeder::class
+    UserSeederUpdateRole::class
      ]);
     }
     

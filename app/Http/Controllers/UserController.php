@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -29,6 +31,7 @@ class UserController extends Controller
         // return view('employees')->with('employees',$employees);
      }
 
+
      /**
      * Display the specified resource.
      */
@@ -51,17 +54,64 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $user = User::find($id);
+        if($user){
+            return response()->json([
+                'status'=>200,
+                'user'=>$user,
+            ]);
+        }
+        else{
+            return response()->json([
+                'status'=>404,
+                'message'=>'No user found'
+            ]);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function adminUpdateEmployee(Request $request, string $user)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'contact_no',
+            'job_role',
+            'rate',
+            'licences',
+            'safepass',
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                'status'=>400,
+                'errors'=>$validator->messages()
+            ]);
+        }
+        else{
+           $user = User::find($user);
+            if($user){
+                $request->user()->contact_no = $request->get('contact_no');
+                $request->user()->job_role = $request->get('job_role');
+                $request->user()->rate = $request->get('rate');
+                $request->user()->licences = $request->get('licences');
+                $request->user()->safepass = $request->get('safepass');
+        
+                $request->user()->update();
+                return response()->json([
+                    'status'=>200,
+                    'message'=>'Employee details updated succesffully'
+                ]);
+            }
+            else{
+                return response()->json([
+                    'status'=>400,
+                    'message'=>'No User Found'
+                ]);
+            }
+        }
+       
     }
 
     /**

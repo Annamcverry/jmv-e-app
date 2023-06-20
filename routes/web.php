@@ -65,7 +65,10 @@ Route::delete('delete-timesheet/{id}', [TimesheetController::class, 'destroy']);
 
 Route::get('/admintimesheets', [TimesheetController::class, 'adminView'], function() {
     return view('admintimesheets');
-})->middleware(['auth', 'verified'])->name('admintimesheets');
+})->middleware('can:is_admin')->name('admintimesheets');
+// Route::get('/admintimesheets', [TimesheetController::class, 'adminView'], function() {
+//     return view('admintimesheets');
+// })->middleware(['auth', 'verified'])->name('admintimesheets');
 // Route::get('/admintimesheets', [TimesheetController::class, 'adminView']);
 Route::post('approve-timesheet/{id}', [TimesheetController::class, 'approveTimesheet'])->name('approveTimesheet');
 Route::post('review-timesheet/{id}', [TimesheetController::class, 'reviewTimesheet'])->name('reviewTimesheet');
@@ -86,6 +89,13 @@ Route::post('saveJob', [JobListingController::class, 'saveJob'])->name('saveJob'
 Route::get('fetchJobs', [JobListingController::class, 'fetchJobs']);
 Route::post('enquireJob/{id}', [JobListingController::class, 'enquireJob'])->name('enquireJob');
 
+//Admin routes to view and edit employee info
+Route::get('/employees', [ProfileController::class, 'index'],function() {
+    return view('employees');
+})->middleware('can:is_admin')->name('employees');
+Route::put('update-user/{id}', [UserController::class, 'adminUpdateEmployee']);
+Route::get('/edit-user/{id}', [UserController::class, 'edit']);
 
-Route::get('/employees', [ProfileController::class, 'index']);
+// Route::get('/employees', [ProfileController::class, 'index']);
+
 require __DIR__.'/auth.php';

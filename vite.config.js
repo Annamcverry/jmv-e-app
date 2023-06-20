@@ -1,7 +1,9 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
+
 export default defineConfig({
+  
     plugins: [
         laravel({
             input: [
@@ -11,4 +13,14 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    server: {
+        hmr: {
+            host:'localhost',
+            protocol:'ws',
+           
+        },
+        watch:{
+            usePolling:true
+        }
+    }
 });

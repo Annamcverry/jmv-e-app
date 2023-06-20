@@ -22,11 +22,13 @@
                     </x-nav-link>
                 </div>
 
+                @can('is_admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('admintimesheets')" :active="request()->routeIs('admintimesheets')">
                         {{ __('Admin') }}
                     </x-nav-link>
                 </div>
+                @endcan
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('invoices')" :active="request()->routeIs('invoices')">
@@ -37,6 +39,11 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('jobs')" :active="request()->routeIs('jobs')">
                         {{ __('Jobs') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('employees')" :active="request()->routeIs('employee')">
+                        {{ __('Employees') }}
                     </x-nav-link>
                 </div>
 
