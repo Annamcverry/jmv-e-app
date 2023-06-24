@@ -11,8 +11,8 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
-        <style> table{border: 1px;    }th{background-color: darkblue; padding-top: 10px; padding-bottom: 10px; color:#fff ;} td, tr {border: 2px solid #fff; padding: 8px;} btn-submit{ padding: 12px; background-color: darkblue; color: #fff;} input{ padding: 8px 20px; margin: 8px 0; box-sizing: border-box;  outline: none;}form {text-align: center;
- ;} </style>
+        <!-- <style> table{border: 1px;    }th{background-color: darkblue; padding-top: 10px; padding-bottom: 10px; color:#fff ;} td, tr {border: 2px solid #fff; padding: 8px;} btn-submit{ padding: 12px; background-color: darkblue; color: #fff;} input{ padding: 8px 20px; margin: 8px 0; box-sizing: border-box;  outline: none;}form {text-align: center;
+ ;} </style> -->
      
 </head>
 <x-app-layout>
@@ -22,54 +22,47 @@
         </h2>
     </x-slot>
 
-    @foreach ($users as $user )
+    
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 ;g:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-950">
                                 <div class="flex" style="align-items: center;"> 
+                                
                                 <table>
+                                <thead>
                                     <tr>
-                                        <td>Name</td>
-                                        <td>{{$user->name }}</td>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email Address</th>
+                                        <th scope="col">Comtact</th>
+                                        <th scope="col">Rate per hour</th>
+                                        <th scope="col">Role</th>
+                                        <th scope="col">Licences</th>
+                                        
                                     </tr>
-                                    <tr>
-                                        <td>Email</td>
-                                        <td>{{$user->email }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Contact Number</td>
-                                        <td>{{$user->contact_no }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hourly Rate</td>
-                                        <td>{{$user->rate }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Job Role</td>
-                                        <td>{{$user->job_role }}</td>
-                                    </tr>
-                                     <tr>
-                                        <td>Licenses </td>
-                                        <td>{{$user->licenses }}</td>
-                                    </tr>
+                                    </thead>
+                                    @foreach ($users as $user )
+                                    <tbody>
+                                    
+                                        <td> {{ $user->name }} </td>
+                                        <td> {{ $user->email }} hours </td>
+                                        <td> {{ $user->contact_no  }} </td>
+                                        <td> {{ $user->rate}} </td>
+                                        <td> {{ $user->job_role}} </td>
+                                        <td> {{$user->licenses}}  </td>
+                                        
+                                    </tbody>
+                                    @endforeach  
+                                   
 
-                                </table>
-                                        <!-- <button action="{{route('/edit-user/{id}', $user->id) }} type="submit" style="max-height: 45px; margin: left 20px; background-color:darkblue color#fff">Edit</button>
-                                        <form method="put" action="{{route('update-user', $user->id) }}" accept-charset="UTF-8"> {{ csrf_field() }}
-                                        <button id="btn-submit" type="submit" style="max-height: 45px; margin: left 20px; background-color:darkblue color#fff">Save changes </button></form> -->
-                   
-                            </div>
-                            
-                    </div>
-                </div>
-        </div>
-        </div>
-        
-    @endforeach
+                                   
 
     
     </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 </x-app-layout>

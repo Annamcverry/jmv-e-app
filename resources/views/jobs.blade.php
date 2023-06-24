@@ -9,10 +9,10 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        <link rel="stlesheet" href="/app/resources/css/app.css"/>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
-        <style> table{border: 1px;    }th{background-color: darkblue; padding-top: 10px; padding-bottom: 10px; color:#fff ;} td, tr {border: 2px solid #fff; padding: 8px;} btn-submit{ padding: 12px; background-color: darkblue; color: #fff;} input{ padding: 8px 20px; margin: 8px 0; box-sizing: border-box;  outline: none;}form {text-align: center;
- ;} </style>
+     
      
 </head>
 <x-app-layout>
@@ -21,6 +21,8 @@
             {{ __('Jobs') }}
         </h2>
     </x-slot>
+
+    <div id="message" style="font-size:large; background-color:gold"></div>
 
     @foreach ($jobs as $job )
         <div class="py-12">
@@ -52,7 +54,7 @@
                                 </table>
                             </div>
                             <form method="post" action="{{route('enquireJob', $job->id) }}" accept-charset="UTF-8"> {{ csrf_field() }}
-                                        <button id="btn-submit" type="submit" style="max-height: 45px; margin: left 20px; background-color:darkblue color#fff">Enquire Now</button></form>
+                                        <button id="btn-submit" type="submit" style="background-color: darkblue; border-radius: 4px;">Enquire Now</button></form>
                     </div>
                 </div>
         </div>
@@ -69,7 +71,7 @@
                     <input type="text" name="location" field="location" placeholder="Location" class="w-full">
                     <input type="text" name="licenses" field="licenses" placeholder="Licenses" class="w-full">
                     <input type="text" name="hours" field="hours" placeholder="Hours" class="w-full">
-                    <button type="submit" class="mt-6 inline-flex items-center px-4 py-2 bg-gray-700">Save</button>
+                    <button type="submit" class="mt-6 inline-flex items-center px-4 py-2" style="background-color: darkblue; border-radius: 4px;">Save</button>
                 </form>
 
             </div>

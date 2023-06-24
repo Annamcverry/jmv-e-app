@@ -102,6 +102,24 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('timesheet')" :active="request()->routeIs('timesheet')">
+                {{ __('Timesheets') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admintimesheets')" :active="request()->routeIs('admintimesheets')">
+                {{ __('Admin') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('invoices')" :active="request()->routeIs('invoices')">
+                {{ __('Invoices') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('myinvoices')" :active="request()->routeIs('myinvoices')">
+                {{ __('My Invoices') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('jobs')" :active="request()->routeIs('jobs')">
+                {{ __('Jobs') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('employees')" :active="request()->routeIs('employees')">
+                {{ __('Employees') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

@@ -21,15 +21,26 @@ class TimesheetController extends Controller
     }
     public function allInvoices()
     {
+       
         return view('invoices', ['timesheets' => Timesheet::all(), 'users'=> User::all()]);
     }
 
+    public function myInvoices()
+    {
+        $userId = Auth::id();
+        $timesheets = Timesheet::where('user_id', $userId)->get();
+        $timesheets->each(function($timesheet){
+            return view('myinvoices', ['$timesheets' => Timesheet::all(), 'users'=> User::all()]);
+        });
+        
+        // return view('myinvoices', ['timesheets' => Timesheet::all(), 'users'=> User::all()]);
+    }
     public function index()
     {
         $userId = Auth::id();
         $timesheets = Timesheet::where('user_id', $userId)->get();
         $timesheets->each(function($timesheet){
-            return view('invoices')->with($timesheet->id, $timesheet->week_beginning, $timesheet->user_id);
+            return view('myinvoices')->with($timesheet->id, $timesheet->week_beginning, $timesheet->user_id);
             
         // return view('invoices')->with('timesheet', $timesheet);
         });
@@ -100,7 +111,7 @@ class TimesheetController extends Controller
             $timesheet->fri_hours = $request->input('fri_hours');
             $timesheet->sat_hours = $request->input('sat_hours');
             $timesheet->sun_hours = $request->input('sun_hours');
-            
+           
          
             $timesheet->save();
             // return redirect('fetch-timesheets');

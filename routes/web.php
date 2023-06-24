@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExchangeRateController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\JobListingController;
@@ -28,29 +29,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::get('/invoices', function () {
 
-//     return view('invoices');
-// })->middleware(['auth', 'verified'])->name('invoices');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-// Route::get('fetch-invoices', [InvoiceController::class, 'fetchInvoices']);
-// Route::get('/user/{id}', [ProfileController::class, 'show']);
-// Route::get('invoices', [InvoiceController::class, 'show']);
-// Route::post('save-invoice', [InvoiceController::class, 'saveInvoice'])->name('saveInvoice'); 
-// Route::get('fetch-invoices', [InvoiceController::class, 'fetchInvoices']);
-// Route::put('update-invoice/{id}', [InvoiceController::class, 'updateInvoice']);
-// Route::get('edit-invoice/{id}', [InvoiceController::class, 'edit']);
-// Route::delete('delete-invoice/{id}', [InvoiceController::class, 'destroy']);
-// Route::get('/employees', [UserController::class, 'fetchEmployees']);
-// Route::get('/employees', function(){
-//     return view('employees');
-// });
 
+//All Employee 
 Route::get('fetch-employees', [ProfileController::class, 'index']);
 
 //Timesheet Routes
@@ -73,19 +60,24 @@ Route::get('/admintimesheets', [TimesheetController::class, 'adminView'], functi
 Route::post('approve-timesheet/{id}', [TimesheetController::class, 'approveTimesheet'])->name('approveTimesheet');
 Route::post('review-timesheet/{id}', [TimesheetController::class, 'reviewTimesheet'])->name('reviewTimesheet');
 
+//Admin
 Route::get('/invoices', [TimesheetController::class, 'allInvoices'],function() {
     return view('invoices');
 })->middleware(['auth', 'verified'])->name('invoices');
 // Route::get('/invoices', [TimesheetController::class, 'allInvoices']);
 Route::get('/fetch-invoices', [TimesheetController::class, 'fetchInvoices']);
 
+//Employee Invoices
+Route::get('/myinvoices', [TimesheetController::class, 'myInvoices'],function() {
+    return view('myinvoices');
+})->middleware(['auth', 'verified'])->name('myinvoices');
 
 //Job Listing Route
 Route::get('/jobs', [JobListingController::class, 'index'],function() {
     return view('jobs');
 })->middleware(['auth', 'verified'])->name('jobs');
 // Route::get('/jobs', [JobListingController::class, 'index']);
-Route::post('saveJob', [JobListingController::class, 'saveJob'])->name('saveJob');
+Route::post('/save-job', [JobListingController::class, 'saveJob'])->name('/save-job');
 Route::get('fetchJobs', [JobListingController::class, 'fetchJobs']);
 Route::post('enquireJob/{id}', [JobListingController::class, 'enquireJob'])->name('enquireJob');
 
@@ -97,5 +89,8 @@ Route::put('update-user/{id}', [UserController::class, 'adminUpdateEmployee']);
 Route::get('/edit-user/{id}', [UserController::class, 'edit']);
 
 // Route::get('/employees', [ProfileController::class, 'index']);
+
+//Exchange Rate Route
+Route::post('saveExchangeRate', [ExchangeRateController::class, 'saveExchangeRate'])->name('saveExchangeRate');
 
 require __DIR__.'/auth.php';

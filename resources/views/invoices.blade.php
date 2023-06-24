@@ -12,13 +12,13 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="/resources/css/app.css"/>
+        <link rel="stlesheet" href="/app/resources/css/app.css"/>
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
-     
+<!--      
         <style> table{border: 1px;    }th{background-color: darkblue; padding-top: 10px; padding-bottom: 10px; color:#fff ;} td, tr {border: 2px solid #ddd; padding: 8px;} input{border: 2px solid navy;}button{ padding: 12px; background-color: darkblue; color: #fff;} input{ padding: 8px 20px; margin: 8px 0; box-sizing: border-box; border: 1px solid #555; outline: none;}form {text-align: center;
- ;} </style>
+ ;} </style> -->
 </head>
 <x-app-layout>
     <x-slot name="header">
@@ -26,6 +26,21 @@
             {{ __('Invoices') }}
         </h2>
     </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+                <form method="post" action="{{ route('saveExchangRate') }}" accept-charset="UTF-8">
+                    {{ csrf_field() }}
+                    <input type="text" name="exchange_rate" field="exchange_rate" placeholder="Exchange Rate" class="w-full">
+                   
+                    <button type="submit" class="mt-6 inline-flex items-center px-4 py-2 bg-gray-700">Save</button>
+                </form>
+
+            </div>
+        
+        </div>
+        </div>
 
 
     <!-- Where timesheet user id = auth user id that's -->
@@ -57,6 +72,8 @@
                                         <td> {{ $timesheet->user->email }} </td>
                                         <td> £{{ $timesheet->user->rate}} per hour </td>
                                         <td> £{{$timesheet->total_hours * $timesheet->user->rate }}.00  </td>
+                                        <td> £{{$timesheet->total_hours * $timesheet->user->rate }}.00  </td>
+
                                     </tbody>
                                 </table>     
                         </div>
@@ -68,26 +85,6 @@
         </div>
         @endforeach
 
-
-        <!-- @foreach( $timesheets as $timesheet)
-        <div class="flex" style="align-items: center;">   
-                <p>WeekBeginning: {{ $timesheet->week_beginning }}</p>
-          
-                <p>User: {{ $timesheet->user_id }}</p>
-       
-                <p>Total Hours: {{ $timesheet->total_hours }}</p>
-                @foreach ($users as $user )
-                    
-                    <p>Employee Name: {{ $user->name }}</p>
-            
-                    <p>Email: {{ $user->email}}</p>
-            
-                    <p>Rate: {{ $user->rate }}</p>
-        @endforeach
-        </div>
-        @endforeach
-        -->
-  
 
 </x-app-layout>
 </html>

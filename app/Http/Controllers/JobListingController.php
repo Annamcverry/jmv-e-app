@@ -15,6 +15,12 @@ class JobListingController extends Controller
         return view('jobs', ['jobs' => JobListing::all()]);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    
     public function saveJob(Request $request){
         $validator = Validator::make($request->all(), [
             'description'=>'required',
@@ -35,11 +41,10 @@ class JobListingController extends Controller
             $job->licenses = $request->input('licenses');
             $job->hours = $request->input('hours');
             $job->save();
-            return redirect('/jobs');
-            // return response()->json([
-            //     'status'=>200,
-            //     'message'=>'Job added successfully'
-            // ]);
+            return response()->json([
+                'status'=>200,
+                'message'=>'Job added successfully'
+            ]);
         }
     }
 

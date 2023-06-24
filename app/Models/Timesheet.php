@@ -19,7 +19,7 @@ class Timesheet extends Model
      */
 
    protected $fillable = [
-    // 'week_beginning',
+    'week_beginning',
     'mon_hours',
     'tue_hours',
     'wed_hours',
