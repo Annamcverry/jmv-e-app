@@ -22,6 +22,22 @@
         </h2>
     </x-slot>
     
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+                <form method="post" action="{{ route('saveExchangeRate') }}" accept-charset="UTF-8">
+                    {{ csrf_field() }}
+                    <input type="text" name="exchange_rate" field="exchange_rate" placeholder="Exchange Rate" class="w-full">
+                    
+                    <input type="date" name="week_beginning" field="week_beginning" placeholder="Week Beginning" class="w-full">
+                   
+                    <button type="submit" class="mt-6 inline-flex items-center px-4 py-2 bg-gray-700" style="background-color: darkblue;">Save</button>
+                </form>
+
+            </div>
+        
+        </div>
+    </div>
    
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 ;g:px-8">
@@ -38,8 +54,10 @@
                                         <th scope="col" style="padding: 20px;">Week Beginning</th>
                                         <th scope="col">Total Hours</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">email</th>
-                                        <th scope="col">Rate</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Rate per hour</th>
+                                        <th scope="col">Wage</th>
+                                        <th scope="col">Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -49,6 +67,7 @@
                                         <td> {{ $timesheet->user->email }} </td>
                                         <td> £{{ $timesheet->user->rate}} per hour </td>
                                         <td> £{{$timesheet->total_hours * $timesheet->user->rate }}.00  </td>
+                                        <td> {{ $timesheet->status }} </td>
                                         <td><form method="post" action="{{route('approveTimesheet', $timesheet->id) }}" accept-charset="UTF-8"> {{ csrf_field() }}
                                         <button id="btn-submit" type="submit" style="max-height: 45px; margin: left 20px; background-color: darkblue; border-radius: 4px;">Approve</button></form></td>
 

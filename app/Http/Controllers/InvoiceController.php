@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 // use Dotenv\Validator;
 
 use App\Models\Invoice;
-use Illuminate\Http\Request;
+use App\Models\ExchangeRate;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -167,6 +168,8 @@ class InvoiceController extends Controller
             ]);
         }
     }
+
+   
 
 
 }

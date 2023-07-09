@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Timesheet;
+use PDF;
 use App\Models\User;
+use App\Models\Timesheet;
+use Ramsey\Uuid\Type\Time;
+
+use App\Models\ExchangeRate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Support\Facades\Validator;
-use Ramsey\Uuid\Type\Time;
 
 class TimesheetController extends Controller
 {
@@ -18,6 +20,11 @@ class TimesheetController extends Controller
     public function adminView()
     {
         return view('admintimesheets', ['timesheets' => Timesheet::all()]);
+    }
+    public function Invoices()
+    {
+       
+        return view('invoices', ['timesheets' => Timesheet::where(Auth::id())]);
     }
     public function allInvoices()
     {
@@ -29,10 +36,19 @@ class TimesheetController extends Controller
     {
         $userId = Auth::id();
         $timesheets = Timesheet::where('user_id', $userId)->get();
-        $timesheets->each(function($timesheet){
-            return view('myinvoices', ['$timesheets' => Timesheet::all(), 'users'=> User::all()]);
-        });
+        // $timesheets->each(function($timesheets){
+            return view('myinvoices', ['timesheets' =>$timesheets]);
+
+            return response()->json([
+                'timesheets'=>$timesheets,
+            ]);
+        // });
         
+            // $timesheet = Timesheet::where('id',$id)
+            //                 ->where('user_id', Auth::id())
+            //                 ->firstOrFail();
+            // return view('myInvoices')->with('timesheet', $timesheet);
+
         // return view('myinvoices', ['timesheets' => Timesheet::all(), 'users'=> User::all()]);
     }
     public function index()
@@ -67,7 +83,7 @@ class TimesheetController extends Controller
     }
 
     public function fetchInvoices (){
-        $timesheets = Timesheet::where('user_id', User::class()->id);
+        $timesheets = Timesheet::where('user_id', Auth::class()->id);
         return response()->json([
             'timesheets'=>$timesheets,
         ]);
@@ -114,7 +130,6 @@ class TimesheetController extends Controller
            
          
             $timesheet->save();
-            // return redirect('fetch-timesheets');
             return response()->json([
                 'status'=>200,
                 'message'=>'Hours for the week saved successfully'
@@ -245,5 +260,61 @@ class TimesheetController extends Controller
                     ]);
             
     }
+     //Exchange rates
+     public function allExchangeRates(){
+        return view('invoices', ['exchange_rates'=>ExchangeRate::all()]);
+    }
+
+    public function fetchExchangeRates(){
+        $exchangeRates = ExchangeRate::all();
+        return response()->json([
+            'exchangeRates'=>$exchangeRates,
+        ]);
+    }
+    //
+        /**
+     * Store a newly created resource in storage.
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    
+    public function saveExchangeRate(Request $request){
+        $validator = Validator::make($request->all(), [
+            'exchange_rate'=>'required',
+            'week_beginning'=>'required',
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                'status'=>400,
+                'errors'=>$validator->messages()
+            ]);
+        }
+        else{
+            $exchangeRate = new ExchangeRate();
+            $exchangeRate->exchange_rate = $request->input('exchange_rate');
+            $exchangeRate->week_beginning = $request->input('week_beginning');
+            $exchangeRate->save();
+            return redirect('fetch-exchangeRates');
+            // return response()->json([
+            //     'status'=>200,
+            //     'message'=>'Exchange Rate saved Successfully'
+            // ]);
+
+        }
+    }
+
+    //PDF Method
+    
+//     public function PayslipPDF(){
+//         //retrieve all records from db
+//         $payslip = Timesheet::latest()->simplePaginate(50);
+
+//         //share data to view
+//         view()->share('payslip', $payslip);
+//         $pdf = PDF::loadView('payslip', $payslip);
+
+//         //download PDF file with download method
+//         return $pdf->download('PayslipPDF.pdf');
+//    }
 }
 

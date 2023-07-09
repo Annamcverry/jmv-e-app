@@ -14,6 +14,9 @@ class JobListingController extends Controller
     public function index(){
         return view('jobs', ['jobs' => JobListing::all()]);
     }
+    public function admin(){
+        return view('enquiries', ['jobs' => JobListing::all()]);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -45,6 +48,8 @@ class JobListingController extends Controller
                 'status'=>200,
                 'message'=>'Job added successfully'
             ]);
+            session()->flash('message', 'Job successfully added');
+            return redirect()->to('/enquiries');
         }
     }
 

@@ -71,15 +71,22 @@ Route::get('/fetch-invoices', [TimesheetController::class, 'fetchInvoices']);
 Route::get('/myinvoices', [TimesheetController::class, 'myInvoices'],function() {
     return view('myinvoices');
 })->middleware(['auth', 'verified'])->name('myinvoices');
+Route::get('fetch-myinvoices', [TimesheetController::class, 'fetchInvoices']);
+Route::get('/payslip/pdf', [TimesheetController::class, 'PayslipPDF']);
 
 //Job Listing Route
 Route::get('/jobs', [JobListingController::class, 'index'],function() {
     return view('jobs');
 })->middleware(['auth', 'verified'])->name('jobs');
 // Route::get('/jobs', [JobListingController::class, 'index']);
-Route::post('/save-job', [JobListingController::class, 'saveJob'])->name('/save-job');
+Route::post('/save-job', [JobListingController::class, 'saveJob'])->name('saveJob');
 Route::get('fetchJobs', [JobListingController::class, 'fetchJobs']);
 Route::post('enquireJob/{id}', [JobListingController::class, 'enquireJob'])->name('enquireJob');
+
+//Admin Job Listing and Enquiries Route
+Route::get('/enquiries', [JobListingController::class, 'admin'],function() {
+    return view('enquiries');
+})->middleware(['auth', 'verified'])->name('enquiries');
 
 //Admin routes to view and edit employee info
 Route::get('/employees', [ProfileController::class, 'index'],function() {
@@ -91,6 +98,12 @@ Route::get('/edit-user/{id}', [UserController::class, 'edit']);
 // Route::get('/employees', [ProfileController::class, 'index']);
 
 //Exchange Rate Route
-Route::post('saveExchangeRate', [ExchangeRateController::class, 'saveExchangeRate'])->name('saveExchangeRate');
+Route::get('/invoices', [TimesheetController::class, 'allInvoices', 'allExchangeRates'],function() {
+    return view('invoices');
+})->middleware(['auth', 'verified'])->name('invoices');
+Route::post('saveExchangeRate', [TimesheetController::class, 'saveExchangeRate'])->name('saveExchangeRate');
+Route::get('fetch-exchangeRates', [TimesheetController::class, 'allExchangeRates']);
+Route::get('fetch-exchangeRates', [TimesheetController::class, 'fetchExchangeRates']);
+
 
 require __DIR__.'/auth.php';

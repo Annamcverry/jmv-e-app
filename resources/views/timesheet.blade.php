@@ -14,7 +14,8 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    <style> table{border: 1px;    }th{background-color: darkblue; padding-top: 10px; padding-bottom: 10px; color:#fff ;} td, tr {border: 2px solid #ddd; padding: 8px;} input{border: 2px solid navy;}button{ padding: 12px; background-color: darkblue; color: #fff;} input{ padding: 8px 20px; margin: 8px 0; box-sizing: border-box; border: 1px solid #555; outline: none;}form {text-align: center;
+ ;} </style>
  
 </head>
 <x-app-layout>
@@ -25,8 +26,8 @@
         </h2>
     </x-slot>
     <body>
-    <div class="container mt-2">
-        <div class="col-md-6 mt-1 mb-2">
+    <div class="container mt-2" >
+        <div > 
             <button id="addNewTimesheet" class= "btn btn-success" style="background-color:darkblue">See Previous Weeks Timesheets</button>
             <div id="message" style="font-size:large; background-color:gold"></div>
 
@@ -44,9 +45,9 @@
             </div>
 
 
- <div class="grid grid-cols-2 gap-2">
-     <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+ <div style="width:100%; align-items:center">
+     <div >
+        <div >
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
         <div class="modal fade" id="timesheet-model" aria-hidden="true">
             <div class="modal-dialog">
@@ -190,8 +191,8 @@
                             <td>' + item.sat_hours + '</td>\
                             <td>' + item.sun_hours + '</td>\
                             <td>' + item.total_hours + '</td>\
-                            <td><button type="button" data-id="' + item.id + '" class="btn btn-primary edit btn-sm"  >Edit</button>\
-                            <button type="button" data-id="' + item.id + '" class="btn btn danger delete btn-sm" ">Delete</button></td>\
+                            <td><button type="button" data-id="' + item.id + '" class="btn btn-primary edit btn-sm" style="background-colour:darkblue" >Edit</button>\
+                            <button type="button" data-id="' + item.id + '" class="btn btn danger delete btn-sm" " style="background-colour:darkblue" >Delete</button></td>\
                            </tr>');
                             });
 

@@ -12,18 +12,35 @@
         <link rel="stlesheet" href="/app/resources/css/app.css"/>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
-        @livewireStyles
+     
      
 </head>
 <x-app-layout>
-@livewireScripts
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Jobs') }}
+            {{ __('Jobs Listing and Enquiries') }}
         </h2>
     </x-slot>
 
     <div id="message" style="font-size:large; background-color:gold"></div>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+                <h2 class="font-semibold text-l text-gray-800 leading-tight" >Add a New Job Listing</h2>
+                    {{ csrf_field() }}
+                   
+                <form method="post" action="{{ route('saveJob') }}" accept-charset="UTF-8">
+                    {{ csrf_field() }}
+                    <input type="text" name="description" field="desciption" placeholder="Description" class="w-full">
+                    <input type="text" name="location" field="location" placeholder="Location" class="w-full">
+                    <input type="text" name="licenses" field="licenses" placeholder="Licenses" class="w-full">
+                    <input type="text" name="hours" field="hours" placeholder="Hours" class="w-full">
+                    <button type="submit" class="mt-6 inline-flex items-center px-4 py-2" style="background-color: darkblue; border-radius: 4px;">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     @foreach ($jobs as $job )
         <div class="py-12">
@@ -54,17 +71,24 @@
                                     </tr>
                                 </table>
                             </div>
-                            <form method="post" action="{{route('enquireJob', $job->id) }}" accept-charset="UTF-8"> {{ csrf_field() }}
-                                        <button id="btn-submit" type="submit" style="background-color: darkblue; border-radius: 4px;">Enquire Now</button></form>
+                            <br>
+                            <br>
+                            <h2 style="font-size: larger; font-weight:bold;">Enqiries</h2>
+                            @forelse ( $job->users as $user )
+                                    {{ $user->name }}
+                                    {{ $user->email}}@if (!$loop->last),@endif
+                            @empty
+                            <span>No enquiries for this job</span>
+                            @endforelse 
                     </div>
-                   
                 </div>
         </div>
         </div>
         
     @endforeach
 
-    </div>
+
+
 
 
 </x-app-layout>

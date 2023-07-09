@@ -1,5 +1,5 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="30%" viewBox="0 0 2000 1500"  xml:space="preserve">
+	 width="50%" viewBox="0 0 2000 1500"  xml:space="preserve">
 <path fill="#FFFEFE" opacity="1.000000" stroke="none" 
 	d="
 M1354.000000,1501.000000 

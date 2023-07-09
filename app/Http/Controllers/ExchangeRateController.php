@@ -12,6 +12,13 @@ class ExchangeRateController extends Controller
     public function index(){
         return view('invoices', ['exchange_rates'=>ExchangeRate::all()]);
     }
+
+    public function fetchExchangeRates(){
+        $exchangeRates = ExchangeRate::all();
+        return response()->json([
+            'exchangeRates'=>$exchangeRates,
+        ]);
+    }
     //
         /**
      * Store a newly created resource in storage.
@@ -22,6 +29,7 @@ class ExchangeRateController extends Controller
     public function saveExchangeRate(Request $request){
         $validator = Validator::make($request->all(), [
             'exchange_rate'=>'required',
+            'week_beginning'=>'required',
         ]);
         if($validator->fails()){
             return response()->json([
@@ -32,11 +40,13 @@ class ExchangeRateController extends Controller
         else{
             $exchangeRate = new ExchangeRate();
             $exchangeRate->exchange_rate = $request->input('exchange_rate');
+            $exchangeRate->week_beginning = $request->input('week_beginning');
             $exchangeRate->save();
-            return response()->json([
-                'status'=>200,
-                'message'=>'Exchange Rate saved Successfully'
-            ]);
+            return redirect('fetch-exchangeRates');
+            // return response()->json([
+            //     'status'=>200,
+            //     'message'=>'Exchange Rate saved Successfully'
+            // ]);
 
         }
     }

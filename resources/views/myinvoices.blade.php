@@ -26,6 +26,11 @@
         </h2>
     </x-slot>
 
+    <div class="row ">
+    <div class=" float-right col-lg-12">
+        <a class="btn btn-danger btn-lg font-weight-bold ml-2 float-right  mt-3" href="{{ URL::to('/payslip/pdf') }}">Report</a>                  
+    </div>
+    </div>
 
     <!-- Where timesheet user id = auth user id that's -->
 
@@ -47,6 +52,7 @@
                                         <th scope="col">Wage</th>
                                         <th scope="col">Wage Euro</th>
                                         <th scope="col">Exchange Rate</th>
+                                        <th scope="col">Invoice Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -57,7 +63,7 @@
                                         <td> £{{ $timesheet->user->rate}} per hour </td>
                                         <td> £{{$timesheet->total_hours * $timesheet->user->rate }}.00  </td>
                                         <td> £{{$timesheet->total_hours * $timesheet->user->rate }}.00  </td>
-
+                                        <td> {{ $timesheet->status }} </td>
                                     </tbody>
                                 </table>     
                         </div>

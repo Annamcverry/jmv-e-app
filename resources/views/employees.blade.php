@@ -50,6 +50,11 @@
                                         <td> {{ $user->rate}} </td>
                                         <td> {{ $user->job_role}} </td>
                                         <td> {{$user->licenses}}  </td>
+                                        <td>
+                                        <form method="get" action="{{route('edit-user', $id) }}" accept-charset="UTF-8"> {{ csrf_field() }}
+                                                    <button id="btn-submit" type="submit" style="background-color: darkblue; border-radius: 4px;">Enquire Now</button></form>    </td>
+                                        <!-- <button type="submit" class="mt-6 inline-flex items-center px-4 py-2 bg-gray-700" style="background-color: darkblue;">Edit</button> -->
+             
                                         
                                     </tbody>
                                     @endforeach  
