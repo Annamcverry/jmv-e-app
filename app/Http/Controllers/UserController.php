@@ -24,9 +24,9 @@ class UserController extends Controller
     public function fetchEmployees()
     {
         //
-        $employees = User::all();
+        $users = User::all();
         return response()->json([
-            'employees'=>$employees,
+            'users'=>$users,
         ]);
         // return view('employees')->with('employees',$employees);
      }

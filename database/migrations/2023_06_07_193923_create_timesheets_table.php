@@ -33,7 +33,7 @@ return new class extends Migration
             // $table->float('fri_hours')->nullable()->default(0);
             // $table->float('sat_hours')->nullable()->default(0);
             // $table->float('sun_hours')->nullable()->default(0);
-            $table->float('total_hours')->storedAs('mon_hours + tue_hours + wed_hours + thurs_hours + fri_hours + sat_hours + sun_hours');
+            // $table->float('total_hours')->storedAs('mon_hours + tue_hours + wed_hours + thurs_hours + fri_hours + sat_hours + sun_hours');
             // $table->time('mon_start_time');
             // $table->time('mon_end_time');
             // $table->float('mon_hours')->storedAs('mon_end_time' - 'mon_start_time');

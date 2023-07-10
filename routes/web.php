@@ -29,13 +29,16 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 //All Employee 
 Route::get('fetch-employees', [ProfileController::class, 'index']);
@@ -92,8 +95,9 @@ Route::get('/enquiries', [JobListingController::class, 'admin'],function() {
 Route::get('/employees', [ProfileController::class, 'index'],function() {
     return view('employees');
 })->middleware('can:is_admin')->name('employees');
+Route::get('fetch-employees', [UserController::class, 'fetchEmployees']);
 Route::put('update-user/{id}', [UserController::class, 'adminUpdateEmployee']);
-Route::get('/edit-user/{id}', [UserController::class, 'edit']);
+Route::get('edit-user/{id}', [UserController::class, 'edit']);
 
 // Route::get('/employees', [ProfileController::class, 'index']);
 

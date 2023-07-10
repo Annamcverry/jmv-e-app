@@ -33,6 +33,22 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
+    public function adminEdit($id)
+    {
+        $user = User::find($id);
+        if($user){
+            return response()->json([
+                'status'=>200,
+                'user'=>$user,
+            ]);
+        }
+        else{
+            return response()->json([
+                'status'=>404,
+                'message'=>'No User Found'
+            ]);
+        }
+    }
 
     /**
      * Update the user's profile information.
