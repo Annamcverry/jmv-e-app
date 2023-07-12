@@ -95,9 +95,15 @@ Route::get('/enquiries', [JobListingController::class, 'admin'],function() {
 Route::get('/employees', [ProfileController::class, 'index'],function() {
     return view('employees');
 })->middleware('can:is_admin')->name('employees');
-Route::get('fetch-employees', [UserController::class, 'fetchEmployees']);
-Route::put('update-user/{id}', [UserController::class, 'adminUpdateEmployee']);
-Route::get('edit-user/{id}', [UserController::class, 'edit']);
+
+Route::get('fetch-employees', [UserController::class, 'fetchEmployees'],function(){
+
+})->middleware('can:is_admin')->name('fetch-employees');
+// Route::get('fetch-employees', [UserController::class, 'fetchEmployees'])->middleware('can:is_admin');
+Route::put('update-user/{id}', [UserController::class, 'adminUpdateEmployee'],function(){
+    
+})->middleware('can:is_admin');
+Route::get('edit-user/{id}', [UserController::class, 'edit'])->middleware('can:is_admin');
 
 // Route::get('/employees', [ProfileController::class, 'index']);
 
@@ -109,5 +115,7 @@ Route::post('saveExchangeRate', [TimesheetController::class, 'saveExchangeRate']
 Route::get('fetch-exchangeRates', [TimesheetController::class, 'allExchangeRates']);
 Route::get('fetch-exchangeRates', [TimesheetController::class, 'fetchExchangeRates']);
 
+//PDF Route 
+Route::get('export_timesheet_pdf', [TimesheetController::class, 'export_timesheet_pdf'])->name('export_timesheet_pdf');
 
 require __DIR__.'/auth.php';

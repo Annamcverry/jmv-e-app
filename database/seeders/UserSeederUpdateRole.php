@@ -15,7 +15,7 @@ class UserSeederUpdateRole extends Seeder
     {
         //
         User::updateOrCreate(
-            ['id' =>1], ['role'=>"admin"],
+            ['id' =>3], ['role'=>"admin"],
         );
     }
 }

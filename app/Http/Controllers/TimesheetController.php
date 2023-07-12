@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use PDF;
 use App\Models\User;
+// use Barryvdh\DomPDF\PDF;
+
 use App\Models\Timesheet;
 use Ramsey\Uuid\Type\Time;
-
 use App\Models\ExchangeRate;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -76,7 +78,10 @@ class TimesheetController extends Controller
     //     //
     // }
     public function fetchTimesheets(){
-        $timesheets = Timesheet::all();
+        
+        $userId = Auth::id();
+        $timesheets = Timesheet::where('user_id', $userId)->get();
+        // $timesheets = Timesheet::all();
         return response()->json([
             'timesheets'=>$timesheets,
         ]);
@@ -316,5 +321,16 @@ class TimesheetController extends Controller
 //         //download PDF file with download method
 //         return $pdf->download('PayslipPDF.pdf');
 //    }
-}
 
+    public function export_timesheet_pdf(){
+        
+        $userId = Auth::id();
+        $timesheets = Timesheet::where('user_id', $userId)->get();
+        // $timesheets = Timesheet::get();
+        $pdf = PDF::loadView('pdf.payslip',[
+            'timesheets'=>$timesheets
+        ]);
+     
+        return $pdf->download('payslip.pdf');
+    }
+}

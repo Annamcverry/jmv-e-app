@@ -363,7 +363,7 @@
                         complete: function() {
                             $("#btn-save").html('Save changes');
                             $("#btn-save").attr("disabled", false);
-                            $('timesheet-model').modal('hide');
+                            $('user-model').modal('hide');
                             $('#message').fadeOut(4000);
                         }
                     });

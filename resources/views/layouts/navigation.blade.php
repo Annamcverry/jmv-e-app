@@ -129,7 +129,7 @@
                 {{ __('Invoices') }}
             </x-responsive-nav-link> -->
             <x-responsive-nav-link :href="route('myinvoices')" :active="request()->routeIs('myinvoices')">
-                {{ __('MYInvoices') }}
+                {{ __('My Invoices') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('jobs')" :active="request()->routeIs('jobs')">
                 {{ __('Jobs') }}

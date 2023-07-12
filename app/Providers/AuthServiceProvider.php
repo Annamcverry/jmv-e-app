@@ -15,7 +15,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        
+        User::class => UserPolicy::class,
     ];
 
     /**
@@ -31,5 +32,14 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('is_employee', function(User $user){
             return $user->role == 'employee';
         });
+
+        //Allow Admin to update employee
+        Gate::define('update-user', function(User $user){
+            return $user->role == 'is_admin'? true : null;
+        });
+
+        // Gate::before(function ($user, $ability) {
+        //     return $user->hasRole('is_admin') ? true : null;
+        // });
     }
 }

@@ -19,14 +19,8 @@
         <style> table{border: 1px;    }th{background-color: darkblue; padding-top: 10px; padding-bottom: 10px; color:#fff ;} td, tr {border: 2px solid #ddd; padding: 8px;} input{border: 2px solid navy;}button{ padding: 12px; background-color: darkblue; color: #fff;} input{ padding: 8px 20px; margin: 8px 0; box-sizing: border-box; border: 1px solid #555; outline: none;}form {text-align: center;
  ;} </style> -->
 </head>
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('My Invoices') }}
-        </h2>
-    </x-slot>
 
-
+<h2>Payslip </h2>
     <!-- Where timesheet user id = auth user id that's -->
 
     @foreach( $timesheets as $timesheet)
@@ -46,7 +40,7 @@
                                         <th scope="col">Rate</th>
                                         <th scope="col">Wage</th>
                                         <th scope="col">Wage Euro</th>
-                                        <th scope="col">Invoice Status</th>
+                                        <th scope="col">Exchange Rate</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -57,15 +51,9 @@
                                         <td> £{{ $timesheet->user->rate}} per hour </td>
                                         <td> £{{$timesheet->total_hours * $timesheet->user->rate }}.00  </td>
                                         <td> £{{$timesheet->total_hours * $timesheet->user->rate }}.00  </td>
-                                        <td> {{ $timesheet->status }} </td>
+
                                     </tbody>
-                                </table> 
-                                <!-- <form method="post" action="{{route('export_timesheet_pdf') }}" accept-charset="UTF-8"> {{ csrf_field() }}
-                                        <button id="btn-submit" type="submit" style="background-color: darkblue; border-radius: 4px;">Enquire Now</button></form> -->
-                    
-                                <div>
-                                    <a class="btn btn-success" style="background-color: darkblue" href="{{ route('export_timesheet_pdf') }}">Export PDF</a>
-                                </div>
+                                </table>     
                         </div>
                        
                     </div>
@@ -73,8 +61,7 @@
            
             </div> 
         </div>
-        @endforeach
+    @endforeach
   
 
-</x-app-layout>
 </html>

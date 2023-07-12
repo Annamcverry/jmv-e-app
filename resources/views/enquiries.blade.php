@@ -13,6 +13,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
      
+        <style> background{background-color: blue;} </style>
      
 </head>
 <x-app-layout>
@@ -47,6 +48,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 ;g:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-950">
+                        <h2>Job Listing</h2>
                                 <div class="flex" style="align-items: center;"> 
                                 <table>
                                     <tr>

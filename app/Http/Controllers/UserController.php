@@ -54,9 +54,9 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($user)
     {
-        $user = User::find($id);
+        $user = User::find($user);
         if($user){
             return response()->json([
                 'status'=>200,
@@ -74,7 +74,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function adminUpdateEmployee(Request $request, string $user)
+    public function adminUpdateEmployee(Request $request, User $user)
     {
         $validator = Validator::make($request->all(), [
             'contact_no',
