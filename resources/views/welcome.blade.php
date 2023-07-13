@@ -1222,7 +1222,7 @@ z"/>
 
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Timesheet</h2>
 
-                                <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                                <p class="mt-4 text-gray-900 dark:text-gray-900 text-lg leading-relaxed">
                                     Enter this weeks hours worked
                                 </p>
                             </div>
@@ -1242,7 +1242,7 @@ z"/>
 
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Invoices</h2>
 
-                                <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                                <p class="mt-4 text-gray-900 dark:text-gray-900 text-lg leading-relaxed">
                                     View all your invoices and wages
                                 </p>
                             </div>
@@ -1262,7 +1262,7 @@ z"/>
 
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Profile</h2>
 
-                                <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed" style="font-size: large;">
+                                <p class="mt-4 text-gray-900 dark:text-gray-900 text-lg  leading-relaxed" style="font-size: large;">
                                     Click here to update your contact and personal details
                                 </p>
                             </div>
@@ -1282,7 +1282,7 @@ z"/>
 
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Open Roles</h2>
 
-                                <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                                <p class="mt-4 text-gray-900 dark:text-gray-900 text-lg leading-relaxed">
                                 View open jobs in the surrounding area
                                 </p>
                             </div>

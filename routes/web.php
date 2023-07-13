@@ -29,16 +29,16 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+// Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+// Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 //All Employee 
 Route::get('fetch-employees', [ProfileController::class, 'index']);
@@ -100,12 +100,12 @@ Route::get('fetch-employees', [UserController::class, 'fetchEmployees'],function
 
 })->middleware('can:is_admin')->name('fetch-employees');
 // Route::get('fetch-employees', [UserController::class, 'fetchEmployees'])->middleware('can:is_admin');
-Route::put('update-user/{id}', [UserController::class, 'adminUpdateEmployee'],function(){
-    
-})->middleware('can:is_admin');
-Route::get('edit-user/{id}', [UserController::class, 'edit'])->middleware('can:is_admin');
 
-// Route::get('/employees', [ProfileController::class, 'index']);
+Route::put('update-user/{id}', [UserController::class, 'adminUpdateEmployee'],function(){
+})->middleware('can:is_admin');
+Route::get('edit-user/{id}', [UserController::class, 'edit'],function(){
+})->middleware('can:is_admin');
+Route::post('save-user', [UserController::class, 'save']);
 
 //Exchange Rate Route
 Route::get('/invoices', [TimesheetController::class, 'allInvoices', 'allExchangeRates'],function() {

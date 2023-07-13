@@ -44,9 +44,31 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function save(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'contact_no',
+            'rate',
+            'job_role',
+            'licences',
+            'safepasse',
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                'status'=>400,
+                'errors'=>$validator->messages()
+            ]);
+        }
+        else{
+            $user = new User;
+            $user->name = $request->get('contact_no');
+            $user->job_role = $request->get('job_role');
+            $user->rate = $request->get('rate');
+            $user->licences = $request->get('licences');
+            $user->safepass = $request->get('safepass');
+            
+         
+        }
     }
 
    
@@ -54,9 +76,9 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($user)
+    public function edit($id)
     {
-        $user = User::find($user);
+        $user = User::find($id);
         if($user){
             return response()->json([
                 'status'=>200,
@@ -74,7 +96,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function adminUpdateEmployee(Request $request, User $user)
+    public function adminUpdateEmployee(Request $request, string $user)
     {
         $validator = Validator::make($request->all(), [
             'contact_no',
@@ -92,11 +114,12 @@ class UserController extends Controller
         else{
            $user = User::find($user);
             if($user){
-                $request->user()->contact_no = $request->get('contact_no');
-                $request->user()->job_role = $request->get('job_role');
-                $request->user()->rate = $request->get('rate');
-                $request->user()->licences = $request->get('licences');
-                $request->user()->safepass = $request->get('safepass');
+                $user->contact_no = $request->input('contact_no');
+                $user->job_role = $request->input('job_role');
+                $user->rate = $request->input('rate');
+                $user->licences = $request->input('licences');
+                $user->safepass = $request->input('safepass');
+                $user->update();
         
                 $request->user()->update();
                 return response()->json([
@@ -113,6 +136,7 @@ class UserController extends Controller
         }
        
     }
+
 
     /**
      * Remove the specified resource from storage.
