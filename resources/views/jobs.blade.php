@@ -56,7 +56,8 @@
                             </div>
                             <form method="post" action="{{route('enquireJob', $job->id) }}" accept-charset="UTF-8"> {{ csrf_field() }}
                                         <button id="btn-submit" type="submit" style="background-color: darkblue; border-radius: 4px;">Enquire Now</button></form>
-                    </div>
+                        `  
+                                    </div>
                    
                 </div>
         </div>

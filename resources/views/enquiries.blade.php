@@ -72,10 +72,21 @@
                                         <td>{{$job->enquiries }}</td>
                                     </tr>
                                 </table>
+                                <!-- <form method="delete" action="{{route('deleteJob', $job->id) }}" accept-charset="UTF-8"> {{ csrf_field() }}
+                                        <button  type="button" class="btn btn danger delete btn-sm"  style="background-color: darkblue; border-radius: 4px;">Enquire Now</button></form>
+                        `  
+                                <a href="{{ route('deleteJob', $job->id) }}" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure?')">Button</button> -->
+                                <form action="{{ route('deleteJob', [$job->id])}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-primary" onclick="return confirm('Are you sure?')" 
+                                type="submit" name="Delete" style="background-color: darkblue;">Delete</button>    
+                                
                             </div>
+                                    
                             <br>
                             <br>
-                            <h2 style="font-size: larger; font-weight:bold;">Enqiries</h2>
+                            <h2 style="font-size: larger; font-weight:bold;">Enquiries</h2>
                             @forelse ( $job->users as $user )
                                     {{ $user->name }}
                                     {{ $user->email}}@if (!$loop->last),@endif

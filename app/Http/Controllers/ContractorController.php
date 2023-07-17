@@ -2,56 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-
-use Illuminate\Support\Facades\Validator;
+use App\Models\Contractor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
-class UserController extends Controller
+class ContractorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //
+
     public function index()
     {
         //
-        return view('employees', ['users' =>User::all()]);
+        return view('contractors', ['contractors' =>Contractor::all()]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function fetchEmployees()
+    public function fetchContractors()
     {
         //
-        $users = User::all();
+        $contractors = Contractor::all();
         return response()->json([
-            'users'=>$users,
+            'contractors'=>$contractors,
         ]);
         // return view('employees')->with('employees',$employees);
      }
 
 
-     /**
-     * Display the specified resource.
-     */
-    
-    public function show(User $id){
-        $employee = User::all();
-        return view('employees')->with('employee', $employee);
-    }
 
     /**
      * Store a newly created resource in storage.
      */
+       /**
+     * Store a newly created resource in storage.
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function save(Request $request)
     {
         $validator = Validator::make($request->all(),[
+            'name',
+            'email_address',
             'contact_no',
-            'rate',
-            'job_role',
-            'licences',
-            'safepasse',
         ]);
         if($validator->fails()){
             return response()->json([
@@ -60,14 +54,16 @@ class UserController extends Controller
             ]);
         }
         else{
-            $user = new User;
-            $user->name = $request->get('contact_no');
-            $user->job_role = $request->get('job_role');
-            $user->rate = $request->get('rate');
-            $user->licences = $request->get('licences');
-            $user->safepass = $request->get('safepass');
-            
-         
+            $contractor = new Contractor;
+            $contractor->user_id = Auth::user()->id;
+            $contractor->name = $request->input('name');
+            $contractor->email_address = $request->input('email_address');
+            $contractor->contact_no = $request->input('contact_no');
+            $contractor->save();
+            return response()->json([
+                'status'=>200,
+                'message'=>'Contractor added'
+            ]);
         }
     }
 
@@ -78,11 +74,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        if($user){
+        $contractor = Contractor::find($id);
+        if($contractor){
             return response()->json([
                 'status'=>200,
-                'user'=>$user,
+                'contractor'=>$contractor,
             ]);
         }
         else{
@@ -96,14 +92,13 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function adminUpdateEmployee(Request $request, string $user)
+    public function update(Request $request, string $contractor)
     {
         $validator = Validator::make($request->all(), [
+            'name',
+            'email_address',
             'contact_no',
-            'job_role',
-            'rate',
-            'licences',
-            'safepass',
+           
         ]);
         if($validator->fails()){
             return response()->json([
@@ -112,19 +107,17 @@ class UserController extends Controller
             ]);
         }
         else{
-           $user = User::find($user);
-            if($user){
-                $user->contact_no = $request->input('contact_no');
-                $user->job_role = $request->input('job_role');
-                $user->rate = $request->input('rate');
-                $user->licences = $request->input('licences');
-                $user->safepass = $request->input('safepass');
-                $user->update();
+           $contractor = Contractor::find($contractor);
+            if($contractor){
+                $contractor->name = $request->input('name');
+                $contractor->email_address = $request->input('email_address');
+                $contractor->contact_no = $request->input('contact_no');
+                $contractor->update();
         
-                $request->user()->update();
+                $request->contractor()->update();
                 return response()->json([
                     'status'=>200,
-                    'message'=>'Employee details updated succesffully'
+                    'message'=>'contractor details updated succesffully'
                 ]);
             }
             else{
@@ -143,19 +136,19 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        if($user){
+        $contractor = Contractor::find($id);
+        if($contractor){
 
-            $user->delete();
+            $contractor->delete();
             return response()->json([
                 'status'=>200,
-                'message'=>'User Deleted Successfully'
+                'message'=>'Contractor Deleted Successfully'
             ]);
         }
         else{
             return response()->json([
                 'status'=>404,
-                'message'=>'No User Found'
+                'message'=>'No Contractor Found'
             ]);
         }
     }
