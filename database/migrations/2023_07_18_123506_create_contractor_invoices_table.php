@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contractors', function (Blueprint $table) {
+        Schema::create('contractor_invoices', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('name');
-            $table->string('email_address');
-            $table->string('contact_no');
+            // $table->foreignId('contractor_id')->constrained()->onDelete('cascade')->default(1);
+            $table->date('date');
+            $table->float('amount_paid');
+            // $table->float('cumulative_hours_worked');
+            $table->tinyInteger('employee_count');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contractors');
+        Schema::dropIfExists('contractor_invoices');
     }
 };

@@ -44,6 +44,10 @@ class TimesheetController extends Controller
             return response()->json([
                 'timesheets'=>$timesheets,
             ]);
+
+            // $timesheets = Timesheet::approveTimesheet();
+            // return view('myinvoices', ['timesheets' =>$timesheets]);
+    
         // });
         
             // $timesheet = Timesheet::where('id',$id)
@@ -52,6 +56,12 @@ class TimesheetController extends Controller
             // return view('myInvoices')->with('timesheet', $timesheet);
 
         // return view('myinvoices', ['timesheets' => Timesheet::all(), 'users'=> User::all()]);
+    }
+    public function myInvoices1(){
+        $timesheets = Timesheet::approveTimesheet();
+        return view('myinvoices', ['timesheets' =>$timesheets]);
+
+       
     }
     public function index()
     {
@@ -70,13 +80,6 @@ class TimesheetController extends Controller
             
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    // public function create()
-    // {
-    //     //
-    // }
     public function fetchTimesheets(){
         
         $userId = Auth::id();
@@ -87,12 +90,12 @@ class TimesheetController extends Controller
         ]);
     }
 
-    public function fetchInvoices (){
-        $timesheets = Timesheet::where('user_id', Auth::class()->id);
-        return response()->json([
-            'timesheets'=>$timesheets,
-        ]);
-    }
+    // public function fetchInvoices (){
+    //     $timesheets = Timesheet::where('user_id', Auth::class()->id);
+    //     return response()->json([
+    //         'timesheets'=>$timesheets,
+    //     ]);
+    // }
 
     /**
      * Store a newly created resource in storage.

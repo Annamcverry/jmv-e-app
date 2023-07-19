@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>My Invoices</title>
+        <title>JMV EXCAVATIONS</title>
         
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -21,6 +20,12 @@
  ;} </style> -->
 </head>
 
+<x-app-layout>
+<x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Contractors') }}
+        </h2>
+</x-slot>
 <h2>Payslip </h2>
 <body>
 
@@ -30,8 +35,23 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
                 <div class="panel-body">
-                    <canvas id="canvas1" height="140" width="300"></canvas>
+                    <canvas id="canvas1" height="400" width="450"></canvas>
                     
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-1">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="font-size:larger">Dashboard</div>
+                <div class="panel-body">
+                    
+                    <canvas id="canvas2" height="400" width="450" ></canvas>
                     
                 </div>
             </div>
@@ -44,15 +64,16 @@
     var year = <?php echo $year; ?>;
     var user = <?php echo $user; ?>;
     
+    
     var barChartData = {
         labels: year,
         datasets: [{
             label: 'User',
-            backgroundColor: "pink",
+            backgroundColor: "blue",
             data: user
         }]
     };
-
+  
 
     window.onload = function() {
         var ctx = document.getElementById("canvas1").getContext("2d");
@@ -60,6 +81,8 @@
             type: 'bar',
             data: barChartData,
             options: {
+                responsive: false,
+                maintainAspectRatio: false,
                 elements: {
                     rectangle: {
                         borderWidth: 2,
@@ -67,7 +90,7 @@
                         borderSkipped: 'bottom'
                     }
                 },
-                responsive: true,
+                
                 title: {
                     display: true,
                     text: 'Yearly User Joined'
@@ -75,9 +98,10 @@
             }
         });
 
-    
+
+   
     };
 
 </script>
-
+</x-app-layout>
 </html>

@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use SebastianBergmann\Diff\Diff;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Timesheet extends Model
 {
@@ -89,6 +91,16 @@ class Timesheet extends Model
 
     public function getWeekHoursAttribute(){
         $weekHours = $this->mon_hours + $this->tue_hours + $this->wed_hours + $this->thurs_hours + $this->fri_hours + $this->sat_hours + $this->sun_hours; 
+
+    }
+
+    public function approvedInvoices(Timesheet $timesheet){
+        
+        $userId = Auth::id();
+        $timesheet = DB::table('timesheets')
+                    ->where('user_id', $userId)
+                    ->where('status', 'approved')->get();
+        return $timesheet;
 
     }
     public static function boot(){

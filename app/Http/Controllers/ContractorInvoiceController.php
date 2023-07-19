@@ -3,36 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contractor;
+use App\Models\ContractorInvoice;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class ContractorController extends Controller
+class ContractorInvoiceController extends Controller
 {
-    //
-
+    
     public function index()
     {
         //
-        return view('contractors', ['contractors' =>Contractor::all()]);
+        return view('contractorinvoice', ['contractorinvoice' =>ContractorInvoice::all()]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function fetchContractors()
+    public function fetchContractorInvoices()
     {
-        //
-        $contractors = Contractor::all();
+        
+        $contractorinvoices = ContractorInvoice::all();
         return response()->json([
-            'contractors'=>$contractors,
+            'contractorinvoice'=>$contractorinvoices,
         ]);
         // return view('employees')->with('employees',$employees);
      }
 
-
-
-    /**
+     /**
      * Store a newly created resource in storage.
      */
        /**
@@ -43,9 +40,10 @@ class ContractorController extends Controller
     public function save(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'name',
-            'email_address',
-            'contact_no',
+           
+            'date'=>'required',
+            'amount_paid'=>'required',
+            'employee_count'=>'required',
         ]);
         if($validator->fails()){
             return response()->json([
@@ -54,31 +52,29 @@ class ContractorController extends Controller
             ]);
         }
         else{
-            $contractor = new Contractor;
-            // $contractor->user_id = Auth::user()->id;
-            $contractor->name = $request->input('name');
-            $contractor->email_address = $request->input('email_address');
-            $contractor->contact_no = $request->input('contact_no');
-            $contractor->save();
+            $contractorinvoice = new ContractorInvoice();
+            // $contractorinvoice->contractor_id = 1;
+            // $contractorinvoice->contractor_id = $request->input('contractor_id');
+            $contractorinvoice->date = $request->input('date');
+            $contractorinvoice->amount_paid = $request->input('amount_paid');
+            $contractorinvoice->employee_count = $request->input('employee_count');
+            $contractorinvoice->save();
             return response()->json([
                 'status'=>200,
-                'message'=>'Contractor added'
+                'message'=>'Invoice added'
             ]);
         }
     }
-
-   
-
-    /**
+       /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
-        $contractor = Contractor::find($id);
-        if($contractor){
+        $contractorinvoice = ContractorInvoice::find($id);
+        if($contractorinvoice){
             return response()->json([
                 'status'=>200,
-                'contractor'=>$contractor,
+                'contractorinvoice'=>$contractorinvoice,
             ]);
         }
         else{
@@ -92,12 +88,12 @@ class ContractorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $contractor)
+    public function update(Request $request, string $contractorinvoice)
     {
         $validator = Validator::make($request->all(), [
-            'name',
-            'email_address',
-            'contact_no',
+            'date',
+            'amount_paid',
+            'employee_count',
            
         ]);
         if($validator->fails()){
@@ -107,12 +103,12 @@ class ContractorController extends Controller
             ]);
         }
         else{
-           $contractor = Contractor::find($contractor);
-            if($contractor){
-                $contractor->name = $request->input('name');
-                $contractor->email_address = $request->input('email_address');
-                $contractor->contact_no = $request->input('contact_no');
-                $contractor->update();
+           $contractorinvoice = ContractorInvoice::find($contractorinvoice);
+            if($contractorinvoice){
+                $contractorinvoice->date = $request->input('date');
+                $contractorinvoice->amount_paid = $request->input('amount_paid');
+                $contractorinvoice->employee_count = $request->input('employee_count ');
+                $contractorinvoice->update();
         
                 $request->contractor()->update();
                 return response()->json([
@@ -136,13 +132,13 @@ class ContractorController extends Controller
      */
     public function destroy($id)
     {
-        $contractor = Contractor::find($id);
-        if($contractor){
+        $contractorinvoice = ContractorInvoice::find($id);
+        if($contractorinvoice){
 
-            $contractor->delete();
+            $contractorinvoice->delete();
             return response()->json([
                 'status'=>200,
-                'message'=>'Contractor Deleted Successfully'
+                'message'=>'Invoice Deleted Successfully'
             ]);
         }
         else{
@@ -152,4 +148,7 @@ class ContractorController extends Controller
             ]);
         }
     }
+
+   
+
 }

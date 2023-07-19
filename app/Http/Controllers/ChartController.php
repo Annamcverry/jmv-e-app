@@ -16,19 +16,19 @@ class ChartController extends Controller
     public function index(){
 
 
-        $year = User::select(DB::raw("(name) as name"))   
+        $name = User::select(DB::raw("(name) as name"))   
                 ->get()->toArray();
-        $year = array_column($year, 'name');
+        $name = array_column($name, 'name');
 
-        $user = Timesheet::select(DB::raw("SUM(total_hours) as hours"))
+        $hour = Timesheet::select(DB::raw("(total_hours) as hour"))
                 ->get()->toArray();
-        $user = array_column($user, 'hours');
+        $hour = array_column($hour, 'hour');
 
         
 
         return view('visualisations.chart')  
-        ->with('year',json_encode($year,JSON_NUMERIC_CHECK))  
-        ->with('user',json_encode($user,JSON_NUMERIC_CHECK));  
+        ->with('year',json_encode($name,JSON_NUMERIC_CHECK))  
+        ->with('user',json_encode($hour,JSON_NUMERIC_CHECK));  
 
         // $user = [];
         // foreach($year as $key => $value ){

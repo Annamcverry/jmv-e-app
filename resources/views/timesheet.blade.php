@@ -27,7 +27,10 @@
     </x-slot>
     <body>
     <div class="container mt-2" >
+    <div id="message" style="font-size:large; background-color:gold"></div>
+
         <div > 
+            
             <button id="addNewTimesheet" class= "btn btn-success" style="background-color:darkblue">See Previous Weeks Timesheets</button>
             <div id="message" style="font-size:large; background-color:gold"></div>
 
@@ -76,43 +79,43 @@
                             <div class="form-group">
                                 <label for="name" class="col-sm-4 control-label">Mon Hours</label>
                                 <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="mon_hours" name="mon_hours"  maxlength="50" default="0" required="" >
+                                    <input type="float" class="form-control" id="mon_hours" name="mon_hours"  maxlength="50" default="0" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-sm-4 control-label">Tue Hours</label>
                                 <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="tue_hours" name="tue_hours"  maxlength="50" default="0" required="">
+                                    <input type="float" class="form-control" id="tue_hours" name="tue_hours"  maxlength="50" default="0" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-sm-4 control-label">Wed Hours</label>
                                 <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="wed_hours" name="wed_hours"  maxlength="50" default="0" required="" >
+                                    <input type="float" class="form-control" id="wed_hours" name="wed_hours"  maxlength="50" default="0" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-sm-4 control-label">Thurs Hours</label>
                                 <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="thurs_hours" name="thurs_hours"  maxlength="50" default="0" required="" >
+                                    <input type="float" class="form-control" id="thurs_hours" name="thurs_hours"  maxlength="50" default="0" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-sm-4 control-label">Fri Hours</label>
                                 <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="fri_hours" name="fri_hours" value="" maxlength="50" default="0" required="">
+                                    <input type="float" class="form-control" id="fri_hours" name="fri_hours" value="" maxlength="50" default="0" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-sm-4 control-label">Sat Hours</label>
                                 <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="sat_hours" name="sat_hours"  value="" maxlength="50" default="0" required="" >
+                                    <input type="float" class="form-control" id="sat_hours" name="sat_hours"  value="" maxlength="50" default="0">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-sm-4 control-label">Sun Hours</label>
                                 <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="sun_hours" name="sun_hours"  value="" maxlength="50" default="0" required="" >
+                                    <input type="float" class="form-control" id="sun_hours" name="sun_hours"  value="" maxlength="50" default="0" required="">
                                 </div>
                             </div>
 
@@ -300,6 +303,7 @@
                                 $('#sat_hours').val(response.timesheet.sat_hours);
                                 $('#sun_hours').val(response.timesheet.sun_hours);
                                 $('#id').val(response.timesheet.id);
+                                
                             }
                         }
                     });

@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>My Invoices</title>
+        <title>JMV EVACUATIONS</title>
         
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -22,6 +22,12 @@
         <style> table{border: 1px;    }th{background-color: darkblue; padding-top: 10px; padding-bottom: 10px; color:#fff ;} td, tr {border: 2px solid #ddd; padding: 8px;} input{border: 2px solid navy;}button{ padding: 12px; background-color: darkblue; color: #fff;} input{ padding: 8px 20px; margin: 8px 0; box-sizing: border-box; border: 1px solid #555; outline: none;}form {text-align: center;
  ;} </style> -->
 </head>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-900 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
 
 <h2>Payslip </h2>
 <body>
@@ -33,7 +39,7 @@
                 <div class="panel-heading" style="font-size:larger">Dashboard</div>
                 <div class="panel-body">
                     
-                    <canvas id="canvas2" height="400" width="200" style=""></canvas>
+                    <canvas id="canvas2" height="400" width="500" ></canvas>
                     
                 </div>
             </div>
@@ -82,7 +88,7 @@
                         borderSkipped: 'bottom'
                     }
                 },
-                responsive: true,
+                responsive: false,
                 title: {
                     display: true,
                     text: 'Total Hours worked each week',
@@ -100,4 +106,5 @@
 
 </script>
 
+</x-app-layout>
 </html>

@@ -64,7 +64,7 @@
                                         <button id="btn-submit" type="submit" style="background-color: darkblue; border-radius: 4px;">Enquire Now</button></form> -->
                     
                                 <div>
-                                    <a class="btn btn-success" style="background-color: darkblue" href="{{ route('export_timesheet_pdf') }}">Export PDF</a>
+                                    <a class="btn btn-success" style="background-color: darkblue; font-size:larger; color:white; padding-top: 10px; padding-bottom: 10px;" href="{{ route('export_timesheet_pdf') }}">Export PDF</a>
                                 </div>
                         </div>
                        

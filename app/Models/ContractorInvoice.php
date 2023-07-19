@@ -6,15 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Contractor extends Model
+class ContractorInvoice extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'name',
-        'email_address',
-        'contact_no'
+        'date',
+        'amount_paid',
+        'employee_count'
     ];
-    // public function contractorInvoices(): BelongsTo{
-    //     return $this->belongsToMany(ContractorInvoice::class);
-    //    }
+
+    // public function contractor(): BelongsTo{
+    //     return $this->belongsTo(Contractor::class);
+    // }
 }
