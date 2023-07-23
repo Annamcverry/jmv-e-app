@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class TimesheetFactory extends Factory
 {
+
+    protected $model = Timesheet::class;
     /**
      * Define the model's default state.
      *
@@ -17,14 +20,15 @@ class TimesheetFactory extends Factory
     public function definition(): array
     {
         return [
-            'week_beginning' => $this->faker->date(),
-            'mon_hours'=>$this->faker->number_format,
-            'tue_hours'=>$this->faker->number_format,
-            'wed_hours'=>$this->faker->number_format,
-            'thurs_hours'=>$this->faker->number_format,
-            'fr_hours'=>$this->faker->number_format,
-            'sat_hours'=>$this->faker->number_format,
-            'sun_hours'=>$this->faker->number_format,
+            'user_id' =>User::factory(),
+            'week_beginning' => $this->faker->dateTime(),
+            'mon_hours'=>$this->faker->randomDigit(),
+            'tue_hours'=>$this->faker->randomDigit(),
+            'wed_hours'=>$this->faker->randomDigit(),
+            'thurs_hours'=>$this->faker->randomDigit(),
+            'fr_hours'=>$this->faker->randomDigit(),
+            'sat_hours'=>$this->faker->randomDigit(),
+            'sun_hours'=>$this->faker->randomDigit(),
             
     
         ];

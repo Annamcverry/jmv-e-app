@@ -26,7 +26,7 @@
             {{ __('Invoices') }}
         </h2>
     </x-slot>
-
+<!-- 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
@@ -36,13 +36,13 @@
                     
                     <input type="date" name="week_beginning" field="week_beginning" placeholder="Week Beginning" class="w-full">
                    
-                    <button type="submit" class="mt-6 inline-flex items-center px-4 py-2 bg-gray-700" style="background-color: darkblue;">Save</button>
+                    <button type="submit" class="mt-6 inline-flex items-center px-4 py-2 bg-gray-700" style="background-color: darkblue; border-radius: 4px; padding: 15px; padding: right 10px;">Save</button>
                 </form>
 
             </div>
         
         </div>
-        </div>
+        </div> -->
 
 
     <!-- Where timesheet user id = auth user id that's -->

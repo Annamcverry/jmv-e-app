@@ -18,11 +18,13 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('All Employee Payslips') }}
         </h2>
     </x-slot>
     
-    <div class="py-12">
+    <div id="message" style="display: block; background-color:lightgreen; font-size:large"></div>
+    
+    <!-- <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <form method="post" action="{{ route('saveExchangeRate') }}" accept-charset="UTF-8">
@@ -37,11 +39,11 @@
             </div>
         
         </div>
-    </div>
+    </div> -->
    
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 ;g:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-xl">
                 All Employee Invoices
                 @foreach( $timesheets as $timesheet)
                     <div class="p-6 text-gray-950">
@@ -72,7 +74,7 @@
                                         <button id="btn-submit" type="submit" style="max-height: 45px; margin: left 20px; background-color: darkblue; border-radius: 4px;">Approve</button></form></td>
 
                                         <td><form method="post" action="{{route('reviewTimesheet', $timesheet->id) }}" accept-charset="UTF-8">{{ csrf_field() }}
-                                       <button type="submit" style="max-height: 45px; margin: left 20px; background-color: darkblue; border-radius: 4px;"> Review </button></form></td>
+                                       <button type="submit" style="background-color: darkblue; border-radius: 4px; padding: 15px; padding: right 10px;"> Review </button></form></td>
                                     </tbody>
                                 </table>     
                         </div>
@@ -90,6 +92,47 @@
             evt.preventDefault();
             $('#btn-submit').text('Save changes'); 
         })
+
+        $('body').on('click', '#btn-approve', function(event) {
+                    event.preventDefault();
+                    // var id = $("#id" ).val();
+                    var status = $("#status").val();
+                
+
+                    $("#btn-approve").html('Please wait');
+                    $("#btn-approve").attr("disable", true);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "approve-timesheet/" + id,
+                        data: {
+                            status:status,
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log(response);
+                            if (response.status == 400) {
+                                $('#msgList').html("");
+                                $('#msgList').addClass('alert alert-danger');
+                                $.each(response.errors, function(key, err_value) {
+                                    $('#msgList').append('<li>' + err_value + '</li>');
+                                });
+                                $('#btn-approve').text('Save changes');
+                            } else {
+                                $('#message').html("");
+                                $('#message').addClass('alert alert-success');
+                                $('#message').text(response.message);
+                                fetchTimesheet();
+                            }
+                        },
+                        complete: function() {
+                            $("#btn-approve").html('Save changes');
+                            $("#btn-approve").attr("disabled", false);
+                            $('timesheet-model').modal('hide');
+                            $('#message').fadeOut(4000);
+                        }
+                    });
+                });
     </script>
  
         

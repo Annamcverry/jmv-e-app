@@ -132,6 +132,10 @@ Route::get('/chart', [ChartController::class, 'index'],function() {
 Route::get('/hours', [ChartController::class, 'hoursWorkedPerWeek'],function() {
     return view('hours');
 })->middleware(['auth', 'verified'])->name('hours');
+Route::get('/contractorinvoiceschart', [ChartController::class, 'contractorInvoiceChart'],function() {
+    return view('contractorinvoices');
+})->middleware(['auth', 'verified'])->name('contractorinvoices');
+
 
 
 //Contractor Page Routes
@@ -145,10 +149,10 @@ Route::get('edit-contractor/{id}', [ContractorController::class, 'edit']);
 Route::delete('delete-contractor/{id}', [ContractorController::class, 'destroy']);
 
 //Contractor Invoices Page Routes
-// Route::get('/contractorinvoice',[ContractorInvoiceController::class, 'index'], function() {
-//     return view('contractorinvoice');
-// })->middleware(['auth', 'verified'])->name('contractorinvoice');
-Route::get('/contractorinvoice', 'App\Http\Controllers\ContractorInvoiceController@index');
+Route::get('/contractorinvoice',[ContractorInvoiceController::class, 'index'], function() {
+    return view('contractorinvoice');
+})->middleware(['auth', 'verified'])->name('contractorinvoice');
+// Route::get('/contractorinvoice', 'App\Http\Controllers\ContractorInvoiceController@index');
 Route::post('save-invoice', [ContractorInvoiceController::class, 'save']);
 Route::get('fetch-invoices', [ContractorInvoiceController::class, 'fetchContractorInvoices']);
 Route::put('update-invoice/{id}', [ContractorInvoiceController::class, 'update']);

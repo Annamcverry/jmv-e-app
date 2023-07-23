@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContractorInvoice;
 use App\Models\User;
 use App\Models\Timesheet;
 use FontLib\Table\Type\name;
@@ -54,5 +55,23 @@ class ChartController extends Controller
         ->with('week',json_encode($week,JSON_NUMERIC_CHECK))  
         ->with('hours',json_encode($hours,JSON_NUMERIC_CHECK)); 
     }
+
+
+public function contractorInvoiceChart(){
+    $date = ContractorInvoice::select(DB::raw("(date) as date"))
+            ->get()->toArray();
+    $date = array_column($date, 'date');
+
+    $amountPaid = ContractorInvoice::select(DB::raw("(amount_paid) as amountPaid"))
+            ->get()->toArray();
+    $amountPaid = array_column($amountPaid, 'amountPaid');
+
+    foreach($date as $key => $value){
+        $amountPaid[] = ContractorInvoice::where(\DB::raw("DATE_FORMAT(date, '%Y')"), $value)->count();
+    }
+    return view('visualisations.contractorinvoices')  
+    ->with('date',json_encode($date,JSON_NUMERIC_CHECK))  
+    ->with('amountPaid',json_encode($amountPaid,JSON_NUMERIC_CHECK)); 
 }
 
+}

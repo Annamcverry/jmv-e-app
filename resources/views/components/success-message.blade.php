@@ -1,4 +1,4 @@
-<!-- <x-success-message class='mb-4'/>
+<x-success-message class='mb-4'/>
 @if (session('success'))
 <div {{ $attributes->merge(['class' => 'flashmessage alert flex flex-row items-center bg-green-200 p-5 rounded border-b-2 border-green-300 py-5']) }}>
 <div class="alert-icon flex items-center bg-green-100 border-2 border-green-500 justify-center h-10 w-10 flex-shrink-0 rounded-full">
@@ -24,9 +24,9 @@
 
 </div>
     
-@endif -->
+@endif
 
-@if (session('success'))
+<!-- @if (session('success'))
 <div class="flashmessage alert flex flex-row items-center bg-green-200 p-5 rounded border-b-2 border-green-300 py-5 mb-4">
 <div class="alert-icon flex items-center bg-green-100 border-2 border-green-500 justify-center h-10 w-10 flex-shrink-0 rounded-full">
 <span class="text-green-500">
@@ -46,4 +46,5 @@ clip-rule="evenodd"></path>
 </div>
 </div>
 </div>
-@endif
+
+@endif -->

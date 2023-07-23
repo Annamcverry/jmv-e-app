@@ -44,10 +44,10 @@ class JobListingController extends Controller
             $job->licenses = $request->input('licenses');
             $job->hours = $request->input('hours');
             $job->save();
-            // return response()->json([
-            //     'status'=>200,
-            //     'message'=>'Job added successfully'
-            // ]);
+            return response()->json([
+                'status'=>200,
+                'message'=>'Job added successfully'
+            ]);
             // session()->flash('message', 'Job successfully added');
             // return redirect()->to('/admin.enquiries');
             

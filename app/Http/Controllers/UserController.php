@@ -51,7 +51,7 @@ class UserController extends Controller
             'rate',
             'job_role',
             'licences',
-            'safepasse',
+            'safepass',
         ]);
         if($validator->fails()){
             return response()->json([

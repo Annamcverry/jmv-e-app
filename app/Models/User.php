@@ -26,7 +26,7 @@ class User extends Authenticatable
         'contact_no',
         'rate',
         'job_role',
-        'licenses',
+        'licences',
         'safepass'
     ];
 
@@ -49,6 +49,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getRedirectRoute(){
+        return match((string)$this->role){
+            'admin' => 'admindashboard',
+            'employee'=> 'dashboard',
+        };
+    }
+
     // protected $attributes = [
     //     'job_role'=>'employee'
     // ];
@@ -56,4 +63,6 @@ class User extends Authenticatable
     public function joblistings(): BelongsToMany{
         return $this->belongsToMany(JobListing::class , 'user_job_listing', 'user_id', 'job_listing_id');
     }
+
+  
 }

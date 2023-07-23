@@ -19,53 +19,46 @@
  
 </head>
 <x-app-layout>
- 
-    <x-slot name="header">
+     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Timesheet') }}
         </h2>
     </x-slot>
-    <body>
-    <div class="container mt-2" >
-    <div id="message" style="font-size:large; background-color:gold"></div>
+<body>
 
-        <div > 
+ 
+ 
+
+<div class="col-md-12 card-header text-center font-weight-bold"> 
+<h2>Timesheets</h2> 
+</div> 
+
+    <div id="message" style="display: block; background-color:lightgreen; font-size:large"></div>
             
-            <button id="addNewTimesheet" class= "btn btn-success" style="background-color:darkblue">See Previous Weeks Timesheets</button>
-            <div id="message" style="font-size:large; background-color:gold"></div>
+    <button id="addNewTimesheet" class= "btn btn-success" style="background-color:darkblue">Input this weeks hours</button>
+    
 
-            <div class="modal fade" id="timesheet-model" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="TimesheetModel"></h4>
-                        </div>
-                        <div class="modal-body" align="centre" style="width:100%">
-                        <ul id="msgList"></ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        
 
+<!-- Bootstrap model -->
+<div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 ;g:px-8">
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-xl">
+         
 
- <div style="width:100%; align-items:center">
-     <div >
-        <div >
-            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-        <div class="modal fade" id="timesheet-model" aria-hidden="true">
+     <div class="modal fade" id="timesheet-model" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" id="timesheetModel"></h4>
                     </div>
-                    <div class="modal-body">
-
-                
-                        <h1 style="background-color: darkblue; color:white; align-items:center; font-size:large">Input your hours worked for this week</h1>
-                        
+                    
+                    <div class="modal-body" align="centre" style="width:100%">
+                        <ul id="msgList"></ul>  
                         <h1 style="background-color: darkblue; color:white; align-items:center; font-size:large">NOTE: Enter 0 if no hours were worked for that day </h1>
                         <form action="javascript:void(0)" id="addEditTimesheetForm" name="addEditTimesheetForm"  class="form-horizontal" method="POST">
-                            <input type="hidden" name="id" id="id">
+                       
+                        <input type="hidden" name="id" id="id">
 
 
                             <div class="form-group">
@@ -130,19 +123,21 @@
 
                         </form>
                     </div>
-
-                </div>
+                    <div class="modal-footer"> </div>
             </div>
         </div>
-            </div></div>
-     </div>
-
-     </div>
+        </div>
+    </div>
+    </div>
+</div>
+                    
+              
+    
         
         
   <div class="col-md-6 mt-1 mb-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+            <div class="my-6 p-6 bg-white overflow-hidden border-b border-gray-200 shadow-sm sm:rounded-lg">
         <div class="col-md-12">
             <table id="Table3" class="table">
                 <thead>
@@ -164,10 +159,12 @@
                 </tbody>
             </table>
         </div>
-  </div>
-            </div>
-     </div>
-  </div>
+        </div>
+        </div>
+
+        <!-- end of table div     -->
+    </div>  
+  
 
         <script>
             $(document).ready(function($) {
@@ -244,22 +241,23 @@
                             sun_hours:sun_hours,  
                         },
                         dataType: 'json',
-                        success: function(res) {
-                            console.log(res);
-                            if (res.status == 400) {
+                        success: function(response) {
+                            console.log(response);
+                            if (response.status == 400) {
 
                                 $('#msgList').html("");
                                 $('#msgList').addClass("alert alert-danger");
-                                $.each(res.errors, function(key, err_value) {
+                                $.each(response.errors, function(key, err_value) {
                                     $('#msgList').append('<li>' + err_value + '</li>');
                                 });
                                 $('#btn-save').text('Save Changes');
                             } else {
                                 $('#message').html("");
-                                $('#success-message').addClass("alert alert-sucess");
-                                $('#success-message').text(res.message);
+                                $('#message').addClass("alert alert-sucess");
+                                $('#message').text(response.message);
                                 fetchTimesheet();
                             }
+                           
                         },
                         complete: function() {
                             $("#btn-add").html('Save');
@@ -324,13 +322,13 @@
                                     $('#message').html("");
                                     $('#message').addClass('alert alert-success');
                                     $('#message').text(response.message);
-                                    $('#message').fadeOut(4000);
+                                    // $('#message').fadeOut(4000);
                                 }else{
                                     alert("Not Authorized");
                                     $('#message').html("");
                                     $('#message').addClass('alert alert-success');
                                     $('#message').text(response.message);
-                                    $('#message').fadeOut(4000);
+                                    // $('#message').fadeOut(4000);
                                     }
                                 fetchTimesheet();
                             }

@@ -17,25 +17,28 @@
      
 </head>
 <x-app-layout>
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Jobs Listing and Enquiries') }}
         </h2>
     </x-slot>
 
+ 
+
     <div id="message" style="font-size:large; background-color:gold"></div>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <h2 class="font-semibold text-l text-gray-800 leading-tight" >Add a New Job Listing</h2>
+            <div class="my-6 p-6 bg-white border-b border-gray-800 shadow-sm sm:rounded-lg text-lg">
+                <h2 class="font-semibold text-l text-gray-900 leading-tight text-xl" >Add a New Job Listing</h2>
                     {{ csrf_field() }}
                    
                 <form method="post" action="{{ route('saveJob') }}" accept-charset="UTF-8">
                     {{ csrf_field() }}
                     <input type="text" name="description" field="desciption" placeholder="Description" class="w-full">
                     <input type="text" name="location" field="location" placeholder="Location" class="w-full">
-                    <input type="text" name="licenses" field="licenses" placeholder="Licenses" class="w-full">
+                    <input type="text" name="licences" field="licences" placeholder="Licences required" class="w-full">
                     <input type="text" name="hours" field="hours" placeholder="Hours" class="w-full">
                     <button type="submit" class="mt-6 inline-flex items-center px-4 py-2" style="background-color: darkblue; border-radius: 4px;">Save</button>
                 </form>
@@ -60,7 +63,7 @@
                                         <td>{{$job->location }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Licenses Required</td>
+                                        <td>licences Required</td>
                                         <td>{{$job->licenses }}</td>
                                     </tr>
                                     <tr>
@@ -80,13 +83,13 @@
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-primary" onclick="return confirm('Are you sure?')" 
-                                type="submit" name="Delete" style="background-color: darkblue;">Delete</button>    
+                                type="submit" name="Delete" class="mt-6 inline-flex items-center px-4 py-2" style="background-color: darkblue; border-radius: 4px; padding: 15px; padding: right 10px;">Delete</button>    
                                 
                             </div>
                                     
                             <br>
                             <br>
-                            <h2 style="font-size: larger; font-weight:bold;">Enquiries</h2>
+                            <h2 class="text-lg" style="font-size: larger; font-weight:bold;">Enquiries</h2>
                             @forelse ( $job->users as $user )
                                     {{ $user->name }}
                                     {{ $user->email}}@if (!$loop->last),@endif

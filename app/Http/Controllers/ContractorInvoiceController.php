@@ -24,10 +24,12 @@ class ContractorInvoiceController extends Controller
         
         $contractorinvoices = ContractorInvoice::all();
         return response()->json([
-            'contractorinvoice'=>$contractorinvoices,
+            'contractorinvoices'=>$contractorinvoices,
         ]);
-        // return view('employees')->with('employees',$employees);
+        // return view('contractorinvoice')->with('contractorinvoices',$contractorinvoices);
      }
+
+     
 
      /**
      * Store a newly created resource in storage.

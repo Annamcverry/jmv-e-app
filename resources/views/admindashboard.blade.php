@@ -36,7 +36,8 @@
 
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Timesheet</h2>
 
-                                <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                                <p 
+                                class="mt-4 text-gray-900 dark:text-gray-900 text-sm leading-relaxed" style="font-size: large;">
                                     Enter this weeks hours worked
                                 </p>
                             </div>
@@ -56,7 +57,7 @@
 
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Invoices</h2>
 
-                                <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                                <p class="mt-4 text-gray-900 dark:text-gray-900 text-sm leading-relaxed" style="font-size: large;">
                                     View all your invoices and wages
                                 </p>
                             </div>
@@ -76,8 +77,8 @@
 
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Weekly Hours Worked</h2>
 
-                                <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed" style="font-size: large;">
-                                    Click here to update your contact and personal details
+                                <p class="mt-4 text-gray-900 dark:text-gray-900 text-sm leading-relaxed" style="font-size: large;">
+                                    Hours worked by each employee
                                 </p>
                             </div>
 
@@ -96,7 +97,7 @@
 
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Open Roles</h2>
 
-                                <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                                <p class="mt-4 text-gray-900 dark:text-gray-900 text-sm leading-relaxed" style="font-size: large;"">
                                 View open jobs in the surrounding area
                                 </p>
                             </div>
@@ -114,10 +115,10 @@
                                     </svg>
                                 </div>
 
-                                <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Open Roles</h2>
+                                <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Barchart</h2>
 
-                                <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                View open jobs in the surrounding area
+                                <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed" style="font-size: large;">
+                                Hours worked for each week
                                 </p>
                             </div>
 

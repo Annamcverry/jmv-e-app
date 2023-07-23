@@ -2,7 +2,7 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
+            <div class="flex" style="font-size: larger;">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
@@ -11,29 +11,31 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                @can('is_employee')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-xl">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                @endcan
 
                 @can('is_admin')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-xl">
                     <x-nav-link :href="route('admindashboard')" :active="request()->routeIs('admindashboard')">
-                        {{ __('Admin Dashboard') }}
+                        {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
                 @endcan
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-xl" style="font-size: larger;">
                     <x-nav-link :href="route('timesheet')" :active="request()->routeIs('timesheet')">
                         {{ __('Timesheets') }}
                     </x-nav-link>
                 </div>
 
                 @can('is_admin')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-xl" style="font-size: larger;">
                     <x-nav-link :href="route('admintimesheets')" :active="request()->routeIs('admintimesheets')">
-                        {{ __('All Invoices') }}
+                        {{ __('Payslips') }}
                     </x-nav-link>
                 </div>
                 @endcan
@@ -44,11 +46,13 @@
                     </x-nav-link>
                 </div> -->
                 
+                @can('is_employee')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('myinvoices')" :active="request()->routeIs('myinvoices')">
-                        {{ __('My Invoices') }}
+                        {{ __('My Payslips') }}
                     </x-nav-link>
                 </div>
+                @endcan
 
                 @can('is_employee')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -61,16 +65,34 @@
                 @can('is_admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('enquiries')" :active="request()->routeIs('enquiries')">
-                        {{ __('Jobs & Enquiries') }}
+                        {{ __('Jobs') }}
                     </x-nav-link>
                 </div>
                 @endcan
 
+                @can('is_admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('employees')" :active="request()->routeIs('employee')">
                         {{ __('Employees') }}
                     </x-nav-link>
                 </div>
+                @endcan
+
+                @can('is_admin')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('contractors')" :active="request()->routeIs('contractors')">
+                        {{ __('Contractors') }}
+                    </x-nav-link>
+                </div>
+                @endcan
+
+                @can('is_admin')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('contractorinvoice')" :active="request()->routeIs('contractorinvoice')">
+                        {{ __('Invoices') }}
+                    </x-nav-link>
+                </div>
+                @endcan
 
               
             </div>
@@ -123,7 +145,8 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
+        <div class="pt-2 pb-3 space-y-1 ">
+            
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
@@ -134,7 +157,7 @@
                 {{ __('Timesheets') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admintimesheets')" :active="request()->routeIs('admintimesheets')">
-                {{ __('Admin') }}
+                {{ __('Payslips') }}
             </x-responsive-nav-link>
             <!-- <x-responsive-nav-link :href="route('invoices')" :active="request()->routeIs('invoices')">
                 {{ __('Invoices') }}
@@ -142,15 +165,23 @@
             <x-responsive-nav-link :href="route('myinvoices')" :active="request()->routeIs('myinvoices')">
                 {{ __('My Invoices') }}
             </x-responsive-nav-link>
+            @can('is_employee')
             <x-responsive-nav-link :href="route('jobs')" :active="request()->routeIs('jobs')">
                 {{ __('Jobs') }}
             </x-responsive-nav-link>
+            @endcan
             <x-responsive-nav-link :href="route('enquiries')" :active="request()->routeIs('enquiries')">
                 {{ __('Jobs & Enquiries') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('employees')" :active="request()->routeIs('employees')">
                 {{ __('Employees') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('contractors')" :active="request()->routeIs('contractors')">
+                {{ __('Contractors') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('contractorinvoice')" :active="request()->routeIs('contractorinvoice')">
+                {{ __('Invoices') }}
             </x-responsive-nav-link>
         </div>
 

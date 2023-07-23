@@ -27,7 +27,7 @@
 
     
 
-        <div class="container mt-2" >
+        <!-- <div class="container mt-2" > -->
         <div > 
               <div id="message" style="font-size:large; background-color:gold"></div>
 
@@ -123,9 +123,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="name" class="col-sm-4 control-label">Licenses</label>
+                                <label for="name" class="col-sm-4 control-label">licences</label>
                                 <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="licenses" name="licenses" value="" maxlength="50" default="0" >
+                                    <input type="float" class="form-control" id="licences" name="licences" value="" maxlength="50" default="0" >
                                 </div>
                             </div>
                             <div class="form-group">
@@ -134,13 +134,12 @@
                                     <input type="float" class="form-control" id="safepass" name="safepass"  value="" maxlength="50" default="0" >
                                 </div>
                             </div>
-                         
                     
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-primary" style="background-color:darkblue" id="btn-add" value="addNewUser">Save
+                                <button type="submit" class="btn btn-primary" style="background-color: darkblue; border-radius: 4px; padding: 15px; padding: right 10px;" id="btn-add" value="addNewUser">Save
                                 </button>
 
-                                <button type="submit" class="btn btn-primary" style="background-color:darkblue" id="btn-save" value="UpdateUser">Save changes
+                                <button type="submit" class="btn btn-primary" style="background-color: darkblue; border-radius: 4px; padding: 15px; padding: right 10px;" id="btn-save" value="UpdateUser">Save changes
                                 </button>
                             </div>
 
@@ -152,7 +151,7 @@
         </div>
     </div>
     </div>
-</div>
+<!-- </div> -->
         
 
         <script>
@@ -178,7 +177,7 @@
                             <td>' + item.email + '</td>\
                             <td>' + item.job_role + '</td>\
                             <td>' + item.rate + '</td>\
-                            <td>' + item.licenses + '</td>\
+                            <td>' + item.licences + '</td>\
                             <td>' + item.safepass + '</td>\
                             <td><button type="button" data-id="' + item.id + '" class="btn btn-primary edit btn-sm" style="background-color:darkblue" >Edit</button>\
                             <button type="button" data-id="' + item.id + '" class="btn btn danger delete btn-sm"  style="background-color:darkblue" >Delete</button></td>\
@@ -208,7 +207,7 @@
                     var email = $("#email").val();
                     var job_role = $("#job_role").val();
                     var rate = $("#rate").val();
-                    var licenses = $("#licenses").val();
+                    var licences = $("#licenses").val();
                     var safepass = $("#safepass").val();
                     $("#btn-add").html('Please Wait');
                     $("#btn-add").attr("disabled", true);
@@ -222,7 +221,7 @@
                             email:email,
                             job_role:job_role,
                             rate:rate,
-                            licenses:licenses,
+                            licences:licences,
                             safepass:safepass,
                         },
                         dataType: 'json',
@@ -281,7 +280,7 @@
                                 $('#email').val(response.user.email);
                                 $('#job_role').val(response.user.job_role);
                                 $('#rate').val(response.user.rate);
-                                $('#licenses').val(response.user.licenses);
+                                $('#licences').val(response.user.licences);
                                 $('#safepass').val(response.user.safepass);
                                 $('#id').val(response.user.id);
                             }
@@ -325,7 +324,7 @@
                     var email = $("#email").val();
                     var job_role = $("#job_role").val();
                     var rate = $("#rate").val();
-                    var licenses = $("#licenses").val();
+                    var licences = $("#licences").val();
                     var safepass = $("#safepass").val();
 
                     $("#btn-save").html('Please wait');
@@ -340,7 +339,7 @@
                             email:email,
                             job_role:job_role,
                             rate:rate,
-                            licenses:licenses,
+                            licences:licences,
                             safepass:safepass,
                         },
                         dataType: 'json',

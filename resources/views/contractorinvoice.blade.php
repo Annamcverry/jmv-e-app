@@ -22,14 +22,14 @@
  
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Contractors') }}
+            {{ __('Invoices') }}
         </h2>
     </x-slot>
     <body>
     <div class="container mt-2" >
-        <div > 
-            <button id="addNewContractorInvoice" class= "btn btn-success" style="background-color:darkblue">See Previous Weeks Timesheets</button>
-            <div id="message" style="font-size:large; background-color:gold"></div>
+    <button id="addNewContractorInvoice" class= "btn btn-success" style="background-color:darkblue">Add Invoice</button>
+           
+              <div id="message" style="font-size:large; background-color:gold"></div>
 
             <div class="modal fade" id="contractorinvoice-model" aria-hidden="true">
                 <div class="modal-dialog">
@@ -49,7 +49,7 @@
     <div >
         <div >
         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-        <div class="modal fade" id="contractor-model" aria-hidden="true">
+        <div class="modal fade" id="contractorinvoice-model" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">

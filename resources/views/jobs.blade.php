@@ -16,12 +16,17 @@
      
 </head>
 <x-app-layout>
-@livewireScripts
+<!-- @livewireScripts -->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Jobs') }}
         </h2>
     </x-slot>
+
+    <div class="pb-8">
+        <x-success-message class="mb-4" />
+        <x-validation-errors class="mb-6" :errors="$errors" />
+    </div>
 
     <div id="message" style="font-size:large; background-color:gold"></div>
 
