@@ -119,18 +119,20 @@ class JobListingController extends Controller
         $job = JobListing::find($id);
         if($job){
             $job->delete();
-            return response()->json([
-                'status'=>200,
-                'message'=>'Job Deleted Succesfully'
-            ]);
+            return to_route('enquiries', $job)->with('success', 'Job deleted successfully');
+          
+            // return response()->json([
+            //     'status'=>200,
+            //     'message'=>'Job Deleted Succesfully'
+            // ]);
         }
         else{
             
-            return to_route('enquiries', $job)->with('success', 'Job deleted successfully');
-            // return response()->json([
-            //     'status'=>404,
-            //     'message'=>'No Job Found'
-            // ]);
+            // return to_route('enquiries', $job)->with('success', 'Job deleted successfully');
+            return response()->json([
+                'status'=>404,
+                'message'=>'No Job Found'
+            ]);
         }
     }
 

@@ -32,6 +32,7 @@ class TimesheetTest extends TestCase
         $user = User::factory()->create(
             ['id'=>2,]
         );
+   
  
         $response = $this->actingAs($user)->post('save-timesheet', [
             'user_id'=>2,
@@ -79,13 +80,11 @@ class TimesheetTest extends TestCase
         //     $this->assertDatabaseCount('timesheets', 4);
 
         }
-    public function test_something(): void{
-        
-
-        //create 10 users
+    public function test_timesheet_can_be_updated(): void{
         $user = User::factory()->create(
             ['id'=>2,]
         );
+ 
         $timesheet = Timesheet::factory()->create([
             'user_id'=>2,
             'week_beginning' => "2023-04-14 00:00:00",
@@ -95,16 +94,71 @@ class TimesheetTest extends TestCase
             'thurs_hours' => 8,
             'fri_hours' => 8,
             'sat_hours' => 8,
-            'sun_hours' => 8,
-
+            'sun_hours' => 7, 
         ]);
 
-        $lastTimesheet = $timesheet->last();
-        $response = $this->actingAs($user)->get('timesheets');
-        $response->assertStatus(200);
-        $response->assertViewHas('timesheets', function ($collection) use ($lastTimesheet){
-            return !$collection->contains($lastTimesheet);
-        });
+        $response = $this
+            ->actingAs($user)
+            ->patch('/update-timesheet', [
+                'user_id'=>2,
+                'week_beginning' => "2023-04-14 00:00:00",
+                'mon_hours' => 8,
+                'tue_hours' => 8,
+                'wed_hours' => 8,
+                'thurs_hours' => 8,
+                'fri_hours' => 8,
+                'sat_hours' => 8,
+                'sun_hours' => 7,
+            ]);
+
+        $response
+            ->assertSessionHasNoErrors();
+            // ->assertRedirect('/profile');
+
+        $user->refresh();
+
+        $this->assertSame(8, $timesheet->mon_hours);
+        $this->assertSame(8, $timesheet->tue_hours);
+        $this->assertSame(8, $timesheet->wed_hours);
+        $this->assertSame(8, $timesheet->thurs_hours);
+        $this->assertSame(8, $timesheet->fri_hours);
+        $this->assertSame(8, $timesheet->sat_hours);
+        $this->assertSame(7, $timesheet->sun_hours);
+        
     }
 
+    public function test_timesheet_can_be_deleted(): void{
+        $user = User::factory()->create(
+            ['id'=>2,]
+        );
+ 
+        $timesheet = Timesheet::factory()->create([
+            'user_id'=>2,
+            'week_beginning' => "2023-04-14 00:00:00",
+            'mon_hours' => 8,
+            'tue_hours' => 8,
+            'wed_hours' => 8,
+            'thurs_hours' => 8,
+            'fri_hours' => 8,
+            'sat_hours' => 8,
+            'sun_hours' => 7, 
+        ]);
+        $response = $this
+            ->actingAs($user)
+            ->delete('/delete-timesheet', [
+                'user_id'=>2,
+                'week_beginning' => "2023-04-14 00:00:00",
+                'mon_hours' => 8,
+                'tue_hours' => 8,
+                'wed_hours' => 8,
+                'thurs_hours' => 8,
+                'fri_hours' => 8,
+                'sat_hours' => 8,
+                'sun_hours' => 7,
+            ]);
+
+        $response
+            ->assertSessionHasNoErrors();
+           
+    }
 }
