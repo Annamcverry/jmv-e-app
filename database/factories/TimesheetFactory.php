@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Timesheet;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -26,7 +27,7 @@ class TimesheetFactory extends Factory
             'tue_hours'=>$this->faker->randomDigit(),
             'wed_hours'=>$this->faker->randomDigit(),
             'thurs_hours'=>$this->faker->randomDigit(),
-            'fr_hours'=>$this->faker->randomDigit(),
+            'fri_hours'=>$this->faker->randomDigit(),
             'sat_hours'=>$this->faker->randomDigit(),
             'sun_hours'=>$this->faker->randomDigit(),
             

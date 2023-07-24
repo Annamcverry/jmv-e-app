@@ -42,7 +42,7 @@ class ContractorInvoiceController extends Controller
     public function save(Request $request)
     {
         $validator = Validator::make($request->all(),[
-           
+           'contractor_name' =>'required',
             'date'=>'required',
             'amount_paid'=>'required',
             'employee_count'=>'required',
@@ -55,7 +55,7 @@ class ContractorInvoiceController extends Controller
         }
         else{
             $contractorinvoice = new ContractorInvoice();
-            // $contractorinvoice->contractor_id = 1;
+            $contractorinvoice->contractor_name = $request->input('contractor_name');
             // $contractorinvoice->contractor_id = $request->input('contractor_id');
             $contractorinvoice->date = $request->input('date');
             $contractorinvoice->amount_paid = $request->input('amount_paid');
@@ -93,6 +93,7 @@ class ContractorInvoiceController extends Controller
     public function update(Request $request, string $contractorinvoice)
     {
         $validator = Validator::make($request->all(), [
+            'contractor_name',
             'date',
             'amount_paid',
             'employee_count',
@@ -107,6 +108,7 @@ class ContractorInvoiceController extends Controller
         else{
            $contractorinvoice = ContractorInvoice::find($contractorinvoice);
             if($contractorinvoice){
+                $contractorinvoice->contractor_name = $request->input('contractor_name');
                 $contractorinvoice->date = $request->input('date');
                 $contractorinvoice->amount_paid = $request->input('amount_paid');
                 $contractorinvoice->employee_count = $request->input('employee_count ');

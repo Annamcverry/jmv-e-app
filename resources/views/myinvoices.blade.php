@@ -26,7 +26,7 @@
         </h2>
     </x-slot>
 
-
+<body>
     <!-- Where timesheet user id = auth user id that's -->
 
     @foreach( $timesheets as $timesheet)
@@ -64,7 +64,7 @@
                                         <button id="btn-submit" type="submit" style="background-color: darkblue; border-radius: 4px;">Enquire Now</button></form> -->
                     
                                 <div>
-                                    <a class="btn btn-success" style="background-color: darkblue; font-size:larger; color:white; padding-top: 10px; padding-bottom: 10px;" href="{{ route('export_timesheet_pdf') }}">Export PDF</a>
+                                    <a class="btn btn-success" id="btn-export"style="background-color: darkblue; font-size:larger; color:white; padding-top: 10px; padding-bottom: 10px;" href="{{ route('export_timesheet_pdf') }}">Export PDF</a>
                                 </div>
                         </div>
                        
@@ -74,7 +74,16 @@
             </div> 
         </div>
         @endforeach
-  
 
+    
+    <script>
+         $('body').on('click', '#btn-save', function(event) {
+                    event.preventDefault();
+                    
+                    $("#btn-export").html('Please wait');
+                    $("#btn-export").attr("disable", true);
+                });
+    </script>
+</body>
 </x-app-layout>
 </html>

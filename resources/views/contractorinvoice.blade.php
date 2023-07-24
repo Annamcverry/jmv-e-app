@@ -26,11 +26,16 @@
         </h2>
     </x-slot>
     <body>
-    <div class="container mt-2" >
+
     <button id="addNewContractorInvoice" class= "btn btn-success" style="background-color:darkblue">Add Invoice</button>
            
-              <div id="message" style="font-size:large; background-color:gold"></div>
+         <div id="message" style="display: block; background-color:lightgreen; font-size:large; text-align:center"></div>
 
+         
+<!-- Bootstrap model -->
+<div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 ;g:px-8">
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-xl">
             <div class="modal fade" id="contractorinvoice-model" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -40,36 +45,24 @@
                         <div class="modal-body" align="centre" style="width:100%">
                         <ul id="msgList"></ul>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-
- <div style="width:100%; align-items:center">
-    <div >
-        <div >
-        <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-        <div class="modal fade" id="contractorinvoice-model" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="ContractorInvoiceModel"></h4>
-                    </div>
-                    <div class="modal-body">
-                 
                 
-                        <h1 style="background-color: darkblue; color:white; align-items:center; font-size:large">Input your hours worked for this week</h1>
+                    <div class="modal-body">
                         
                         <h1 style="background-color: darkblue; color:white; align-items:center; font-size:large">NOTE: Enter 0 if no hours were worked for that day </h1>
                         <form action="javascript:void(0)" id="addEditContractorInvoiceForm" name="addEditContractorInvoiceForm"  class="form-horizontal" method="POST">
                             <input type="hidden" name="id" id="id">
 
+                            <div class="form-group">
+                                <label for="name" class="col-sm-4 control-label">Contractor Name</label>
+                                <div class="col-sm-12">
+                                    <input type="float" class="form-control" id="contractor_name" name="contractor_name"  maxlength="50" required="" >
+                                </div>
+                            </div>
                     
-
                             <div class="form-group">
                                 <label for="name" class="col-sm-4 control-label">Date</label>
                                 <div class="col-sm-12">
-                                    <input type="date" class="form-control" id="date" name="date"  maxlength="50" required="">
+                                    <input type="date" class="form-control" id="date" name="date"  required="">
                                 </div>
 
                             </div>
@@ -98,14 +91,11 @@
 
                         </form>
                     </div>
-
+                    <div class="modal-footer"> </div>
                 </div>
             </div>
         </div>
-            </div></div>
-     </div>
-
-     </div>
+    </div>
       
 
         
@@ -117,6 +107,7 @@
             <table id="Table4" class="table">
                 <thead>
                     <tr>
+                        <th scope="col">Contractor Name</th>
                         <th scope="col">Date</th>
                         <th scope="col">Amount Paid</th>
                         <th scope="col">Employee Count</th>
@@ -124,14 +115,14 @@
                     </tr>
                 </thead>
                 <tbody>
-
+             
                 </tbody>
             </table>
         </div>
-  </div>
-            </div>
-     </div>
-        </div>
+        </div>        
+    </div>
+    </div>
+   </div>
 
 
     <script>
@@ -152,8 +143,9 @@
                         $('tbody').html("");
                         $.each(response.contractorinvoices, function(key, item) {
                             $('tbody').append('<tr>\
+                        <td>' + item.contractor_name + '</td>\
                         <td>' + item.date + '</td>\
-                        <td>' + item.amount_paid + '</td>\
+                        <td>' + '£' + item.amount_paid + '.00' +'</td>\
                         <td>' + item.employee_count + '</td>\
                         <td><button type="button" data-id="' + item.id + '" class="btn btn-primary edit btn-sm" style="background-color:darkblue" >Edit</button>\
                         <button type="button" data-id="' + item.id + '" class="btn btn danger delete btn-sm" " style="background-color:darkblue" >Delete</button></td>\
@@ -178,6 +170,7 @@
 
             $('body').on('click', '#btn-add', function(event) {
                 event.preventDefault()
+                var contractor_name = $("#contractor_name").val();
                 var date = $("#date").val();
                 var amount_paid = $("#amount_paid").val();
                 var employee_count = $("#employee_count").val();
@@ -188,6 +181,7 @@
                     type: "POST",
                     url: "save-invoice",
                     data:{
+                        contractor_name:contractor_name,
                         date:date,
                         amount_paid:amount_paid,
                         employee_count:employee_count,
@@ -205,8 +199,8 @@
                             $('#btn-save').text('Save Changes');
                         } else {
                             $('#message').html("");
-                            $('#success-message').addClass("alert alert-sucess");
-                            $('#success-message').text(res.message);
+                            $('#message').addClass("alert alert-sucess");
+                            $('#message').text(res.message);
                             fetchContractorInvoice();
                         }
                     },
@@ -243,6 +237,7 @@
                             $('#message').html("");
                             $('#message').addClass('alert alert-success');
                             $('#message').text(response.message);
+                            $('#contractor_name').val(response.contractorinvoice.contractor_name);
                             $('#date').val(response.contractorinvoice.date);
                             $('#amount_paid').val(response.contractorinvoice.amount_paid);
                             $('#employee_count').val(response.contractorinvoice.employee_count);
@@ -283,6 +278,7 @@
             $('body').on('click', '#btn-save', function(event) {
                 event.preventDefault();
                 var id = $("#id").val();
+                var contractor_name = $("#contractor_name").val();
                 var date = $("#date").val();
                 var amount_paid = $("#amount_paid").val();
                 var employee_count = $("#employee_count").val();
@@ -294,6 +290,7 @@
                     type: "PUT",
                     url: "update-invoice/" + id,
                     data: {
+                        contractor_name:contractor_name,
                         date:date,
                         amount_paid:amount_paid,
                         employee_count:employee_count,

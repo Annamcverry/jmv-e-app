@@ -17,4 +17,7 @@ class Contractor extends Model
     // public function contractorInvoices(): BelongsTo{
     //     return $this->belongsToMany(ContractorInvoice::class);
     //    }
+    public function contractorInvoices(){
+        return $this->hasOne('ContractInvoice', 'contractor_name');
+    }
 }

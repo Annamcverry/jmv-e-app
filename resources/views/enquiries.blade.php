@@ -24,7 +24,18 @@
         </h2>
     </x-slot>
 
- 
+    <div class="">
+        @if(session()->get('success'))
+        <div class="alert alert-success mb-4 px-4 py-2 bg-green-100 border border-green-200 text-green-700 rounded-md"" >
+            {{session()->get('success') }}
+        </div>
+        @endif
+        @if(Session::has('error'))
+        <div class="alert alert-danger">
+            {{Session::get('error')}}
+        </div>
+        @endif
+    </div>
 
     <div id="message" style="font-size:large; background-color:gold"></div>
 
@@ -38,7 +49,7 @@
                     {{ csrf_field() }}
                     <input type="text" name="description" field="desciption" placeholder="Description" class="w-full">
                     <input type="text" name="location" field="location" placeholder="Location" class="w-full">
-                    <input type="text" name="licences" field="licences" placeholder="Licences required" class="w-full">
+                    <input type="text" name="licenses" field="licenses" placeholder="Licences required" class="w-full">
                     <input type="text" name="hours" field="hours" placeholder="Hours" class="w-full">
                     <button type="submit" class="mt-6 inline-flex items-center px-4 py-2" style="background-color: darkblue; border-radius: 4px;">Save</button>
                 </form>
@@ -70,10 +81,10 @@
                                         <td>Weekly Hours</td>
                                         <td>{{$job->hours }}</td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>Enquiries</td>
                                         <td>{{$job->enquiries }}</td>
-                                    </tr>
+                                    </tr> -->
                                 </table>
                                 <!-- <form method="delete" action="{{route('deleteJob', $job->id) }}" accept-charset="UTF-8"> {{ csrf_field() }}
                                         <button  type="button" class="btn btn danger delete btn-sm"  style="background-color: darkblue; border-radius: 4px;">Enquire Now</button></form>

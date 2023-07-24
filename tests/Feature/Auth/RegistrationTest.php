@@ -26,7 +26,10 @@ class RegistrationTest extends TestCase
             'password_confirmation' => 'PasswordForJMV',
         ]);
 
+        
         $this->assertAuthenticated();
+        
         $response->assertRedirect(RouteServiceProvider::HOME);
+   
     }
 }

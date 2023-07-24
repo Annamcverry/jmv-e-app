@@ -11,12 +11,13 @@ class ContractorInvoice extends Model
     use HasFactory;
 
     protected $fillable = [
+        'contractor_name',
         'date',
         'amount_paid',
         'employee_count'
     ];
 
-    // public function contractor(): BelongsTo{
-    //     return $this->belongsTo(Contractor::class);
-    // }
+    public function contractor(): BelongsTo{
+        return $this->belongsTo(Contractor::class, 'name');
+    }
 }
