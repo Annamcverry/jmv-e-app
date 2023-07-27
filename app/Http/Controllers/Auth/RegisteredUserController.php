@@ -31,6 +31,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
+            // 'role' => ['enum'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -43,6 +44,7 @@ class RegisteredUserController extends Controller
         ]);
 
         $user = User::create([
+            // 'role' => $request->role,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -56,7 +58,7 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-        return redirect(auth()->user()->getRedirectRoute());
-        // return redirect(RouteServiceProvider::HOME);
+        // return redirect(auth()->user()->getRedirectRoute());
+        return redirect(RouteServiceProvider::HOME);
     }
 }

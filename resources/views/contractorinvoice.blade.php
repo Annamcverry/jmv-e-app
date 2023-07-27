@@ -82,10 +82,10 @@
 
                     
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-primary" style="background-color:darkblue" id="btn-add" value="addNewContractor">Save
+                                <button type="submit" class="btn btn-primary" style="background-color: darkblue; border-radius: 4px; padding: 15px; padding: right 10px;" id="btn-add" value="addNewContractor">Save
                                 </button>
 
-                                <button type="submit" class="btn btn-primary" style="background-color:darkblue" id="btn-save" value="UpdateContractor">Save changes
+                                <button type="submit" class="btn btn-primary" style="background-color: darkblue; border-radius: 4px; padding: 15px; padding: right 10px;" id="btn-save" value="UpdateContractor">Save changes
                                 </button>
                             </div>
 
@@ -147,8 +147,8 @@
                         <td>' + item.date + '</td>\
                         <td>' + '£' + item.amount_paid + '.00' +'</td>\
                         <td>' + item.employee_count + '</td>\
-                        <td><button type="button" data-id="' + item.id + '" class="btn btn-primary edit btn-sm" style="background-color:darkblue" >Edit</button>\
-                        <button type="button" data-id="' + item.id + '" class="btn btn danger delete btn-sm" " style="background-color:darkblue" >Delete</button></td>\
+                        <td><button type="button" data-id="' + item.id + '" class="btn btn-primary edit btn-sm" style="background-color: darkblue; border-radius: 4px; padding: 15px; padding: right 10px;" >Edit</button>\
+                        <button type="button" data-id="' + item.id + '" class="btn btn danger delete btn-sm" " style="background-color: darkblue; border-radius: 4px; padding: 15px; padding: right 10px;" >Delete</button></td>\
                         </tr>');
                         });
 

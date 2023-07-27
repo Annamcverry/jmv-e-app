@@ -45,7 +45,6 @@
                                         <th scope="col">email</th>
                                         <th scope="col">Rate</th>
                                         <th scope="col">Wage</th>
-                                        <th scope="col">Wage Euro</th>
                                         <th scope="col">Invoice Status</th>
                                     </tr>
                                     </thead>
@@ -56,7 +55,6 @@
                                         <td> {{ $timesheet->user->email }} </td>
                                         <td> £{{ $timesheet->user->rate}} per hour </td>
                                         <td> £{{$timesheet->total_hours * $timesheet->user->rate }}.00  </td>
-                                        <td> £{{$timesheet->total_hours * $timesheet->user->rate }}.00  </td>
                                         <td> {{ $timesheet->status }} </td>
                                     </tbody>
                                 </table> 
@@ -64,7 +62,7 @@
                                         <button id="btn-submit" type="submit" style="background-color: darkblue; border-radius: 4px;">Enquire Now</button></form> -->
                     
                                 <div>
-                                    <a class="btn btn-success" id="btn-export"style="background-color: darkblue; font-size:larger; color:white; padding-top: 10px; padding-bottom: 10px;" href="{{ route('export_timesheet_pdf') }}">Export PDF</a>
+                                    <a class="btn btn-success" id="btn-export" style="background-color: darkblue; font-size:larger; color:white; border-radius: 4px; padding: 15px; padding: right 10px;" href="{{ route('export_timesheet_pdf') }}">Export PDF</a>
                                 </div>
                         </div>
                        

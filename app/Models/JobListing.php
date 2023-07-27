@@ -14,7 +14,8 @@ class JobListing extends Model
         'description',
         'location',
         'licenses',
-        'hours'
+        'hours', 
+        'enquiries'
     ];
 
     public function users(): BelongsToMany{

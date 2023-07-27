@@ -11,9 +11,7 @@
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
-        <!-- <style> table{border: 1px;    }th{background-color: darkblue; padding-top: 10px; padding-bottom: 10px; color:#fff ;} td, tr {border: 2px solid #fff; padding: 8px;} btn-submit{ padding: 12px; background-color: darkblue; color: #fff;} input{ padding: 8px 20px; margin: 8px 0; box-sizing: border-box;  outline: none;}form {text-align: center;
- ;} </style> -->
-     
+
 </head>
 <x-app-layout>
     <x-slot name="header">
@@ -23,23 +21,20 @@
     </x-slot>
     
     <div id="message" style="display: block; background-color:lightgreen; font-size:large"></div>
-    
-    <!-- <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <form method="post" action="{{ route('saveExchangeRate') }}" accept-charset="UTF-8">
-                    {{ csrf_field() }}
-                    <input type="text" name="exchange_rate" field="exchange_rate" placeholder="Exchange Rate" class="w-full">
-                    
-                    <input type="date" name="week_beginning" field="week_beginning" placeholder="Week Beginning" class="w-full">
-                   
-                    <button type="submit" class="mt-6 inline-flex items-center px-4 py-2 bg-gray-700" style="background-color: darkblue;">Save</button>
-                </form>
 
-            </div>
-        
+    <div class="">
+        @if(session()->get('success'))
+        <div class="alert alert-success mb-4 px-4 py-2 bg-green-100 border border-green-200 text-green-700 rounded-md"" >
+            {{session()->get('success') }}
         </div>
-    </div> -->
+        @endif
+        @if(Session::has('error'))
+        <div class="alert alert-danger">
+            {{Session::get('error')}}
+        </div>
+        @endif
+    </div>
+    
    
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 ;g:px-8">
@@ -48,7 +43,7 @@
                 @foreach( $timesheets as $timesheet)
                     <div class="p-6 text-gray-950">
                        
-                                <div class="flex" style="align-items: center;"> 
+                                <div style="align-items: center;"> 
                                 
                                 <table>
                                     <thead>
@@ -58,7 +53,7 @@
                                         <th scope="col">Name</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Rate per hour</th>
-                                        <th scope="col">Wage</th>
+                                        <th scope="col" style="padding: 20px;">Wage</th>
                                         <th scope="col">Status</th>
                                     </tr>
                                     </thead>

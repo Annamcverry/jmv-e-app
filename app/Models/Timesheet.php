@@ -89,6 +89,7 @@ class Timesheet extends Model
 //         }
 //     }
 
+    protected $model = Product::class;
     public function getWeekHoursAttribute(){
         $weekHours = $this->mon_hours + $this->tue_hours + $this->wed_hours + $this->thurs_hours + $this->fri_hours + $this->sat_hours + $this->sun_hours; 
 

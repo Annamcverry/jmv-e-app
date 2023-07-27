@@ -253,7 +253,8 @@ class TimesheetController extends Controller
         $timesheet->status = "Approved";
         $timesheet->save();
 
-        return redirect('/admintimesheets');            
+        return to_route('admintimesheets', $timesheet)->with('success', 'Timesheet approved!');
+                   
     }
 
     public function reviewTimesheet($id){
@@ -261,11 +262,7 @@ class TimesheetController extends Controller
         $timesheet->status = "In Review";
         $timesheet->save();
 
-        return redirect('/admintimesheets');
-        return response()->json([
-                        'status'=>200,
-                        'message'=>'Timesheet Reviewed Successfully'
-                    ]);
+        return to_route('/admintimesheets', $timesheet)->with('success', 'Timesheet in Review');
             
     }
      //Exchange rates

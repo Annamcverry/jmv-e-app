@@ -15,11 +15,13 @@
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
-<!--      
-        <style> table{border: 1px;    }th{background-color: darkblue; padding-top: 10px; padding-bottom: 10px; color:#fff ;} td, tr {border: 2px solid #ddd; padding: 8px;} input{border: 2px solid navy;}button{ padding: 12px; background-color: darkblue; color: #fff;} input{ padding: 8px 20px; margin: 8px 0; box-sizing: border-box; border: 1px solid #555; outline: none;}form {text-align: center;
- ;} </style> -->
+     
+        <style>  table{border: 1px;    }th{background-color: darkblue; padding-top: 10px; padding-bottom: 10px; color:#fff ;} td, tr {border: 2px solid #ddd; padding: 8px;} input{border: 2px solid navy;}button{ padding: 12px; background-color: darkblue; color: #fff;} input{ padding: 8px 20px; margin: 8px 0; box-sizing: border-box; border: 1px solid #555; outline: none;}form {text-align: center;
+ ;} </style>
 </head>
-<x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+<!-- <x-app-layout>
+
+<x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> -->
 
 <h2>Payslip </h2>
     <!-- Where timesheet user id = auth user id that's -->
@@ -35,23 +37,20 @@
                                     <thead>
                                     <tr>
                                         <th scope="col">Week Beginning</th>
-                                        <th scope="col">Total Hours</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">email</th>
-                                        <th scope="col">Rate</th>
+                                        <th scope="col">Total Hours</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Rate per Hour</th>
                                         <th scope="col">Wage</th>
-                                        <th scope="col">Wage Euro</th>
-                                        <th scope="col">Exchange Rate</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                         <td> {{ $timesheet->week_beginning }} </td>
-                                        <td> {{ $timesheet->total_hours}} hours </td>
                                         <td> {{ $timesheet->user->name }} </td>
+                                        <td> {{ $timesheet->total_hours}} hours </td>
                                         <td> {{ $timesheet->user->email }} </td>
-                                        <td> £{{ $timesheet->user->rate}} per hour </td>
-                                        <td> £{{$timesheet->total_hours * $timesheet->user->rate }}.00  </td>
-                                        <td> £{{$timesheet->total_hours * $timesheet->user->rate }}.00  </td>
+                                        <td> £ {{ $timesheet->user->rate}} per hour </td>
+                                        <td> £ {{$timesheet->total_hours * $timesheet->user->rate }}.00  </td>
 
                                     </tbody>
                                 </table>     
@@ -64,5 +63,6 @@
         </div>
     @endforeach
   
+<!-- </x-app-layout> -->
 
 </html>
