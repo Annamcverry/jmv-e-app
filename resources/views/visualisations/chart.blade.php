@@ -55,9 +55,28 @@
                     
                 </div>
             </div>
-        </div>
+           
+            <?php 
+            try {
+                $sql = "SELECT * FROM timesheet";
+                $result = $pdo->query($sql);
+                if($result->rowCount() > 0 ){
+                    while($row = $result->fetch()) {
+                        $dateArray [] = $row["week_beginning"];
+
+                    }
+                    unset($result);
+                } else {
+                    echo 'none';
+                }
+            }catch(PDOException $e){
+                    die("Error");
+                
+            }
+            ?>
+        <!-- </div>
     </div>
-</div>
+</div> -->
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 <script>
@@ -81,7 +100,7 @@
             type: 'bar',
             data: barChartData,
             options: {
-                responsive: false,
+                responsive: true,
                 maintainAspectRatio: false,
                 elements: {
                     rectangle: {
@@ -93,7 +112,11 @@
                 
                 title: {
                     display: true,
-                    text: 'Yearly User Joined'
+                    text: 'Weekly hours worked',
+                    font: {
+                                size: 16,
+                                family:'vazir'
+                            }
                 }
             }
         });

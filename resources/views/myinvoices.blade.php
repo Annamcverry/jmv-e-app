@@ -15,9 +15,6 @@
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
-<!--      
-        <style> table{border: 1px;    }th{background-color: darkblue; padding-top: 10px; padding-bottom: 10px; color:#fff ;} td, tr {border: 2px solid #ddd; padding: 8px;} input{border: 2px solid navy;}button{ padding: 12px; background-color: darkblue; color: #fff;} input{ padding: 8px 20px; margin: 8px 0; box-sizing: border-box; border: 1px solid #555; outline: none;}form {text-align: center;
- ;} </style> -->
 </head>
 <x-app-layout>
     <x-slot name="header">
@@ -25,6 +22,7 @@
             {{ __('My Invoices') }}
         </h2>
     </x-slot>
+
 
 <body>
     <!-- Where timesheet user id = auth user id that's -->
@@ -48,15 +46,15 @@
                                         <th scope="col">Invoice Status</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                        <td> {{ $timesheet->week_beginning }} </td>
-                                        <td> {{ $timesheet->total_hours}} hours </td>
-                                        <td> {{ $timesheet->user->name }} </td>
-                                        <td> {{ $timesheet->user->email }} </td>
-                                        <td> £{{ $timesheet->user->rate}} per hour </td>
-                                        <td> £{{$timesheet->total_hours * $timesheet->user->rate }}.00  </td>
-                                        <td> {{ $timesheet->status }} </td>
-                                    </tbody>
+                                <tbody>
+                                    <td> {{ $timesheet->week_beginning }} </td>
+                                    <td> {{ $timesheet->total_hours}} hours </td>
+                                    <td> {{ $timesheet->user->name }} </td>
+                                    <td> {{ $timesheet->user->email }} </td>
+                                    <td> £{{ $timesheet->user->rate}} per hour </td>
+                                    <td> £{{$timesheet->total_hours * $timesheet->user->rate }}.00  </td>
+                                    <td> {{ $timesheet->status }} </td>
+                                </tbody>
                                 </table> 
                                 <!-- <form method="post" action="{{route('export_timesheet_pdf') }}" accept-charset="UTF-8"> {{ csrf_field() }}
                                         <button id="btn-submit" type="submit" style="background-color: darkblue; border-radius: 4px;">Enquire Now</button></form> -->
@@ -74,14 +72,14 @@
         @endforeach
 
     
-    <script>
-         $('body').on('click', '#btn-save', function(event) {
+    <!-- <script>
+         $('body').on('click', '#btn-export', function(event) {
                     event.preventDefault();
                     
                     $("#btn-export").html('Please wait');
                     $("#btn-export").attr("disable", true);
                 });
-    </script>
+    </script> -->
 </body>
 </x-app-layout>
 </html>

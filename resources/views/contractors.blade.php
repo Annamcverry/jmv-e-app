@@ -26,41 +26,31 @@
         </h2>
     </x-slot>
     <body>
-    <div class="container mt-2" >
-        <div > 
-            <button id="addNewContractor" class= "btn btn-success" style="background-color:darkblue">See Previous Weeks Timesheets</button>
-            <div id="message" style="font-size:large; background-color:gold"></div>
+<div class="col-md-12 card-header text-center font-weight-bold">
 
-            <div class="modal fade" id="contractor-model" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="ContractorModel"></h4>
-                        </div>
-                        <div class="modal-body" align="centre" style="width:100%">
-                        <ul id="msgList"></ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
+
+        <div id="message" style="display: block; background-color:lightgreen; font-size:large"></div>
+
+        <button id="addNewContractor" class="btn btn-success" style="background-color:darkblue">Add Contractor</button>
+
+        <!-- Bootstrap model -->
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 ;g:px-8">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-xl " style="padding: 5px; ;">
 
 
- <div style="width:100%; align-items:center">
-    <div >
-        <div >
-        <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-        <div class="modal fade" id="contractor-model" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="ContractorModel"></h4>
-                    </div>
-                    <div class="modal-body">
-                 
+                    <div class="modal fade" id="contractor-model" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="contractorModel"></h4>
+                                </div>
+
+                                <div class="modal-body" align="centre" style="width:100%">
+                                    <ul id="msgList"></ul>
+                                    <h1 style="background-color: darkblue; color:white; align-items:center; font-size:larger">Enter Contractor Details</h1>
                 
-                        <h1 style="background-color: darkblue; color:white; align-items:center; font-size:large">Input your hours worked for this week</h1>
-                        
-                        <h1 style="background-color: darkblue; color:white; align-items:center; font-size:large">NOTE: Enter 0 if no hours were worked for that day </h1>
                         <form action="javascript:void(0)" id="addEditContractorForm" name="addEditContractorForm"  class="form-horizontal" method="POST">
                             <input type="hidden" name="id" id="id">
 
@@ -96,15 +86,14 @@
                             </div>
 
                         </form>
+                   </div>
+                                <div class="modal-footer"> </div>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
-            </div></div>
-     </div>
-
-     </div>
       
 
         
@@ -127,10 +116,11 @@
                 </tbody>
             </table>
         </div>
-  </div>
-            </div>
-     </div>
-        </div>
+    </div>
+</div>
+
+<!-- end of table div     -->
+</div>
 
 
     <script>

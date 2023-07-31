@@ -13,7 +13,6 @@
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
      
-        <style> background{background-color: blue;} </style>
      
 </head>
 <x-app-layout>
@@ -41,7 +40,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="my-6 p-6 bg-white border-b border-gray-800 shadow-sm sm:rounded-lg text-lg">
+            <div class="my-6 p-6 bg-white border-b border-gray-600 shadow-sm sm:rounded-lg text-lg">
                 <h2 class="font-semibold text-l text-gray-900 leading-tight text-xl" >Add a New Job Listing</h2>
                     {{ csrf_field() }}
                    
@@ -60,7 +59,7 @@
     @foreach ($jobs as $job )
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 ;g:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white overflow-hidden my-6 p-6 bg-white border-b border-gray-600 shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-950">
                         <h2>Job Listing</h2>
                                 <div class="flex" style="align-items: center;"> 

@@ -332,5 +332,6 @@ class TimesheetController extends Controller
         ]);
      
         return $pdf->download('payslip.pdf');
+        // return to_route('myinvoices')->with('success', 'Payslip downloaded succesfully');
     }
 }

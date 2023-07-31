@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Timesheets</title>
+    <title>JMV EXCAVATIONS</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -14,7 +14,7 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <style> table{border: 1px;    }th{background-color: darkblue; padding-top: 10px; padding-bottom: 10px; color:#fff ;} td, tr {border: 2px solid #ddd; padding: 8px;} input{border: 2px solid navy;}button{ padding: 12px; background-color: darkblue; color: #fff;} input{ padding: 8px 20px; margin: 8px 0; box-sizing: border-box; border: 1px solid #555; outline: none;}form {text-align: center;
+    <style> body{ background-color: lightblue; } table{border: 1px;    }th{background-color: darkblue; padding-top: 10px; padding-bottom: 10px; color:#fff ;} td, tr {border: 2px solid #ddd; padding: 8px;} input{border: 2px solid navy;}button{ padding: 12px; background-color: darkblue; color: #fff;} input{ padding: 8px 20px; margin: 8px 0; box-sizing: border-box; border: 1px solid #555; outline: none;}form {text-align: center;
  ;} </style>
  
 </head>
@@ -26,12 +26,13 @@
         </h2>
     </x-slot>
     <body>
+    <div class="col-md-12 card-header text-center font-weight-bold"></div>
+
+    <div id="message" style="display: block; background-color:lightgreen; font-size:large; text-align:center"></div>
 
     <button id="addNewContractorInvoice" class= "btn btn-success" style="background-color:darkblue">Add Invoice</button>
            
-         <div id="message" style="display: block; background-color:lightgreen; font-size:large; text-align:center"></div>
-
-         
+               
 <!-- Bootstrap model -->
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 ;g:px-8">
@@ -47,9 +48,9 @@
                         </div>
                 
                     <div class="modal-body">
-                        
-                        <h1 style="background-color: darkblue; color:white; align-items:center; font-size:large">NOTE: Enter 0 if no hours were worked for that day </h1>
-                        <form action="javascript:void(0)" id="addEditContractorInvoiceForm" name="addEditContractorInvoiceForm"  class="form-horizontal" method="POST">
+                    <h1 style="background-color: darkblue; color:white; align-items:center; font-size:large">Input Invoice Details </h1>
+                                   
+                           <form action="javascript:void(0)" id="addEditContractorInvoiceForm" name="addEditContractorInvoiceForm"  class="form-horizontal" method="POST">
                             <input type="hidden" name="id" id="id">
 
                             <div class="form-group">
@@ -68,13 +69,13 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="name" class="col-sm-4 control-label">Amount Paid £</label>
+                                <label for="name" class="col-sm-4 control-label">Amount Paid in Stirling</label>
                                 <div class="col-sm-12">
                                     <input type="float" class="form-control" id="amount_paid" name="amount_paid"  maxlength="50" required="" >
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="name" class="col-sm-4 control-label">Employee Count</label>
+                                <label for="name" class="col-sm-4 control-label">Number of Enmployees</label>
                                 <div class="col-sm-12">
                                     <input type="float" class="form-control" id="employee_count" name="employee_count"  maxlength="50" required="">
                                 </div>
@@ -88,7 +89,7 @@
                                 <button type="submit" class="btn btn-primary" style="background-color: darkblue; border-radius: 4px; padding: 15px; padding: right 10px;" id="btn-save" value="UpdateContractor">Save changes
                                 </button>
                             </div>
-
+                    <br>
                         </form>
                     </div>
                     <div class="modal-footer"> </div>
@@ -110,7 +111,7 @@
                         <th scope="col">Contractor Name</th>
                         <th scope="col">Date</th>
                         <th scope="col">Amount Paid</th>
-                        <th scope="col">Employee Count</th>
+                        <th scope="col">No. of Employees</th>
 
                     </tr>
                 </thead>

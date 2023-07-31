@@ -61,16 +61,29 @@ public function contractorInvoiceChart(){
     $date = ContractorInvoice::select(DB::raw("(date) as date"))
             ->get()->toArray();
     $date = array_column($date, 'date');
+    $weekBeginning = Timesheet::select(DB::raw("(week_beginning) as week_beginning"))
+    ->get()->toArray();
+    $weekBeginning = array_column($weekBeginning, 'week_beginning');
+    
 
     $amountPaid = ContractorInvoice::select(DB::raw("(amount_paid) as amountPaid"))
             ->get()->toArray();
     $amountPaid = array_column($amountPaid, 'amountPaid');
 
+    $wagesPaid = Timesheet::select(DB::raw("(total_hours * 25) as wagesPaid" ) )
+                ->get()->toArray();
+    // $wagesPaid = $totalHours * 26;
+    $wagesPaid = array_column($wagesPaid, 'wagesPaid');
+
     foreach($date as $key => $value){
         $amountPaid[] = ContractorInvoice::where(\DB::raw("DATE_FORMAT(date, '%Y')"), $value)->count();
     }
+
+ 
     return view('visualisations.contractorinvoices')  
-    ->with('date',json_encode($date,JSON_NUMERIC_CHECK))  
+    ->with('date',json_encode($date,JSON_NUMERIC_CHECK)) 
+    ->with('weekBeginning',json_encode($weekBeginning,JSON_NUMERIC_CHECK))  
+    ->with('wagesPaid',json_encode($wagesPaid,JSON_NUMERIC_CHECK))  
     ->with('amountPaid',json_encode($amountPaid,JSON_NUMERIC_CHECK)); 
 }
 

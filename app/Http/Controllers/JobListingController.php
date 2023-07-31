@@ -143,7 +143,7 @@ class JobListingController extends Controller
         $job->save();
         $job->users()->attach($users);
 
-        return redirect('/jobs');
-
+        // return redirect('/jobs');
+        return to_route('jobs', $job)->with('success', 'Enquired for Job');
     }
 }

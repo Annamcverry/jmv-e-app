@@ -50,7 +50,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-8 p-8 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
         <div >
-            <table id="Table3" class="table">
+            <table id="Table3" class="table align:center" >
                 <thead>
                     <tr>
                         <th scope="col">Name</th>

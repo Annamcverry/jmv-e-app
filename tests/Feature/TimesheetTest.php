@@ -161,4 +161,53 @@ class TimesheetTest extends TestCase
             ->assertSessionHasNoErrors();
            
     }
+    public function test_timesheet_can_be_approved(): void{
+        $user = User::factory()->create(
+            ['id'=>2,
+            'role' =>'admin']
+        );
+            $timesheet = Timesheet::factory()->create([
+                'user_id'=>2,
+                'week_beginning' => "2023-04-14 00:00:00",
+                'mon_hours' => 8,
+                'tue_hours' => 8,
+                'wed_hours' => 8,
+                'thurs_hours' => 8,
+                'fri_hours' => 8,
+                'sat_hours' => 8,
+                'sun_hours' => 7, 
+                'status' =>'Approved'
+            ]);
+    
+            $response = $this
+                ->actingAs($user)
+                ->post('/approve-timesheet', [
+                    'user_id'=>2,
+                    'week_beginning' => "2023-04-14 00:00:00",
+                    'mon_hours' => 8,
+                    'tue_hours' => 8,
+                    'wed_hours' => 8,
+                    'thurs_hours' => 8,
+                    'fri_hours' => 8,
+                    'sat_hours' => 8,
+                    'sun_hours' => 7,
+                    'status' =>'Approved'
+                ]);
+    
+            $response
+                ->assertSessionHasNoErrors();
+                // ss->assertRedirect('/admintimesheets');
+    
+            $timesheet->refresh();
+    
+            $this->assertSame(8.0, $timesheet->mon_hours);
+            $this->assertSame(8.0, $timesheet->tue_hours);
+            $this->assertSame(8.0, $timesheet->wed_hours);
+            $this->assertSame(8.0, $timesheet->thurs_hours);
+            $this->assertSame(8.0, $timesheet->fri_hours);
+            $this->assertSame(8.0, $timesheet->sat_hours);
+            $this->assertSame(7.0, $timesheet->sun_hours);
+            $this->assertSame('Approved', $timesheet->status);
+        
+    }
 }

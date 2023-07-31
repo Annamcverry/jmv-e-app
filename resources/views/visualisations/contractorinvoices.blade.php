@@ -25,18 +25,18 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-900 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Earnings and Outgoings') }}
         </h2>
     </x-slot>
 
-<h2>Payslip </h2>
 <body>
 
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-1">
             <div class="panel panel-default">
-                <div class="panel-heading" style="font-size:larger">Dashboard</div>
+                <div class="panel-heading font-weight:900 text-xl" style="text-align:center">Cumulative Employees Wages Paid and Incoming Payments</div>
+                <br>
                 <div class="panel-body">
                     
                     <canvas id="canvas2" height="400" width="500" ></canvas>
@@ -53,15 +53,39 @@
 
     var date = <?php echo $date; ?>;
     var amountPaid = <?php echo $amountPaid; ?>;
-
+    var wagesPaid = <?php echo $wagesPaid; ?>;
+    var weekBeginning = <?php echo $weekBeginning; ?>;
+ 
     var amountPaidPerWeekData = {
         labels: date,
-        datasets: [{
-            label: 'Amount Paid',
+        datasets: [
+            {
+            label: 'In',
+            font: {
+                size:50
+            },  
             backgroundColor: "blue",
+            borderColor:"black",
+            pointBorderColor: "rgba(38, 185, 154, 0.7)",
+            pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
             data: amountPaid
             
-        }]
+        },
+        {
+        label: 'Out',
+            backgroundColor: "orange",
+            borderColor:"black",
+            pointBorderColor: "rgba(38, 185, 154, 0.7)",
+            pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            data: wagesPaid
+            
+        },
+        
+    ]
     };
 
     window.onload = function() {
@@ -77,23 +101,43 @@
                               position: 'top',
                               labels: {
                                   font: {
-                                    size: 16,
+                                    size: 24,
                                     family:'vazir'
                                   }
                              }
                           },
+                          chartAreaBorder: {
+                            borderWidth: 2,
+                            borderColor:"black",
+                          },
+                        
+                          scales: {
+    y: {
+      title: {
+        display: true,
+        text: 'Week'
+      }
+    },
+    x: {
+      title: {
+        display: true,
+        text: 'Pound Stirling'
+      }
+    }
+  },
+
                         
                 elements: {
                     rectangle: {
                         borderWidth: 2,
-                        borderColor: '#c1c1c1',
+                        borderColor: 'black',
                         borderSkipped: 'bottom'
                     }
                 },
-                responsive: false,
+                responsive: true,
                 title: {
                     display: true,
-                    text: 'Total Hours worked each week',
+                    text: 'Invoices paid',
                     font: {
                                 size: 16,
                                 family:'vazir'

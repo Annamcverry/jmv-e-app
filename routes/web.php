@@ -57,12 +57,10 @@ Route::delete('delete-timesheet/{id}', [TimesheetController::class, 'destroy']);
 Route::get('/admintimesheets', [TimesheetController::class, 'adminView'], function() {
     return view('admintimesheets');
 })->middleware('can:is_admin')->name('admintimesheets');
-// Route::get('/admintimesheets', [TimesheetController::class, 'adminView'], function() {
-//     return view('admintimesheets');
-// })->middleware(['auth', 'verified'])->name('admintimesheets');
-// Route::get('/admintimesheets', [TimesheetController::class, 'adminView']);
-Route::post('approve-timesheet/{id}', [TimesheetController::class, 'approveTimesheet'])->name('approveTimesheet');
-Route::post('review-timesheet/{id}', [TimesheetController::class, 'reviewTimesheet'])->name('reviewTimesheet');
+Route::post('approve-timesheet/{id}', [TimesheetController::class, 'approveTimesheet'])
+    ->middleware('can:is_admin')->name('approveTimesheet');
+Route::post('review-timesheet/{id}', [TimesheetController::class, 'reviewTimesheet'])
+    ->middleware('can:is_admin')->name('reviewTimesheet');
 
 //Admin
 Route::get('/invoices', [TimesheetController::class, 'allInvoices'],function() {
@@ -81,7 +79,10 @@ Route::get('/payslip/pdf', [TimesheetController::class, 'PayslipPDF']);
 //Job Listing Route
 Route::get('/jobs', [JobListingController::class, 'index'],function() {
     return view('jobs');
-})->middleware(['auth', 'verified'])->name('jobs');
+})->middleware('can:is_employee')->name('jobs');
+// Route::get('/jobs', [JobListingController::class, 'index'],function() {
+//     return view('jobs');
+// })->middleware(['auth', 'verified'])->name('jobs');
 Route::post('/save-job', [JobListingController::class, 'saveJob'])->name('saveJob');
 Route::get('fetchJobs', [JobListingController::class, 'fetchJobs']);
 Route::post('enquireJob/{id}', [JobListingController::class, 'enquireJob'])->name('enquireJob');
@@ -132,7 +133,7 @@ Route::get('/chart', [ChartController::class, 'index'],function() {
 Route::get('/hours', [ChartController::class, 'hoursWorkedPerWeek'],function() {
     return view('hours');
 })->middleware(['auth', 'verified'])->name('hours');
-Route::get('/contractorinvoiceschart', [ChartController::class, 'contractorInvoiceChart'],function() {
+Route::get('/contractorinvoices', [ChartController::class, 'contractorInvoiceChart'],function() {
     return view('contractorinvoices');
 })->middleware(['auth', 'verified'])->name('contractorinvoices');
 

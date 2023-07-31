@@ -24,19 +24,19 @@
 </head>
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-900 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-900 leading-tight font-weight:700" >
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
 
-<h2>Payslip </h2>
+
 <body>
 
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-1">
             <div class="panel panel-default">
-                <div class="panel-heading" style="font-size:larger">Dashboard</div>
+                <div class="panel-heading font-weight:700 text-xl" style="font-size:larger">Sum of hours worked for each week</div>
                 <div class="panel-body">
                     
                     <canvas id="canvas2" height="400" width="500" ></canvas>
@@ -58,6 +58,11 @@
         datasets: [{
             label: 'Hours',
             backgroundColor: "blue",
+            borderColor:"black",
+            pointBorderColor: "rgba(38, 185, 154, 0.7)",
+            pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
             data: hours
             
         }]
@@ -75,10 +80,14 @@
                               position: 'top',
                               labels: {
                                   font: {
-                                    size: 16,
+                                    size: 20,
                                     family:'vazir'
                                   }
                              }
+                          },
+                          chartAreaBorder: {
+                            borderWidth: 2,
+                            borderColor:"black",
                           },
                         
                 elements: {

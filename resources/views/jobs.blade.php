@@ -16,18 +16,26 @@
      
 </head>
 <x-app-layout>
-<!-- @livewireScripts -->
+@livewireScripts
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Jobs') }}
         </h2>
     </x-slot>
 
-    <div class="pb-8">
-        <x-success-message class="mb-4" />
-        <x-validation-errors class="mb-6" :errors="$errors" />
+    <div class="">
+        @if(session()->get('success'))
+        <div class="alert alert-success mb-4 px-4 py-2 bg-green-100 border border-green-200 text-green-700 rounded-md"" >
+            {{session()->get('success') }}
+        </div>
+        @endif
+        @if(Session::has('error'))
+        <div class="alert alert-danger">
+            {{Session::get('error')}}
+        </div>
+        @endif
     </div>
-
+        
     <div id="message" style="font-size:large; background-color:gold"></div>
 
     @foreach ($jobs as $job )
@@ -59,9 +67,13 @@
                                     </tr>
                                 </table>
                             </div>
-                            <form method="post" action="{{route('enquireJob', $job->id) }}" accept-charset="UTF-8"> {{ csrf_field() }}
-                                        <button id="btn-submit" type="submit" style="background-color: darkblue; border-radius: 4px;">Enquire Now</button></form>
-                        `  
+                     
+                           <form action="{{ route('enquireJob', [$job->id])}}" method="post">
+                                @csrf
+                                @method('POST')
+                                <button class="btn btn-primary" onclick="return confirm('Are you sure?')" 
+                                type="submit" name="Enquire" class="mt-6 inline-flex items-center px-4 py-2" style="background-color: darkblue; border-radius: 4px; padding: 15px; padding: right 10px;">Enquire</button>    
+                             
                                     </div>
                    
                 </div>

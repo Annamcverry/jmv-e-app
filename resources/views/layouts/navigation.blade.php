@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 @can('is_employee')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-xl">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-xl text-gray-900 font-weight: 600;">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
@@ -20,34 +20,28 @@
                 @endcan
 
                 @can('is_admin')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-xl">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-xl text-gray-900 font-weight: 600;">
                     <x-nav-link :href="route('admindashboard')" :active="request()->routeIs('admindashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
                 @endcan
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-xl" style="font-size: larger;">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-xl text-gray-900 font-weight: 600;"  style="font-size: larger;">
                     <x-nav-link :href="route('timesheet')" :active="request()->routeIs('timesheet')">
                         {{ __('Timesheets') }}
                     </x-nav-link>
                 </div>
 
                 @can('is_admin')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-xl" style="font-size: larger;">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-xl text-gray-900 font-weight: 600;" style="font-size: larger;">
                     <x-nav-link :href="route('admintimesheets')" :active="request()->routeIs('admintimesheets')">
                         {{ __('Payslips') }}
                     </x-nav-link>
                 </div>
                 @endcan
-
-                <!-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('invoices')" :active="request()->routeIs('invoices')">
-                        {{ __('Invoices') }}
-                    </x-nav-link>
-                </div> -->
                 
                 @can('is_employee')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-gray-900 font-weight: 600;">
                     <x-nav-link :href="route('myinvoices')" :active="request()->routeIs('myinvoices')">
                         {{ __('My Payslips') }}
                     </x-nav-link>
@@ -55,7 +49,7 @@
                 @endcan
 
                 @can('is_employee')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-gray-900 font-weight: 600;">
                     <x-nav-link :href="route('jobs')" :active="request()->routeIs('jobs')">
                         {{ __('Jobs') }}
                     </x-nav-link>
@@ -63,7 +57,7 @@
                 @endcan
 
                 @can('is_admin')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-gray-900 font-weight: 600;">
                     <x-nav-link :href="route('enquiries')" :active="request()->routeIs('enquiries')">
                         {{ __('Jobs') }}
                     </x-nav-link>
@@ -71,7 +65,7 @@
                 @endcan
 
                 @can('is_admin')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-gray-900 font-weight: 600;">
                     <x-nav-link :href="route('employees')" :active="request()->routeIs('employee')">
                         {{ __('Employees') }}
                     </x-nav-link>
@@ -79,7 +73,7 @@
                 @endcan
 
                 @can('is_admin')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-gray-900 font-weight: 600;">
                     <x-nav-link :href="route('contractors')" :active="request()->routeIs('contractors')">
                         {{ __('Contractors') }}
                     </x-nav-link>
@@ -87,7 +81,7 @@
                 @endcan
 
                 @can('is_admin')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-gray-900 font-weight: 600;">
                     <x-nav-link :href="route('contractorinvoice')" :active="request()->routeIs('contractorinvoice')">
                         {{ __('Invoices') }}
                     </x-nav-link>
