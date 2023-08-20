@@ -21,7 +21,7 @@
 <body>
     <!-- <img src="C:\jmv\jmv-e-app\database\data\jmv-excavations-ltd-high-resolution-color-logo_adobe_express.png" style="width: 20px; height: 25px;"> -->
     <br>
-    @foreach( $timesheets as $timesheet)
+    @foreach( $timesheets->where('status', 'Approved') as $timesheet)
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 ;g:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

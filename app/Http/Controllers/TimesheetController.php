@@ -28,10 +28,10 @@ class TimesheetController extends Controller
        
         return view('invoices', ['timesheets' => Timesheet::where(Auth::id())]);
     }
-    public function allInvoices()
+    public function allTimesheets()
     {
        
-        return view('invoices', ['timesheets' => Timesheet::all(), 'users'=> User::all()]);
+        return view('timesheets', ['timesheets' => Timesheet::all()]);
     }
 
     public function myInvoices()
@@ -90,12 +90,14 @@ class TimesheetController extends Controller
         ]);
     }
 
-    // public function fetchInvoices (){
-    //     $timesheets = Timesheet::where('user_id', Auth::class()->id);
-    //     return response()->json([
-    //         'timesheets'=>$timesheets,
-    //     ]);
-    // }
+    public function fetchAllTimesheets(){
+        
+
+        $timesheets = Timesheet::all();
+        return response()->json([
+            'timesheets'=>$timesheets,
+        ]);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -109,13 +111,13 @@ class TimesheetController extends Controller
             // 'user_id'=>Auth::user()->id,
             
             'week_beginning'=>'required',
-            'mon_hours',
-            'tue_hours',
-            'wed_hours',
-            'thurs_hours',
-            'fri_hours',
-            'sat_hours',
-            'sun_hours',
+            'mon_hours'=>'required',
+            'tue_hours'=>'required',
+            'wed_hours'=>'required',
+            'thurs_hours'=>'required',
+            'fri_hours'=>'required',
+            'sat_hours'=>'required',
+            'sun_hours'=>'required',
          
         ]);
         if($validator->fails()){

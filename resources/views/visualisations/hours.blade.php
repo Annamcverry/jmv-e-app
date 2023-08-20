@@ -36,7 +36,7 @@
     <div class="row">
         <div class="col-md-6 offset-md-1">
             <div class="panel panel-default">
-                <div class="panel-heading font-weight:700 text-xl" style="font-size:larger">Sum of hours worked for each week</div>
+                <div class="panel-heading font-weight:900 text-xl" style="text-align:center">Sum of hours worked for each week</div>
                 <div class="panel-body">
                     
                     <canvas id="canvas2" height="400" width="500" ></canvas>

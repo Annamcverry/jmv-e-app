@@ -1,11 +1,11 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="text-xl font-bold text-gray-900">
             {{ __('Profile Information') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-900">
-            {{ __("Update your account's profile information and email address.") }}
+        <p class="mt-1 text-lg text-gray-900">
+            {{ __("Update your account's profile information.") }}
         </p>
     </header>
 
@@ -60,11 +60,11 @@
         </div>
 
 
-        <div>
+        <!-- <div>
             <x-input-label for="rate" :value="__('Rate')" />
             <x-text-input id="rate" name="rate" type="float" class="mt-1 block w-full" :value="old('rate', $user->rate)" required autofocus autocomplete="rate" />
             <x-input-error class="mt-2" :messages="$errors->get('rate')" />
-        </div>
+        </div> -->
 
         <div>
             <x-input-label for="licences" :value="__('Licences')" />

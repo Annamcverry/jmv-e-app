@@ -69,13 +69,13 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="name" class="col-sm-4 control-label">Amount Paid in Stirling</label>
+                                <label for="name" class="col-sm-4 control-label">Amount Paid in Pounds Sterling</label>
                                 <div class="col-sm-12">
                                     <input type="float" class="form-control" id="amount_paid" name="amount_paid"  maxlength="50" required="" >
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="name" class="col-sm-4 control-label">Number of Enmployees</label>
+                                <label for="name" class="col-sm-4 control-label">Number of Employees</label>
                                 <div class="col-sm-12">
                                     <input type="float" class="form-control" id="employee_count" name="employee_count"  maxlength="50" required="">
                                 </div>

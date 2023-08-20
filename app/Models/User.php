@@ -24,7 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'contact_no',
+        'contact_no' => 'required|min:8|max:11|regex:/^([0-9\s\-\+\(\)]*)$/',
         'rate',
         'job_role',
         'licences',

@@ -21,7 +21,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('All Employees') }}
+            {{ __('All Timesheets') }}
         </h2>
     </x-slot>
 
@@ -31,7 +31,7 @@
         <div > 
               <div id="message" style="font-size:large; background-color:gold"></div>
 
-            <div class="modal fade" id="user-model" aria-hidden="true">
+            <div class="modal fade" id="timesheet-model" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -53,13 +53,16 @@
             <table id="Table3" class="table align:center" >
                 <thead>
                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Contact No</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Job Role</th>
-                        <th scope="col">Rate</th>
-                        <th scope="col">Licenses</th>
-                        <th scope="col">Safe Pass</th>
+                        <th scope="col">Employee ID</th>
+                        <th scope="col">Week Beginning</th>
+                        <th scope="col">Monday</th>
+                        <th scope="col">Tuesday</th>
+                        <th scope="col">Wednesday</th>
+                        <th scope="col">Thursday</th>
+                        <th scope="col">Friday</th>
+                        <th scope="col">Saturday</th>
+                        <th scope="col">Sunday</th>
+                        <th scope="col">Total Hours</th>
                      
                     </tr>
                         </thead>
@@ -86,64 +89,76 @@
 
                 
                         <h1 style="background-color: darkblue; color:white; align-items:center; font-size:large">Employee Info</h1>
-                        <form action="javascript:void(0)" id="addEditUserForm" name="addEditUserForm"  class="form-horizontal" method="POST">
-                            <input type="hidden" name="id" id="id">
+                        <form action="javascript:void(0)" id="addEditTimesheetForm" name="addEditTimesheetForm" class="form-horizontal" method="POST">
+
+                                        <input type="hidden" name="id" id="id">
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-4 control-label">Employee ID</label>
+                                            <div class="col-sm-12">
+                                                <input type="id" class="form-control" id="user_id" name="user_id"  required="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-4 control-label">Week Beginning</label>
+                                            <div class="col-sm-12">
+                                                <input type="date" class="form-control" id="week_beginning" name="week_beginning" maxlength="50" required="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-4 control-label">Mon Hours</label>
+                                            <div class="col-sm-12">
+                                                <input type="float" class="form-control" id="mon_hours" name="mon_hours" maxlength="50" default="0" required="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-4 control-label">Tue Hours</label>
+                                            <div class="col-sm-12">
+                                                <input type="float" class="form-control" id="tue_hours" name="tue_hours" maxlength="50" default="0" required="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-4 control-label">Wed Hours</label>
+                                            <div class="col-sm-12">
+                                                <input type="float" class="form-control" id="wed_hours" name="wed_hours" maxlength="50" default="0" required="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-4 control-label">Thurs Hours</label>
+                                            <div class="col-sm-12">
+                                                <input type="float" class="form-control" id="thurs_hours" name="thurs_hours" maxlength="50" default="0" required="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-4 control-label">Fri Hours</label>
+                                            <div class="col-sm-12">
+                                                <input type="float" class="form-control" id="fri_hours" name="fri_hours" value="" maxlength="50" default="0" required="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-4 control-label">Sat Hours</label>
+                                            <div class="col-sm-12">
+                                                <input type="float" class="form-control" id="sat_hours" name="sat_hours" value="" maxlength="50" default="0" required="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-4 control-label">Sun Hours</label>
+                                            <div class="col-sm-12">
+                                                <input type="float" class="form-control" id="sun_hours" name="sun_hours" value="" maxlength="50" default="0" required="">
+                                            </div>
+                                        </div>
 
 
-                            <div class="form-group">
-                                <label for="name" class="col-sm-4 control-label">Name</label>
-                                <div class="col-sm-12">
-                                    <input type="text" class="form-control" id="name" name="name"  maxlength="50" required="">
-                                </div>
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-primary" style="background-color: darkblue; border-radius: 4px; padding: 15px; padding: right 10px;" id="btn-add" value="addNewTimesheet">Save
+                                            </button>
 
-                            </div>
+                                            <button type="submit" class="btn btn-primary" style="background-color: darkblue; border-radius: 4px; padding: 15px; padding: right 10px;" id="btn-save" value="UpdateTimesheet">Save changes
+                                            </button>
+                                        </div>
 
-                            <div class="form-group">
-                                <label for="name" class="col-sm-4 control-label">Contact No</label>
-                                <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="contact_no" name="contact_no"  maxlength="50" default="0" >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="name" class="col-sm-4 control-label">Email</label>
-                                <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="email" name="email"  maxlength="50" default="0" >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="name" class="col-sm-4 control-label">Job Role</label>
-                                <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="job_role" name="job_role"  maxlength="50" default="0" >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="name" class="col-sm-4 control-label">Rate</label>
-                                <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="rate" name="rate"  maxlength="50" default="0" >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="name" class="col-sm-4 control-label">licences</label>
-                                <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="licences" name="licences" value="" maxlength="50" default="0" >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="name" class="col-sm-4 control-label">Safe Pass</label>
-                                <div class="col-sm-12">
-                                    <input type="float" class="form-control" id="safepass" name="safepass"  value="" maxlength="50" default="0" >
-                                </div>
-                            </div>
-                    
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-primary" style="background-color: darkblue; border-radius: 4px; padding: 15px; padding: right 10px;" id="btn-add" value="addNewUser">Save
-                                </button>
-
-                                <button type="submit" class="btn btn-primary" style="background-color: darkblue; border-radius: 4px; padding: 15px; padding: right 10px;" id="btn-save" value="UpdateUser">Save changes
-                                </button>
-                            </div>
-
-                        </form>
+                                    </form>
                     </div>
                 </div>
             </div>
@@ -154,93 +169,100 @@
 <!-- </div> -->
         
 
-        <script>
+         <script>
             $(document).ready(function($) {
-                fetchEmployees();
+                fetchAllTimesheet();
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
 
-                function fetchEmployees() {
-                    $.ajax({
-                        type: "GET",
-                        url: "fetch-employees",
-                        dataType: 'json',
-                        success: function(response) {
-                            $('tbody').html("");
-                            $.each(response.users, function(key, item) {
-                                $('tbody').append('<tr>\
-                            <td>' + item.name + '</td>\
-                            <td>' + item.contact_no + '</td>\
-                            <td>' + item.email + '</td>\
-                            <td>' + item.job_role + '</td>\
-                            <td>' + item.rate + '</td>\
-                            <td>' + item.licences + '</td>\
-                            <td>' + item.safepass + '</td>\
-                            <td><button type="button" data-id="' + item.id + '" class="btn btn-primary edit btn-sm" style="background-color:darkblue; border-radius: 4px; padding: 15px; padding: right 10px;" >Edit</button>\
-                            <button type="button" data-id="' + item.id + '" class="btn btn danger delete btn-sm"  style="background-color:darkblue; border-radius: 4px; padding: 15px; padding: right 10px;" >Delete</button></td>\
-                           </tr>');
-                            });
+function fetchAllTimesheet() {
+    $.ajax({
+        type: "GET",
+        url: "fetch-all-timesheets",
+        dataType: 'json',
+        success: function(response) {
+            $('tbody').html("");
+            $.each(response.timesheets, function(key, item) {
+                $('tbody').append('<tr>\
+            <td>' + item.user_id + '</td>\
+            <td>' + item.week_beginning + '</td>\
+            <td>' + item.mon_hours + '</td>\
+            <td>' + item.tue_hours + '</td>\
+            <td>' + item.wed_hours + '</td>\
+            <td>' + item.thurs_hours + '</td>\
+            <td>' + item.fri_hours + '</td>\
+            <td>' + item.sat_hours + '</td>\
+            <td>' + item.sun_hours + '</td>\
+            <td>' + item.total_hours + '</td>\
+            <td><button type="button" data-id="' + item.id + '" class="btn btn-primary edit btn-sm" style="background-color: darkblue; border-radius: 4px; padding: 15px; padding: right 10px;" >Edit</button>\
+            <button type="button" data-id="' + item.id + '" class="btn btn danger delete btn-sm" " style="background-color: darkblue; border-radius: 4px; padding: 15px; padding: right 10px;" >Delete</button></td>\
+            </tr>');
+            });
 
-                        },
-                        complete: function() {
-                            isChecked();
-                        }
-                    });
-                }
-             
-                $('#addNewUser').click(function(evt) {
+        },
+        complete: function() {
+            isChecked();
+        }
+    });
+}
+
+                $('#addNewTimesheet').click(function(evt) {
                     evt.preventDefault();
-                    $('#addEditUserForm').trigger("reset");
-                    $('#UserModel').html("Add User");
+                    $('#addEditTimesheetForm').trigger("reset");
+                    $('#TimesheetModel').html("Add Timesheet");
                     $('#btn-add').show();
                     $('#btn-save').hide();
-                    $('#user-model').modal('show');
+                    $('#timesheet-model').modal('show');
                 });
 
                 $('body').on('click', '#btn-add', function(event) {
                     event.preventDefault()
-                    var name = $("#name").val();
-                    var contact_no = $("#contact_no").val();
-                    var email = $("#email").val();
-                    var job_role = $("#job_role").val();
-                    var rate = $("#rate").val();
-                    var licences = $("#licenses").val();
-                    var safepass = $("#safepass").val();
+                    var week_beginning = $("#week_beginning").val();
+                    var mon_hours = $("#mon_hours").val();
+                    var tue_hours = $("#tue_hours").val();
+                    var wed_hours = $("#wed_hours").val();
+                    var thurs_hours = $("#thurs_hours").val();
+                    var fri_hours = $("#fri_hours").val();
+                    var sat_hours = $("#sat_hours").val();
+                    var sun_hours = $("#sun_hours").val();
                     $("#btn-add").html('Please Wait');
                     $("#btn-add").attr("disabled", true);
 
                     $.ajax({
                         type: "POST",
-                        url: "save-user",
-                        data:{
-                            name:name,
-                            contact_no:contact_no,
-                            email:email,
-                            job_role:job_role,
-                            rate:rate,
-                            licences:licences,
-                            safepass:safepass,
+                        url: "save-timesheet",
+                        data: {
+                            user_id: user_id,
+                            week_beginning: week_beginning,
+                            mon_hours: mon_hours,
+                            tue_hours: tue_hours,
+                            wed_hours: wed_hours,
+                            thurs_hours: thurs_hours,
+                            fri_hours: fri_hours,
+                            sat_hours: sat_hours,
+                            sun_hours: sun_hours,
                         },
                         dataType: 'json',
-                        success: function(res) {
-                            console.log(res);
-                            if (res.status == 400) {
+                        success: function(response) {
+                            console.log(response);
+                            if (response.status == 400) {
 
                                 $('#msgList').html("");
                                 $('#msgList').addClass("alert alert-danger");
-                                $.each(res.errors, function(key, err_value) {
+                                $.each(response.errors, function(key, err_value) {
                                     $('#msgList').append('<li>' + err_value + '</li>');
                                 });
                                 $('#btn-save').text('Save Changes');
                             } else {
                                 $('#message').html("");
-                                $('#success-message').addClass("alert alert-sucess");
-                                $('#success-message').text(res.message);
-                                fetchEmployees();
+                                $('#message').addClass("alert alert-sucess");
+                                $('#message').text(response.message);
+                                fetchAllTimesheet();
                             }
+
                         },
                         complete: function() {
                             $("#btn-add").html('Save');
@@ -258,14 +280,14 @@
 
                     $.ajax({
                         type: "GET",
-                        url: "edit-user/" + id,
+                        url: "edit-timesheet/" + id,
                         dataType: 'json',
                         success: function(response) {
                             console.dir(response);
-                            $('#UserModel').html("Edit User");
+                            $('#TimesheetModel').html("Edit Timesheet");
                             $('#btn-add').hide();
                             $('#btn-save').show();
-                            $('#user-model').modal('show');
+                            $('#timesheet-model').modal('show');
                             if (response.status == 404) {
                                 $('#msgList').html("");
                                 $('#msgList').addClass('alert alert-success');
@@ -275,43 +297,45 @@
                                 $('#message').html("");
                                 $('#message').addClass('alert alert-success');
                                 $('#message').text(response.message);
-                                $('#name').val(response.user.name);
-                                $('#contact_no').val(response.user.contact_no);
-                                $('#email').val(response.user.email);
-                                $('#job_role').val(response.user.job_role);
-                                $('#rate').val(response.user.rate);
-                                $('#licences').val(response.user.licences);
-                                $('#safepass').val(response.user.safepass);
-                                $('#id').val(response.user.id);
+                                $('#week_beginning').val(response.timesheet.week_beginning);
+                                $('#mon_hours').val(response.timesheet.mon_hours);
+                                $('#tue_hours').val(response.timesheet.tue_hours);
+                                $('#wed_hours').val(response.timesheet.wed_hours);
+                                $('#thurs_hours').val(response.timesheet.thurs_hours);
+                                $('#fri_hours').val(response.timesheet.fri_hours);
+                                $('#sat_hours').val(response.timesheet.sat_hours);
+                                $('#sun_hours').val(response.timesheet.sun_hours);
+                                $('#id').val(response.timesheet.id);
+
                             }
                         }
                     });
                 });
                 $('body').on('click', '.delete', function(evt) {
                     evt.preventDefault();
-                    if (confirm("Delete User?") == true) {
+                    if (confirm("Delete Timesheet?") == true) {
                         var id = $(this).data('id');
                         alert("id = " + id);
 
                         $.ajax({
                             type: "DELETE",
-                            url: "delete-user/" + id,
+                            url: "delete-timesheet/" + id,
                             dataType: 'json',
                             success: function(response) {
-                              
-                                if(response.status == 200){
+
+                                if (response.status == 200) {
                                     $('#message').html("");
                                     $('#message').addClass('alert alert-success');
                                     $('#message').text(response.message);
-                                    $('#message').fadeOut(4000);
-                                }else{
+                                    // $('#message').fadeOut(4000);
+                                } else {
                                     alert("Not Authorized");
                                     $('#message').html("");
                                     $('#message').addClass('alert alert-success');
                                     $('#message').text(response.message);
-                                    $('#message').fadeOut(4000);
-                                    }
-                                fetchEmployees();
+                                    // $('#message').fadeOut(4000);
+                                }
+                                fetchAllTimesheet();
                             }
                         });
                     }
@@ -319,28 +343,30 @@
                 $('body').on('click', '#btn-save', function(event) {
                     event.preventDefault();
                     var id = $("#id").val();
-                    var name = $("#name").val();
-                    var contact_no = $("#contact_no").val();
-                    var email = $("#email").val();
-                    var job_role = $("#job_role").val();
-                    var rate = $("#rate").val();
-                    var licences = $("#licences").val();
-                    var safepass = $("#safepass").val();
+                    var week_beginning = $("#week_beginning").val();
+                    var mon_hours = $("#mon_hours").val();
+                    var tue_hours = $("#tue_hours").val();
+                    var wed_hours = $("#wed_hours").val();
+                    var thurs_hours = $("#thurs_hours").val();
+                    var fri_hours = $("#fri_hours").val();
+                    var sat_hours = $("#sat_hours").val();
+                    var sun_hours = $("#sun_hours").val();
 
                     $("#btn-save").html('Please wait');
                     $("#btn-save").attr("disable", true);
 
                     $.ajax({
                         type: "PUT",
-                        url: "update-user/" + id,
+                        url: "update-timesheet/" + id,
                         data: {
-                            name:name,
-                            contact_no:contact_no,
-                            email:email,
-                            job_role:job_role,
-                            rate:rate,
-                            licences:licences,
-                            safepass:safepass,
+                            week_beginning: week_beginning,
+                            mon_hours: mon_hours,
+                            tue_hours: tue_hours,
+                            wed_hours: wed_hours,
+                            thurs_hours: thurs_hours,
+                            fri_hours: fri_hours,
+                            sat_hours: sat_hours,
+                            sun_hours: sun_hours,
                         },
                         dataType: 'json',
                         success: function(response) {
@@ -356,17 +382,20 @@
                                 $('#message').html("");
                                 $('#message').addClass('alert alert-success');
                                 $('#message').text(response.message);
-                                fetchEmployees();
+                                fetchAllTimesheet();
                             }
                         },
                         complete: function() {
                             $("#btn-save").html('Save changes');
                             $("#btn-save").attr("disabled", false);
-                            $('user-model').modal('hide');
+                            $('timesheet-model').modal('hide');
                             $('#message').fadeOut(4000);
                         }
                     });
                 });
+
+             
+
                 $("btnGet").click(function() {
                     var message = "";
 

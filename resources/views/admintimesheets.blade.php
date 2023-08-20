@@ -40,7 +40,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 ;g:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-xl">
                 All Employee Invoices
-                @foreach( $timesheets as $timesheet)
+                @foreach( $timesheets->where('status', 'Pending Review') as $timesheet)
                     <div class="p-6 text-gray-950">
                        
                                 <div style="align-items: center;"> 

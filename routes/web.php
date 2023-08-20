@@ -54,6 +54,16 @@ Route::put('update-timesheet/{id}', [TimesheetController::class, 'update']);
 Route::get('edit-timesheet/{id}', [TimesheetController::class, 'edit']);
 Route::delete('delete-timesheet/{id}', [TimesheetController::class, 'destroy']);
 
+//Admin timesheets route
+Route::get('/timesheets', [TimesheetController::class, 'allTimesheets'], function() {
+    return view('timesheets');
+})->middleware('can:is_admin')->name('timesheets');
+Route::get('/timesheets', function() {
+    return view('timesheets');
+})->middleware(['auth', 'verified'])->name('timesheets');
+Route::get('fetch-all-timesheets', [TimesheetController::class, 'fetchAllTimesheets']);
+
+
 Route::get('/admintimesheets', [TimesheetController::class, 'adminView'], function() {
     return view('admintimesheets');
 })->middleware('can:is_admin')->name('admintimesheets');
@@ -102,12 +112,11 @@ Route::get('/employees', [ProfileController::class, 'index'],function() {
 })->middleware('can:is_admin')->name('employees');
 
 Route::get('fetch-employees', [UserController::class, 'fetchEmployees'],function(){
-
 })->middleware('can:is_admin')->name('fetch-employees');
-// Route::get('fetch-employees', [UserController::class, 'fetchEmployees'])->middleware('can:is_admin');
 
 Route::put('update-user/{id}', [UserController::class, 'adminUpdateEmployee'],function(){
 })->middleware('can:is_admin');
+
 Route::get('edit-user/{id}', [UserController::class, 'edit'],function(){
 })->middleware('can:is_admin');
 Route::post('save-user', [UserController::class, 'save']);
